@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://kjci3hbj4m18"]
+
+[ext_resource type="Script" uid="uid://bgoongxp3mffj" path="res://scenes/scenes_gui/tutorial_handler/tutorial_handler.gd" id="1_sbj2h"]
+
+[node name="tutorial_handler" type="Node2D" unique_id=2105474710]
+script = ExtResource("1_sbj2h")
+
+[node name="canvas" type="CanvasLayer" parent="." unique_id=1425573876]
+layer = 999
+
+[node name="node" type="Control" parent="canvas" unique_id=18635458]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -285.0
+offset_bottom = -285.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="panel" type="PanelContainer" parent="canvas/node" unique_id=1107288612]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -156.0
+offset_right = 961.0
+offset_bottom = 156.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="label" type="Label" parent="canvas/node/panel" unique_id=199225380]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

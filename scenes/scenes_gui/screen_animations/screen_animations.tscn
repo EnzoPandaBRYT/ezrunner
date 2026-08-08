@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://dk3b8pfgk04cm"]
+
+[ext_resource type="Script" uid="uid://2r2mu1do1knx" path="res://scenes/scenes_gui/screen_animations/screen_animations.gd" id="1_osh4p"]
+
+[node name="screen_animations" type="Node2D" unique_id=857623887]
+z_index = 100
+script = ExtResource("1_osh4p")
+
+[node name="white_rect" type="Node2D" parent="." unique_id=674854906]
+
+[node name="canvas" type="CanvasLayer" parent="white_rect" unique_id=620947858]
+layer = 100
+
+[node name="color_rect" type="ColorRect" parent="white_rect/canvas" unique_id=1538499683]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="black_rect" type="Node2D" parent="." unique_id=1766551904]
+
+[node name="canvas" type="CanvasLayer" parent="black_rect" unique_id=1716478008]
+layer = 100
+
+[node name="color_rect" type="ColorRect" parent="black_rect/canvas" unique_id=261202032]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+color = Color(0, 0, 0, 1)
+
+[node name="black_bars" type="Node2D" parent="." unique_id=1935168606]
+
+[node name="canvas" type="CanvasLayer" parent="black_bars" unique_id=135967477]
+layer = 100
+
+[node name="color_rect_up" type="ColorRect" parent="black_bars/canvas" unique_id=1852184555]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -75.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+color = Color(0, 0, 0, 1)
+
+[node name="color_rect_bottom" type="ColorRect" parent="black_bars/canvas" unique_id=1431227030]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1080.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+color = Color(0, 0, 0, 1)
