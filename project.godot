@@ -44,7 +44,8 @@ folder_colors={
 "res://ost_sfx/": "red",
 "res://scenes/": "orange",
 "res://scripts/": "blue",
-"res://singletons/": "purple"
+"res://singletons/": "purple",
+"res://z_changelogs/": "gray"
 }
 
 [gui]

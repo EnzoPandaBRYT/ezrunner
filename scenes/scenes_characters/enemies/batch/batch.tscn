@@ -90,20 +90,26 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="Curve" id="Curve_fjwd6"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(1, 2.2471924), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_p0ttc"]
+offsets = PackedFloat32Array(0, 0.16049382, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_axm1n"]
 radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p0ttc"]
-radius = 22.521944
+radius = 39.062428
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x74pv"]
 radius = 12.533219
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vricr"]
-radius = 430.9768
-
-[sub_resource type="Gradient" id="Gradient_p0ttc"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+radius = 1076.851
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hrkg"]
 bg_color = Color(0, 0, 0, 1)
@@ -144,6 +150,24 @@ animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.920409
 
+[node name="spawn_particles" type="CPUParticles2D" parent="anim" unique_id=2030203778]
+scale = Vector2(0.5319148, 0.5319148)
+emitting = false
+amount = 128
+lifetime = 0.5
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 180.0
+gravity = Vector2(0, 0)
+angular_velocity_min = -200.0
+angular_velocity_max = 200.0
+radial_accel_min = -1.0
+radial_accel_max = -1.0
+radial_accel_curve = SubResource("Curve_fjwd6")
+scale_amount_max = 8.0
+color_ramp = SubResource("Gradient_p0ttc")
+
 [node name="collision" type="CollisionShape2D" parent="." unique_id=313765987]
 scale = Vector2(1.8800004, 1.8800004)
 shape = SubResource("CircleShape2D_axm1n")
@@ -159,11 +183,11 @@ scale = Vector2(1.8800004, 1.8800004)
 shape = SubResource("CircleShape2D_p0ttc")
 debug_color = Color(0.79183584, 0.42817688, 0, 0.41960785)
 
-[node name="hitbox" type="Area2D" parent="collisions" unique_id=1195411366]
+[node name="batch_hitbox" type="Area2D" parent="collisions" unique_id=1195411366]
 collision_layer = 128
 collision_mask = 16
 
-[node name="collision" type="CollisionShape2D" parent="collisions/hitbox" unique_id=1501920439]
+[node name="collision" type="CollisionShape2D" parent="collisions/batch_hitbox" unique_id=1501920439]
 scale = Vector2(1.8800004, 1.8800004)
 shape = SubResource("CircleShape2D_x74pv")
 debug_color = Color(0.9590456, 0, 0.12561816, 0.41960785)
@@ -173,23 +197,6 @@ collision_layer = 8
 
 [node name="collision" type="CollisionShape2D" parent="collisions/follow_player" unique_id=887984517]
 shape = SubResource("CircleShape2D_vricr")
-
-[node name="spawn_particles" type="CPUParticles2D" parent="." unique_id=2030203778]
-emitting = false
-amount = 128
-one_shot = true
-explosiveness = 0.37
-emission_shape = 1
-emission_sphere_radius = 128.0
-direction = Vector2(-100, -100)
-spread = 180.0
-gravity = Vector2(0, 0)
-angular_velocity_min = -200.0
-angular_velocity_max = 200.0
-radial_accel_min = -100.0
-radial_accel_max = 34.65
-scale_amount_max = 8.0
-color_ramp = SubResource("Gradient_p0ttc")
 
 [node name="death_particles" type="CPUParticles2D" parent="." unique_id=1316471067]
 emitting = false

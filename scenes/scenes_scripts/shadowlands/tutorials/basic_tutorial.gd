@@ -11,6 +11,7 @@ func _ready() -> void:
 	ScreenAnimations.room_enter(0.0, 1)
 	PlayerGui.tutorial_cutscene()
 	if GameConfig.tutorial_enabled:
+		player.position = Vector2(60,-5930)
 		player._state = player._StateMachine.JUMP
 		ScreenAnimations.cutscene_bars_on(0.5)
 		camera.position_smoothing_speed = 15
@@ -20,25 +21,15 @@ func _ready() -> void:
 		PlayerVars.can_fight = false
 		# Tira controle do jogador
 		ScreenAnimations.room_enter(0.0, 1.0)
-		
 		await get_tree().create_timer(3.5).timeout
-		
 		TutorialHandler.tutorial_msg("Bem-vindo(a), Usuário %d." % [id])
-		
 		await get_tree().create_timer(3).timeout
-		
 		create_tween().tween_property(camera, "zoom", Vector2(2.0,2.0), 1).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUINT)
-		
 		TutorialHandler.change_text("Este mundo está em ruínas, você precisa escapar dele.")
-		
 		await get_tree().create_timer(5).timeout
-		
 		TutorialHandler.change_text("Oh. Parece que você está preso.")
-		
 		await get_tree().create_timer(3).timeout
-		
-		TutorialHandler.change_text("Tente se mexer usando WASD ou ←↑→↓.")
-
+		TutorialHandler.change_text("Tente se mexer usando A e D ou ← e →.")
 		await get_tree().create_timer(2).timeout
 		ScreenAnimations.cutscene_bars_off(0.5)
 		PlayerGui.cutscene_off()
@@ -48,7 +39,6 @@ func _ready() -> void:
 		PlayerGui.cutscene_off()
 		PlayerVars.can_control = true
 		camera.position_smoothing_speed = 5
-		player.global_position = Vector2(72, 170)
 	
 func _process(delta: float) -> void:
 	if PlayerVars.can_control and GameConfig.tutorial_enabled:
@@ -58,8 +48,10 @@ func _process(delta: float) -> void:
 					TutorialHandler.tutorial_step = -1
 					TutorialHandler.change_text("Ótimo. Você conseguiu.")
 					await get_tree().create_timer(3).timeout
-					TutorialHandler.change_text("Rápido, procure a saída enquanto há tempo.")
-					await get_tree().create_timer(5).timeout
+					TutorialHandler.change_text("Você precisa achar a saída enquanto há tempo.")
+					await get_tree().create_timer(4).timeout
+					TutorialHandler.change_text("O relevo de Shadowlands não perdoa,\nvocê precisará PULAR.")
+					await get_tree().create_timer(5.5).timeout
 					TutorialHandler.change_text("Pressione ESPAÇO ou ↑ para pular sobre obstáculos.")
 					await get_tree().create_timer(1).timeout
 					PlayerVars.can_jump = true

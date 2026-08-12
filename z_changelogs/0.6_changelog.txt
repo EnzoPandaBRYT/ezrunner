@@ -1,0 +1,16 @@
+=== MODIFICAÇÕES ATÉ 12/08/2026 - 12:17 ===
+
+### Recursos modificados:
+	## GUI:
+		# MENU INICIAL:
+			- Animações adicionadas pra quando o jogador entra e sai do jogo;
+	## NÍVEIS:
+		# TUTORIAIS:
+			- Mudanças simples nos terrenos (WIP);
+			- Partículas indicativas foram criadas para guiar o jogador sobre onde pisar (serão adicionadas mais);
+			- Arenas estão sendo adicionadas aos poucos;
+			- Ambos os tutoriais simples (de movimentação e luta) podem ser concluídos e retornam ao MENU INICIAL.
+	## INIMIGOS:
+		# BATCH:
+			- Forma dos inimigos nascerem (agora a posição é aleatória);
+			- Dano aumentado: 2 >>> 5 (por hit).

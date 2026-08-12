@@ -6,7 +6,7 @@ extends TileMapLayer
 
 var start_y: float
 var time := 0.0
-@export var float_speed = 1 # Velocidade que os blocos flutuarão.
+@export var float_speed = 0.5 # Velocidade que os blocos flutuarão.
 @export var height_variation = 120 # Variação da altura, para mais e para menos.
 
 func _ready() -> void:

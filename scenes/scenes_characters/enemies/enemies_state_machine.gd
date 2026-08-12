@@ -5,7 +5,7 @@ enum _StateMachine { IDLE, RUNNING, JUMP, CHASE, DEAD }
 var _state: _StateMachine # O número aqui retorna um valor do StateMachine, começando em 0
 var _enter_state := true
 
-@export var max_health := 3
+@export var max_health = 3
 var health = max_health
 
 @export var mov_speed := 50

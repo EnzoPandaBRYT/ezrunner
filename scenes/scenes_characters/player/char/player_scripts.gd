@@ -60,12 +60,13 @@ func _punch():
 	PlayerVars.last_dir = _Input
 	
 func _lvl_end():
+	_enterState("running")
 	if !PlayerVars.can_control:
-		_enterState("running")
 		velocity.x = _player_speed
 	else:
 		_change_state(_StateMachine.IDLE)
 
 # Script pro jogador tomar dano
 func _on_player_hurtbox_area_entered(area: Area2D) -> void:
-	PlayerGui.update_health(-2)
+	if area.name == "batch_hitbox":
+		PlayerGui.update_health(-5)
