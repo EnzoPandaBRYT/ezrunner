@@ -102,14 +102,14 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="CircleShape2D" id="CircleShape2D_axm1n"]
 radius = 20.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_p0ttc"]
-radius = 39.062428
+[sub_resource type="CircleShape2D" id="CircleShape2D_vricr"]
+radius = 1076.851
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x74pv"]
 radius = 12.533219
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vricr"]
-radius = 1076.851
+[sub_resource type="CircleShape2D" id="CircleShape2D_p0ttc"]
+radius = 39.062428
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hrkg"]
 bg_color = Color(0, 0, 0, 1)
@@ -174,14 +174,11 @@ shape = SubResource("CircleShape2D_axm1n")
 
 [node name="collisions" type="Node2D" parent="." unique_id=2134024646]
 
-[node name="hurtbox" type="Area2D" parent="collisions" unique_id=2008131765]
-collision_layer = 64
-collision_mask = 32
+[node name="follow_player" type="Area2D" parent="collisions" unique_id=1823415759]
+collision_layer = 8
 
-[node name="collision" type="CollisionShape2D" parent="collisions/hurtbox" unique_id=1341092721]
-scale = Vector2(1.8800004, 1.8800004)
-shape = SubResource("CircleShape2D_p0ttc")
-debug_color = Color(0.79183584, 0.42817688, 0, 0.41960785)
+[node name="collision" type="CollisionShape2D" parent="collisions/follow_player" unique_id=887984517]
+shape = SubResource("CircleShape2D_vricr")
 
 [node name="batch_hitbox" type="Area2D" parent="collisions" unique_id=1195411366]
 collision_layer = 128
@@ -192,11 +189,14 @@ scale = Vector2(1.8800004, 1.8800004)
 shape = SubResource("CircleShape2D_x74pv")
 debug_color = Color(0.9590456, 0, 0.12561816, 0.41960785)
 
-[node name="follow_player" type="Area2D" parent="collisions" unique_id=1823415759]
-collision_layer = 8
+[node name="hurtbox" type="Area2D" parent="collisions" unique_id=2008131765]
+collision_layer = 64
+collision_mask = 32
 
-[node name="collision" type="CollisionShape2D" parent="collisions/follow_player" unique_id=887984517]
-shape = SubResource("CircleShape2D_vricr")
+[node name="collision" type="CollisionShape2D" parent="collisions/hurtbox" unique_id=1341092721]
+scale = Vector2(1.8800004, 1.8800004)
+shape = SubResource("CircleShape2D_p0ttc")
+debug_color = Color(0.79183584, 0.42817688, 0, 0.41960785)
 
 [node name="death_particles" type="CPUParticles2D" parent="." unique_id=1316471067]
 emitting = false
@@ -224,6 +224,6 @@ max_value = 3.0
 value = 3.0
 show_percentage = false
 
-[connection signal="area_entered" from="collisions/hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="collisions/follow_player" to="." method="_on_follow_player_body_entered"]
 [connection signal="body_exited" from="collisions/follow_player" to="." method="_on_follow_player_body_exited"]
+[connection signal="area_entered" from="collisions/hurtbox" to="." method="_on_hurtbox_area_entered"]

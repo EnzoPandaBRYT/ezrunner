@@ -90,6 +90,9 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_p0ttc"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_axm1n"]
 radius = 20.0
 
@@ -101,9 +104,6 @@ radius = 12.533219
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p0ttc"]
 radius = 22.521944
-
-[sub_resource type="Gradient" id="Gradient_p0ttc"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0ttc"]
 bg_color = Color(0, 0, 0, 1)
@@ -144,40 +144,8 @@ animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.920409
 
-[node name="collision" type="CollisionShape2D" parent="." unique_id=313765987]
-scale = Vector2(1.8800004, 1.8800004)
-shape = SubResource("CircleShape2D_axm1n")
-
-[node name="collisions" type="Node2D" parent="." unique_id=1566684575]
-
-[node name="follow_player" type="Area2D" parent="collisions" unique_id=1823415759]
-collision_layer = 8
-
-[node name="collision" type="CollisionShape2D" parent="collisions/follow_player" unique_id=887984517]
-shape = SubResource("CircleShape2D_vricr")
-disabled = true
-
-[node name="hitbox" type="Area2D" parent="collisions" unique_id=1195411366]
-collision_layer = 128
-collision_mask = 16
-
-[node name="collision" type="CollisionShape2D" parent="collisions/hitbox" unique_id=1501920439]
-position = Vector2(3, 0)
-scale = Vector2(1.8800004, 1.8800004)
-shape = SubResource("CircleShape2D_x74pv")
-disabled = true
-debug_color = Color(0.9590456, 0, 0.12561816, 0.41960785)
-
-[node name="hurtbox" type="Area2D" parent="collisions" unique_id=2008131765]
-collision_layer = 64
-collision_mask = 32
-
-[node name="collision" type="CollisionShape2D" parent="collisions/hurtbox" unique_id=1341092721]
-scale = Vector2(1.8800004, 1.8800004)
-shape = SubResource("CircleShape2D_p0ttc")
-debug_color = Color(0.79183584, 0.42817688, 0, 0.41960785)
-
-[node name="spawn_particles" type="CPUParticles2D" parent="." unique_id=2030203778]
+[node name="spawn_particles" type="CPUParticles2D" parent="anim" unique_id=2030203778]
+scale = Vector2(0.5319148, 0.5319148)
 emitting = false
 amount = 128
 one_shot = true
@@ -193,6 +161,39 @@ radial_accel_min = -100.0
 radial_accel_max = 34.65
 scale_amount_max = 8.0
 color_ramp = SubResource("Gradient_p0ttc")
+
+[node name="collision" type="CollisionShape2D" parent="." unique_id=313765987]
+scale = Vector2(1.8800004, 1.8800004)
+shape = SubResource("CircleShape2D_axm1n")
+
+[node name="collisions" type="Node2D" parent="." unique_id=1566684575]
+
+[node name="follow_player" type="Area2D" parent="collisions" unique_id=1823415759]
+collision_layer = 8
+
+[node name="collision" type="CollisionShape2D" parent="collisions/follow_player" unique_id=887984517]
+shape = SubResource("CircleShape2D_vricr")
+disabled = true
+
+[node name="batch_hitbox" type="Area2D" parent="collisions" unique_id=1195411366]
+collision_layer = 128
+collision_mask = 16
+
+[node name="collision" type="CollisionShape2D" parent="collisions/batch_hitbox" unique_id=1501920439]
+position = Vector2(3, 0)
+scale = Vector2(1.8800004, 1.8800004)
+shape = SubResource("CircleShape2D_x74pv")
+disabled = true
+debug_color = Color(0.9590456, 0, 0.12561816, 0.41960785)
+
+[node name="hurtbox" type="Area2D" parent="collisions" unique_id=2008131765]
+collision_layer = 64
+collision_mask = 32
+
+[node name="collision" type="CollisionShape2D" parent="collisions/hurtbox" unique_id=1341092721]
+scale = Vector2(1.8800004, 1.8800004)
+shape = SubResource("CircleShape2D_p0ttc")
+debug_color = Color(0.79183584, 0.42817688, 0, 0.41960785)
 
 [node name="death_particles" type="CPUParticles2D" parent="." unique_id=1316471067]
 emitting = false

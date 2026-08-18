@@ -6,6 +6,7 @@ extends Node2D
 var id = randi_range(100000000, 999999999)
 
 func _ready() -> void:
+	grow_window()
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	AudioPlayer.first_tutorial()
 	ScreenAnimations.room_enter(0.0, 1)
@@ -85,3 +86,16 @@ func _on_level_end_body_entered(body: Node2D) -> void:
 		await get_tree().create_timer(4).timeout
 		await get_tree().process_frame
 		get_tree().change_scene_to_file("res://scenes/scenes_levels/shadowlands/fight_tutorial.tscn")
+
+func grow_window():
+	var tween = create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
+	
+	var start_size = Vector2i(0,0)
+	var target_size = DisplayServer.screen_get_size()
+	var start_pos = Vector2i(DisplayServer.window_get_size().x/2,DisplayServer.window_get_size().y/2)
+	var mid_screen = Vector2i(0,0)
+	
+	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT, true)
+	tween.tween_property(self, "modulate:a", 1.0, 1)
+	tween.tween_method(func(size):DisplayServer.window_set_size(Vector2i(size)),Vector2(start_size),Vector2(target_size), 4)
+	tween.tween_method(func(pos):DisplayServer.window_set_position(Vector2i(pos)),Vector2(start_pos),Vector2(mid_screen), 4)

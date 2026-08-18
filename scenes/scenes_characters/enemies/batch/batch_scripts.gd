@@ -9,10 +9,12 @@ signal enemy_dead
 @onready var health_bar = $health_bar
 @onready var anim = $anim
 @onready var collisions = $collisions
+@onready var batch_hitbox = $collisions/batch_hitbox
 
 func _ready() -> void:
-	$collisions/hitbox.monitoring = false
-	$collisions/hitbox.monitorable = false
+	await self.ready
+	batch_hitbox.monitoring = false
+	batch_hitbox.monitorable = false
 	$collisions/hurtbox.monitoring = false
 	$collisions/follow_player.monitoring = false
 	create_tween().tween_property(anim, "modulate", Color(1.0, 1.0, 1.0), 1)
@@ -20,8 +22,8 @@ func _ready() -> void:
 	health_bar.value = max_health
 	spawn_particles.emitting = true
 	await spawn_particles.finished
-	$collisions/hitbox.monitoring = true
-	$collisions/hitbox.monitorable = true
+	batch_hitbox.monitoring = true
+	batch_hitbox.monitorable = true
 	$collisions/hurtbox.monitoring = true
 	$collisions/follow_player.monitoring = true
 	

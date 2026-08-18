@@ -16,6 +16,16 @@
 [ext_resource type="Script" uid="uid://cm1ohja3l8lmw" path="res://scenes/scenes_gui/main_menu/button_scripts/options_button.gd" id="12_y82en"]
 [ext_resource type="Texture2D" uid="uid://5xyqmlm1aswu" path="res://assets/level_design/tileset/shadowlands/darker_shadowlands_tiles.png" id="13_4u354"]
 [ext_resource type="Script" uid="uid://dnmnln575cc4v" path="res://scenes/scenes_gui/main_menu/button_scripts/exit_button.gd" id="13_044yh"]
+[ext_resource type="Script" uid="uid://ds6vitu5aaobf" path="res://scripts/wiggles/node2d_slow_wiggle.gd" id="14_044yh"]
+[ext_resource type="Texture2D" uid="uid://dtwpr6iefatpm" path="res://assets/gui/icons/config/slider/slider_grabber.png" id="15_lk71q"]
+[ext_resource type="Texture2D" uid="uid://dcmdy4iwx3kl1" path="res://assets/gui/icons/config/slider/slider_grabber_highlight.png" id="16_s4yaq"]
+[ext_resource type="Texture2D" uid="uid://cgjxodrngqyjq" path="res://assets/gui/icons/config/audio/megaphone/megaphone_icon.png" id="18_yq2am"]
+[ext_resource type="Texture2D" uid="uid://b1cd6ghhkumd7" path="res://assets/gui/icons/config/video/monitor/monitor.png" id="19_6fwas"]
+[ext_resource type="Texture2D" uid="uid://dy3bkucsoxvox" path="res://assets/gui/icons/config/slider/slider_bg_empty.png" id="20_s4yaq"]
+[ext_resource type="Texture2D" uid="uid://2epgt060cyv7" path="res://assets/gui/icons/config/slider/slider_bg.png" id="21_f0fo6"]
+[ext_resource type="Texture2D" uid="uid://bah4xfwgv7v44" path="res://assets/gui/buttons/check_box/box_checked.png" id="24_nqft5"]
+[ext_resource type="Texture2D" uid="uid://be0ko6wkm2qnx" path="res://assets/gui/icons/config/slider/slider_grabber_disabled.png" id="24_ukbdo"]
+[ext_resource type="Texture2D" uid="uid://bwjr1ie2d62h4" path="res://assets/gui/buttons/check_box/box_unchecked.png" id="25_ukbdo"]
 
 [sub_resource type="Gradient" id="Gradient_vqg40"]
 offsets = PackedFloat32Array(0, 0.52469134, 1)
@@ -146,6 +156,146 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_a1pxg")
 sources/1 = SubResource("TileSetAtlasSource_y82en")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nqft5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87t8k"]
+bg_color = Color(0, 0, 0, 0.47000003)
+border_width_left = 64
+border_width_top = 64
+border_width_right = 64
+border_width_bottom = 64
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yq2am"]
+bg_color = Color(0, 0, 0, 0.439)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fwas"]
+bg_color = Color(0, 0, 0, 0.66800004)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f0fo6"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqft5"]
+bg_color = Color(0, 0, 0, 0.26500002)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ukbdo"]
+bg_color = Color(0, 0, 0, 0.26500002)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snmff"]
+bg_color = Color(0, 0, 0, 0.47000003)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nplb"]
+bg_color = Color(0, 0, 0, 0.76500005)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7xp7"]
+bg_color = Color(0.25565878, 0.25565878, 0.25565878, 0.4745098)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ewf0k"]
+bg_color = Color(0, 0, 0, 0.47000003)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lk71q"]
+texture = ExtResource("20_s4yaq")
+texture_margin_left = 4.0
+texture_margin_top = 2.0
+texture_margin_right = 6.0
+texture_margin_bottom = 4.0
+expand_margin_left = 2.0
+expand_margin_top = 4.0
+expand_margin_right = 2.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s4yaq"]
+texture = ExtResource("21_f0fo6")
+texture_margin_left = 4.0
+texture_margin_top = 2.0
+texture_margin_right = 4.0
+texture_margin_bottom = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f0fo6"]
+texture = ExtResource("21_f0fo6")
+texture_margin_left = 4.0
+texture_margin_top = 2.0
+texture_margin_right = 4.0
+texture_margin_bottom = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
 
 [node name="main_menu" type="Node2D" unique_id=1295998279]
 z_index = 10
@@ -282,6 +432,15 @@ theme_override_font_sizes/font_size = 256
 text = "R U N N E R"
 script = ExtResource("3_kdtjr")
 
+[node name="player" parent="." unique_id=149460341 instance=ExtResource("11_smjm1")]
+position = Vector2(0, -1383.9999)
+
+[node name="shadowlands_tilemap" type="TileMapLayer" parent="." unique_id=1566348065]
+position = Vector2(2, 15)
+scale = Vector2(0.555, 0.555)
+tile_map_data = PackedByteArray("AAAAAB4AAAAAAAAAAAABAB4AAAABAAAAAAACAB4AAAABAAAAAAADAB4AAAACAAAAAAAEAB4AAAABAAAAAAAFAB4AAAABAAAAAAAGAB4AAAABAAAAAAAHAB4AAAACAAAAAAAIAB4AAAACAAAAAAAJAB4AAAACAAAAAAAKAB4AAAACAAAAAAALAB4AAAACAAAAAAAMAB4AAAABAAAAAAANAB4AAAABAAAAAAAOAB4AAAABAAAAAAAPAB4AAAABAAAAAAAQAB4AAAACAAAAAAARAB4AAAACAAAAAAASAB4AAAACAAAAAAATAB4AAAABAAAAAAAUAB4AAAABAAAAAAAVAB4AAAACAAAAAAAWAB4AAAACAAAAAAAXAB4AAAABAAAAAAAYAB4AAAACAAAAAAAZAB4AAAACAAAAAAAaAB4AAAACAAAAAAAbAB4AAAACAAAAAAAcAB4AAAABAAAAAAAdAB4AAAACAAAAAAAeAB4AAAACAAAAAAAfAB4AAAACAAAAAAAgAB4AAAABAAAAAAAhAB4AAAABAAAAAAAiAB4AAAACAAAAAAAjAB4AAAABAAAAAAAkAB4AAAABAAAAAAAlAB4AAAABAAAAAAAmAB4AAAACAAAAAAAnAB4AAAACAAAAAAAoAB4AAAACAAAAAAApAB4AAAACAAAAAAAqAB4AAAACAAAAAAArAB4AAAACAAAAAAAsAB4AAAACAAAAAAAtAB4AAAACAAAAAAAuAB4AAAACAAAAAAAvAB4AAAACAAAAAAAwAB4AAAABAAAAAAAxAB4AAAABAAAAAAAyAB4AAAACAAAAAAAzAB4AAAACAAAAAAA0AB4AAAACAAAAAAA1AB4AAAABAAAAAAD//x0AAAADAAEAAAD//xwAAAADAAEAAAD//xsAAAADAAEAAAD//xoAAAADAAEAAAD//xkAAAADAAEAAAD//xgAAAADAAEAAAD//xcAAAADAAEAAAD//xYAAAADAAEAAAD//xUAAAADAAEAAAD//xQAAAADAAEAAAD//xMAAAADAAEAAAA2AB4AAAACAAAAAAA3AB4AAAACAAAAAAA4AB4AAAACAAAAAAA5AB4AAAABAAAAAAA6AB4AAAACAAAAAAA7AB4AAAACAAAAAAA8AB4AAAABAAAAAAA9AB4AAAACAAAAAAA+AB4AAAABAAAAAAA/AB4AAAABAAAAAABAAB4AAAACAAAAAABBAB4AAAABAAAAAABCAB4AAAACAAAAAABDAB4AAAABAAAAAABEAB4AAAACAAAAAABFAB4AAAABAAAAAABGAB4AAAACAAAAAABHAB4AAAACAAAAAABIAB4AAAACAAAAAABJAB4AAAABAAAAAABKAB4AAAABAAAAAABLAB4AAAACAAAAAABMAB4AAAABAAAAAABNAB4AAAABAAAAAABOAB4AAAABAAAAAABPAB4AAAACAAAAAABQAB4AAAABAAAAAABRAB4AAAACAAAAAABSAB4AAAACAAAAAABTAB4AAAABAAAAAABUAB4AAAACAAAAAABVAB4AAAABAAAAAABWAB4AAAABAAAAAABXAB4AAAACAAAAAABYAB4AAAACAAAAAABZAB4AAAABAAAAAABaAB4AAAACAAAAAABbAB4AAAABAAAAAABcAB4AAAACAAAAAABdAB4AAAABAAAAAABeAB4AAAABAAAAAABfAB4AAAABAAAAAABgAB4AAAACAAAAAABhAB4AAAACAAAAAABiAB4AAAABAAAAAABjAB4AAAACAAAAAABkAB4AAAABAAAAAABlAB4AAAABAAAAAABmAB4AAAABAAAAAABnAB4AAAACAAAAAABoAB4AAAABAAAAAABpAB4AAAACAAAAAABqAB4AAAACAAAAAABrAB4AAAABAAAAAABsABgAAAAAAAEAAABsABkAAAAAAAEAAABsABoAAAAAAAEAAABsABsAAAAAAAEAAABsABwAAAAAAAEAAABsAB0AAAAAAAEAAABsABcAAAAAAAEAAAD//xIAAAADAAEAAAD//xEAAAADAAEAAAD//xAAAAADAAEAAAD//w8AAAADAAEAAAD//w4AAAADAAEAAAD//w0AAAADAAEAAAD//wwAAAADAAEAAAD//wsAAAADAAEAAAD//woAAAADAAEAAAD//wkAAAADAAEAAAD//wgAAAADAAEAAAD//wcAAAADAAEAAAD//wYAAAADAAEAAAD//wUAAAADAAEAAAD//wQAAAADAAEAAAD//wMAAAADAAEAAAD//wIAAAADAAEAAAD//wEAAAADAAEAAAD//wAAAAADAAEAAAD/////AAADAAEAAAD///7/AAADAAEAAAD///3/AAADAAEAAAD///z/AAADAAEAAAD///v/AAADAAEAAAD///r/AAADAAEAAAD///n/AAADAAEAAAD///j/AAADAAEAAAD///f/AAADAAEAAAD///b/AAADAAEAAAD///X/AAADAAEAAAD///T/AAADAAEAAAD///P/AAADAAEAAAD///L/AAADAAEAAAD///H/AAADAAEAAAD///D/AAADAAEAAAD//+//AAADAAEAAAD//+7/AAADAAEAAAD//+3/AAADAAEAAAD//+z/AAADAAEAAAD//+v/AAADAAEAAAD//+r/AAADAAEAAAD//+n/AAADAAEAAAD//+j/AAADAAEAAAD//+f/AAADAAEAAAD//+b/AAADAAEAAAD//+X/AAADAAEAAAD//+T/AAADAAEAAAD//+P/AAADAAEAAAD//+L/AAADAAEAAAD//+H/AAADAAEAAAD//+D/AAADAAEAAAD//9//AAADAAEAAAD//97/AAADAAEAAAD//93/AAADAAEAAAD//9z/AAADAAEAAAD//9v/AAADAAEAAAD//9r/AAADAAEAAAD//9n/AAADAAEAAAD//9j/AAADAAEAAAD//9f/AAADAAEAAAD//9b/AAADAAEAAAD//9X/AAADAAEAAAD//9T/AAADAAEAAAD//9P/AAADAAEAAAD//9L/AAADAAEAAAD//9H/AAADAAEAAAD//9D/AAADAAEAAAD//8//AAADAAEAAAD//87/AAADAAEAAAD//83/AAADAAEAAAD//8z/AAADAAEAAAD//8v/AAADAAEAAAD//8r/AAADAAEAAAD//8n/AAADAAEAAAD//8j/AAADAAEAAAD//8f/AAADAAEAAAD//8b/AAADAAEAAAD//8X/AAADAAEAAAD//8T/AAADAAEAAAD//8P/AAADAAEAAAD//8L/AAADAAEAAAD//8H/AAADAAEAAAD//8D/AAADAAEAAAD//7//AAADAAEAAAD//77/AAADAAEAAAD//73/AAADAAEAAAD//7z/AAADAAEAAAD//7v/AAADAAEAAAD//7r/AAADAAEAAAD//7n/AAADAAEAAAD//7j/AAADAAEAAAD//7f/AAADAAEAAAD//7b/AAADAAEAAABsABYAAAAAAAEAAABsABUAAAAAAAEAAABsABQAAAAAAAEAAABsABMAAAAAAAEAAABsABIAAAAAAAEAAABsABEAAAAAAAEAAABsABAAAAAAAAEAAABsAA8AAAAAAAEAAABsAA4AAAAAAAEAAABsAA0AAAAAAAEAAABsAAwAAAAAAAEAAABsAAsAAAAAAAEAAABsAAoAAAAAAAEAAABsAAkAAAAAAAEAAABsAAgAAAAAAAEAAABsAAcAAAAAAAEAAABsAAYAAAAAAAEAAABsAAUAAAAAAAEAAABsAAQAAAAAAAEAAABsAAMAAAAAAAEAAABsAAIAAAAAAAEAAABsAAEAAAAAAAEAAABsAAAAAAAAAAEAAABsAP//AAAAAAEAAABsAP7/AAAAAAEAAABsAP3/AAAAAAEAAABsAPz/AAAAAAEAAABsAPv/AAAAAAEAAABsAPr/AAAAAAEAAABsAPn/AAAAAAEAAABsAPj/AAAAAAEAAABsAPf/AAAAAAEAAABsAPb/AAAAAAEAAABsAPX/AAAAAAEAAABsAPT/AAAAAAEAAABsAPP/AAAAAAEAAABsAPL/AAAAAAEAAABsAPH/AAAAAAEAAABsAPD/AAAAAAEAAABsAO//AAAAAAEAAABsAO7/AAAAAAEAAABsAO3/AAAAAAEAAABsAOz/AAAAAAEAAABsAOv/AAAAAAEAAABsAOr/AAAAAAEAAABsAOn/AAAAAAEAAABsAOj/AAAAAAEAAABsAOf/AAAAAAEAAABsAOb/AAAAAAEAAABsAOX/AAAAAAEAAABsAOT/AAAAAAEAAABsAOP/AAAAAAEAAABsAOL/AAAAAAEAAABsAOH/AAAAAAEAAABsAOD/AAAAAAEAAABsAN//AAAAAAEAAABsAN7/AAAAAAEAAABsAN3/AAAAAAEAAABsANz/AAAAAAEAAABsANv/AAAAAAEAAABsANr/AAAAAAEAAABsANn/AAAAAAEAAABsANj/AAAAAAEAAABsANf/AAAAAAEAAABsANb/AAAAAAEAAABsANX/AAAAAAEAAABsANT/AAAAAAEAAABsANP/AAAAAAEAAABsANL/AAAAAAEAAABsANH/AAAAAAEAAABsAND/AAAAAAEAAABsAM//AAAAAAEAAABsAM7/AAAAAAEAAABsAM3/AAAAAAEAAABsAMz/AAAAAAEAAABsAMv/AAAAAAEAAABsAMr/AAAAAAEAAABsAMn/AAAAAAEAAABsAMj/AAAAAAEAAABsAMf/AAAAAAEAAABsAMb/AAAAAAEAAABsAMX/AAAAAAEAAABsAMT/AAAAAAEAAABsAMP/AAAAAAEAAABsAML/AAAAAAEAAABsAMH/AAAAAAEAAABsAMD/AAAAAAEAAABsAL//AAAAAAEAAABsAL7/AAAAAAEAAABsAL3/AAAAAAEAAABsALz/AAAAAAEAAABsALv/AAAAAAEAAABsALr/AAAAAAEAAABsALn/AAAAAAEAAABsALj/AAAAAAEAAABsALf/AAAAAAEAAABsALb/AAAAAAEAAABsALX/AAAAAAEAAABsALT/AAAAAAEAAAA=")
+tile_set = SubResource("TileSet_044yh")
+
 [node name="main_menu_buttons" type="Node2D" parent="." unique_id=1769848818]
 
 [node name="play_button" type="Button" parent="main_menu_buttons" unique_id=791493940]
@@ -324,6 +483,9 @@ alignment = 0
 script = ExtResource("13_044yh")
 
 [node name="options_buttons" type="Node2D" parent="." unique_id=410599951]
+z_index = 10
+script = ExtResource("14_044yh")
+float_speed = 1.0
 
 [node name="back_button" type="Button" parent="options_buttons" unique_id=2123533382]
 offset_left = 1970.0
@@ -337,16 +499,253 @@ text = "Voltar"
 flat = true
 alignment = 0
 
-[node name="player" parent="." unique_id=149460341 instance=ExtResource("11_smjm1")]
-position = Vector2(0, -1383.9999)
+[node name="tabs" type="Panel" parent="options_buttons" unique_id=631451354]
+offset_left = 1920.0
+offset_right = 1960.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nqft5")
 
-[node name="shadowlands_tilemap" type="TileMapLayer" parent="." unique_id=1566348065]
-position = Vector2(2, 15)
-scale = Vector2(0.555, 0.555)
-tile_map_data = PackedByteArray("AAAAAB4AAAAAAAAAAAABAB4AAAABAAAAAAACAB4AAAABAAAAAAADAB4AAAACAAAAAAAEAB4AAAABAAAAAAAFAB4AAAABAAAAAAAGAB4AAAABAAAAAAAHAB4AAAACAAAAAAAIAB4AAAACAAAAAAAJAB4AAAACAAAAAAAKAB4AAAACAAAAAAALAB4AAAACAAAAAAAMAB4AAAABAAAAAAANAB4AAAABAAAAAAAOAB4AAAABAAAAAAAPAB4AAAABAAAAAAAQAB4AAAACAAAAAAARAB4AAAACAAAAAAASAB4AAAACAAAAAAATAB4AAAABAAAAAAAUAB4AAAABAAAAAAAVAB4AAAACAAAAAAAWAB4AAAACAAAAAAAXAB4AAAABAAAAAAAYAB4AAAACAAAAAAAZAB4AAAACAAAAAAAaAB4AAAACAAAAAAAbAB4AAAACAAAAAAAcAB4AAAABAAAAAAAdAB4AAAACAAAAAAAeAB4AAAACAAAAAAAfAB4AAAACAAAAAAAgAB4AAAABAAAAAAAhAB4AAAABAAAAAAAiAB4AAAACAAAAAAAjAB4AAAABAAAAAAAkAB4AAAABAAAAAAAlAB4AAAABAAAAAAAmAB4AAAACAAAAAAAnAB4AAAACAAAAAAAoAB4AAAACAAAAAAApAB4AAAACAAAAAAAqAB4AAAACAAAAAAArAB4AAAACAAAAAAAsAB4AAAACAAAAAAAtAB4AAAACAAAAAAAuAB4AAAACAAAAAAAvAB4AAAACAAAAAAAwAB4AAAABAAAAAAAxAB4AAAABAAAAAAAyAB4AAAACAAAAAAAzAB4AAAACAAAAAAA0AB4AAAACAAAAAAA1AB4AAAABAAAAAAD//x0AAAADAAEAAAD//xwAAAADAAEAAAD//xsAAAADAAEAAAD//xoAAAADAAEAAAD//xkAAAADAAEAAAD//xgAAAADAAEAAAD//xcAAAADAAEAAAD//xYAAAADAAEAAAD//xUAAAADAAEAAAD//xQAAAADAAEAAAD//xMAAAADAAEAAAA2AB4AAAACAAAAAAA3AB4AAAACAAAAAAA4AB4AAAACAAAAAAA5AB4AAAABAAAAAAA6AB4AAAACAAAAAAA7AB4AAAACAAAAAAA8AB4AAAABAAAAAAA9AB4AAAACAAAAAAA+AB4AAAABAAAAAAA/AB4AAAABAAAAAABAAB4AAAACAAAAAABBAB4AAAABAAAAAABCAB4AAAACAAAAAABDAB4AAAABAAAAAABEAB4AAAACAAAAAABFAB4AAAABAAAAAABGAB4AAAACAAAAAABHAB4AAAACAAAAAABIAB4AAAACAAAAAABJAB4AAAABAAAAAABKAB4AAAABAAAAAABLAB4AAAACAAAAAABMAB4AAAABAAAAAABNAB4AAAABAAAAAABOAB4AAAABAAAAAABPAB4AAAACAAAAAABQAB4AAAABAAAAAABRAB4AAAACAAAAAABSAB4AAAACAAAAAABTAB4AAAABAAAAAABUAB4AAAACAAAAAABVAB4AAAABAAAAAABWAB4AAAABAAAAAABXAB4AAAACAAAAAABYAB4AAAACAAAAAABZAB4AAAABAAAAAABaAB4AAAACAAAAAABbAB4AAAABAAAAAABcAB4AAAACAAAAAABdAB4AAAABAAAAAABeAB4AAAABAAAAAABfAB4AAAABAAAAAABgAB4AAAACAAAAAABhAB4AAAACAAAAAABiAB4AAAABAAAAAABjAB4AAAACAAAAAABkAB4AAAABAAAAAABlAB4AAAABAAAAAABmAB4AAAABAAAAAABnAB4AAAACAAAAAABoAB4AAAABAAAAAABpAB4AAAACAAAAAABqAB4AAAACAAAAAABrAB4AAAABAAAAAABsABgAAAAAAAEAAABsABkAAAAAAAEAAABsABoAAAAAAAEAAABsABsAAAAAAAEAAABsABwAAAAAAAEAAABsAB0AAAAAAAEAAABsABcAAAAAAAEAAAD//xIAAAADAAEAAAD//xEAAAADAAEAAAD//xAAAAADAAEAAAD//w8AAAADAAEAAAD//w4AAAADAAEAAAD//w0AAAADAAEAAAD//wwAAAADAAEAAAD//wsAAAADAAEAAAD//woAAAADAAEAAAD//wkAAAADAAEAAAD//wgAAAADAAEAAAD//wcAAAADAAEAAAD//wYAAAADAAEAAAD//wUAAAADAAEAAAD//wQAAAADAAEAAAD//wMAAAADAAEAAAD//wIAAAADAAEAAAD//wEAAAADAAEAAAD//wAAAAADAAEAAAD/////AAADAAEAAAD///7/AAADAAEAAAD///3/AAADAAEAAAD///z/AAADAAEAAAD///v/AAADAAEAAAD///r/AAADAAEAAAD///n/AAADAAEAAAD///j/AAADAAEAAAD///f/AAADAAEAAAD///b/AAADAAEAAAD///X/AAADAAEAAAD///T/AAADAAEAAAD///P/AAADAAEAAAD///L/AAADAAEAAAD///H/AAADAAEAAAD///D/AAADAAEAAAD//+//AAADAAEAAAD//+7/AAADAAEAAAD//+3/AAADAAEAAAD//+z/AAADAAEAAAD//+v/AAADAAEAAAD//+r/AAADAAEAAAD//+n/AAADAAEAAAD//+j/AAADAAEAAAD//+f/AAADAAEAAAD//+b/AAADAAEAAAD//+X/AAADAAEAAAD//+T/AAADAAEAAAD//+P/AAADAAEAAAD//+L/AAADAAEAAAD//+H/AAADAAEAAAD//+D/AAADAAEAAAD//9//AAADAAEAAAD//97/AAADAAEAAAD//93/AAADAAEAAAD//9z/AAADAAEAAAD//9v/AAADAAEAAAD//9r/AAADAAEAAAD//9n/AAADAAEAAAD//9j/AAADAAEAAAD//9f/AAADAAEAAAD//9b/AAADAAEAAAD//9X/AAADAAEAAAD//9T/AAADAAEAAAD//9P/AAADAAEAAAD//9L/AAADAAEAAAD//9H/AAADAAEAAAD//9D/AAADAAEAAAD//8//AAADAAEAAAD//87/AAADAAEAAAD//83/AAADAAEAAAD//8z/AAADAAEAAAD//8v/AAADAAEAAAD//8r/AAADAAEAAAD//8n/AAADAAEAAAD//8j/AAADAAEAAAD//8f/AAADAAEAAAD//8b/AAADAAEAAAD//8X/AAADAAEAAAD//8T/AAADAAEAAAD//8P/AAADAAEAAAD//8L/AAADAAEAAAD//8H/AAADAAEAAAD//8D/AAADAAEAAAD//7//AAADAAEAAAD//77/AAADAAEAAAD//73/AAADAAEAAAD//7z/AAADAAEAAAD//7v/AAADAAEAAAD//7r/AAADAAEAAAD//7n/AAADAAEAAAD//7j/AAADAAEAAAD//7f/AAADAAEAAAD//7b/AAADAAEAAABsABYAAAAAAAEAAABsABUAAAAAAAEAAABsABQAAAAAAAEAAABsABMAAAAAAAEAAABsABIAAAAAAAEAAABsABEAAAAAAAEAAABsABAAAAAAAAEAAABsAA8AAAAAAAEAAABsAA4AAAAAAAEAAABsAA0AAAAAAAEAAABsAAwAAAAAAAEAAABsAAsAAAAAAAEAAABsAAoAAAAAAAEAAABsAAkAAAAAAAEAAABsAAgAAAAAAAEAAABsAAcAAAAAAAEAAABsAAYAAAAAAAEAAABsAAUAAAAAAAEAAABsAAQAAAAAAAEAAABsAAMAAAAAAAEAAABsAAIAAAAAAAEAAABsAAEAAAAAAAEAAABsAAAAAAAAAAEAAABsAP//AAAAAAEAAABsAP7/AAAAAAEAAABsAP3/AAAAAAEAAABsAPz/AAAAAAEAAABsAPv/AAAAAAEAAABsAPr/AAAAAAEAAABsAPn/AAAAAAEAAABsAPj/AAAAAAEAAABsAPf/AAAAAAEAAABsAPb/AAAAAAEAAABsAPX/AAAAAAEAAABsAPT/AAAAAAEAAABsAPP/AAAAAAEAAABsAPL/AAAAAAEAAABsAPH/AAAAAAEAAABsAPD/AAAAAAEAAABsAO//AAAAAAEAAABsAO7/AAAAAAEAAABsAO3/AAAAAAEAAABsAOz/AAAAAAEAAABsAOv/AAAAAAEAAABsAOr/AAAAAAEAAABsAOn/AAAAAAEAAABsAOj/AAAAAAEAAABsAOf/AAAAAAEAAABsAOb/AAAAAAEAAABsAOX/AAAAAAEAAABsAOT/AAAAAAEAAABsAOP/AAAAAAEAAABsAOL/AAAAAAEAAABsAOH/AAAAAAEAAABsAOD/AAAAAAEAAABsAN//AAAAAAEAAABsAN7/AAAAAAEAAABsAN3/AAAAAAEAAABsANz/AAAAAAEAAABsANv/AAAAAAEAAABsANr/AAAAAAEAAABsANn/AAAAAAEAAABsANj/AAAAAAEAAABsANf/AAAAAAEAAABsANb/AAAAAAEAAABsANX/AAAAAAEAAABsANT/AAAAAAEAAABsANP/AAAAAAEAAABsANL/AAAAAAEAAABsANH/AAAAAAEAAABsAND/AAAAAAEAAABsAM//AAAAAAEAAABsAM7/AAAAAAEAAABsAM3/AAAAAAEAAABsAMz/AAAAAAEAAABsAMv/AAAAAAEAAABsAMr/AAAAAAEAAABsAMn/AAAAAAEAAABsAMj/AAAAAAEAAABsAMf/AAAAAAEAAABsAMb/AAAAAAEAAABsAMX/AAAAAAEAAABsAMT/AAAAAAEAAABsAMP/AAAAAAEAAABsAML/AAAAAAEAAABsAMH/AAAAAAEAAABsAMD/AAAAAAEAAABsAL//AAAAAAEAAABsAL7/AAAAAAEAAABsAL3/AAAAAAEAAABsALz/AAAAAAEAAABsALv/AAAAAAEAAABsALr/AAAAAAEAAABsALn/AAAAAAEAAABsALj/AAAAAAEAAABsALf/AAAAAAEAAABsALb/AAAAAAEAAABsALX/AAAAAAEAAABsALT/AAAAAAEAAAA=")
-tile_set = SubResource("TileSet_044yh")
+[node name="tab_panel" type="TabContainer" parent="options_buttons/tabs" unique_id=841691918]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.4000001
+anchor_top = 1.1
+anchor_right = 46.425003
+anchor_bottom = 21.075
+offset_right = -0.00012207031
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/side_margin = 8
+theme_override_constants/tab_separation = 24
+theme_override_constants/icon_separation = 12
+theme_override_font_sizes/font_size = 64
+theme_override_styles/panel = SubResource("StyleBoxFlat_87t8k")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_yq2am")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_6fwas")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_f0fo6")
+tab_alignment = 1
+current_tab = 0
+tabs_position = 1
+tab_0/title = "Vídeo"
+tab_0/icon = ExtResource("19_6fwas")
+tab_1/title = "Áudio"
+tab_1/icon = ExtResource("18_yq2am")
+
+[node name="video" type="BoxContainer" parent="options_buttons/tabs/tab_panel" unique_id=30419728]
+layout_mode = 2
+metadata/_tab_index = 0
+metadata/_tab_name = "Vídeo"
+
+[node name="vbox" type="VBoxContainer" parent="options_buttons/tabs/tab_panel/video" unique_id=1344088345]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 6
+
+[node name="fullscreen" type="HBoxContainer" parent="options_buttons/tabs/tab_panel/video/vbox" unique_id=780183171]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="label" type="Label" parent="options_buttons/tabs/tab_panel/video/vbox/fullscreen" unique_id=2076797126]
+z_index = 10
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "Tela Cheia:"
+horizontal_alignment = 2
+
+[node name="check" type="CheckBox" parent="options_buttons/tabs/tab_panel/video/vbox/fullscreen" unique_id=1225965884]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_nqft5")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ukbdo")
+theme_override_icons/checked = ExtResource("24_nqft5")
+theme_override_icons/unchecked = ExtResource("25_ukbdo")
+
+[node name="vsync" type="HBoxContainer" parent="options_buttons/tabs/tab_panel/video/vbox" unique_id=1067433514]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="label" type="Label" parent="options_buttons/tabs/tab_panel/video/vbox/vsync" unique_id=892899141]
+z_index = 10
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "V-Sync:"
+horizontal_alignment = 2
+
+[node name="check" type="CheckBox" parent="options_buttons/tabs/tab_panel/video/vbox/vsync" unique_id=1137577197]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_nqft5")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ukbdo")
+theme_override_icons/checked = ExtResource("24_nqft5")
+theme_override_icons/unchecked = ExtResource("25_ukbdo")
+
+[node name="advanced_button" type="Button" parent="options_buttons/tabs/tab_panel/video/vbox" unique_id=1377362193]
+custom_minimum_size = Vector2(483, 60)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_snmff")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6nplb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i7xp7")
+text = "▶ Configurações Avançadas"
+icon_alignment = 1
+text_direction = 1
+
+[node name="advanced_panel" type="PanelContainer" parent="options_buttons/tabs/tab_panel/video/vbox" unique_id=637514045]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ewf0k")
+
+[node name="vbox" type="VBoxContainer" parent="options_buttons/tabs/tab_panel/video/vbox/advanced_panel" unique_id=1972921558]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="fps" type="HBoxContainer" parent="options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox" unique_id=1570173841]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="label" type="Label" parent="options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox/fps" unique_id=975332068]
+z_index = 10
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "FPS:"
+horizontal_alignment = 2
+
+[node name="slider" type="HSlider" parent="options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox/fps" unique_id=63799159]
+z_index = 999
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_icons/grabber = ExtResource("15_lk71q")
+theme_override_icons/grabber_highlight = ExtResource("16_s4yaq")
+theme_override_icons/grabber_disabled = ExtResource("24_ukbdo")
+theme_override_styles/slider = SubResource("StyleBoxTexture_lk71q")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_s4yaq")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_f0fo6")
+min_value = 1.0
+max_value = 240.0
+value = 60.0
+
+[node name="fps_label" type="Label" parent="options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox/fps" unique_id=1393439471]
+z_index = 10
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "60"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="audio" type="BoxContainer" parent="options_buttons/tabs/tab_panel" unique_id=718926470]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+metadata/_tab_name = "Áudio"
+
+[node name="vbox" type="VBoxContainer" parent="options_buttons/tabs/tab_panel/audio" unique_id=354854511]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = -8
+
+[node name="music_volume" type="HBoxContainer" parent="options_buttons/tabs/tab_panel/audio/vbox" unique_id=697325343]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="label" type="Label" parent="options_buttons/tabs/tab_panel/audio/vbox/music_volume" unique_id=1030788661]
+z_index = 10
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "Música: "
+horizontal_alignment = 2
+
+[node name="slider" type="HSlider" parent="options_buttons/tabs/tab_panel/audio/vbox/music_volume" unique_id=748720180]
+z_index = 999
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_icons/grabber = ExtResource("15_lk71q")
+theme_override_icons/grabber_highlight = ExtResource("16_s4yaq")
+theme_override_styles/slider = SubResource("StyleBoxTexture_lk71q")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_s4yaq")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_f0fo6")
+value = 100.0
+
+[node name="music_volume_percentage" type="Label" parent="options_buttons/tabs/tab_panel/audio/vbox" unique_id=1644381104]
+z_index = 10
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sfx_volume" type="HBoxContainer" parent="options_buttons/tabs/tab_panel/audio/vbox" unique_id=1427578825]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="label" type="Label" parent="options_buttons/tabs/tab_panel/audio/vbox/sfx_volume" unique_id=1433690770]
+z_index = 10
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "Efeitos: "
+horizontal_alignment = 2
+
+[node name="slider" type="HSlider" parent="options_buttons/tabs/tab_panel/audio/vbox/sfx_volume" unique_id=1262307090]
+z_index = 999
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_icons/grabber = ExtResource("15_lk71q")
+theme_override_icons/grabber_highlight = ExtResource("16_s4yaq")
+theme_override_styles/slider = SubResource("StyleBoxTexture_lk71q")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_s4yaq")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_f0fo6")
+value = 100.0
+
+[node name="sfx_volume_percentage" type="Label" parent="options_buttons/tabs/tab_panel/audio/vbox" unique_id=1141859662]
+z_index = 10
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="main_menu_buttons/play_button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="main_menu_buttons/options_button" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="main_menu_buttons/exit_button" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="options_buttons/back_button" to="." method="_on_back_button_pressed"]
+[connection signal="toggled" from="options_buttons/tabs/tab_panel/video/vbox/fullscreen/check" to="." method="_on_fullscreen_check_toggled"]
+[connection signal="toggled" from="options_buttons/tabs/tab_panel/video/vbox/vsync/check" to="." method="_on_vsync_toggled"]
+[connection signal="pressed" from="options_buttons/tabs/tab_panel/video/vbox/advanced_button" to="." method="_on_advanced_video_settings_button_pressed"]
+[connection signal="value_changed" from="options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox/fps/slider" to="." method="_on_fps_value_changed"]
+[connection signal="value_changed" from="options_buttons/tabs/tab_panel/audio/vbox/music_volume/slider" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="options_buttons/tabs/tab_panel/audio/vbox/sfx_volume/slider" to="." method="_on_sfx_volume_value_changed"]

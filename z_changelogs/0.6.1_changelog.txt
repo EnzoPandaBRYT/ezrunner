@@ -1,0 +1,14 @@
+=== MODIFICAÇÕES ATÉ 18/08/2026 - 19:07 ===
+
+### Recursos modificados:
+	## GUI:
+		# MENU INICIAL:
+			- Animações de janela adicionadas;
+			- Menu de Opções adicionado:
+			> Tela Cheia;
+			> FPS;
+			> Volume de músicas e efeitos sonoros.
+		
+	## INIMIGOS:
+		# BATCH:
+			- Corrigido bug onde o inimigo estático não tinha animações nem caixa de colisão.
