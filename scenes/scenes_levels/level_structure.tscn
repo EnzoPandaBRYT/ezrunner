@@ -1,0 +1,357 @@
+[gd_scene format=4 uid="uid://jvlb1tjbdqs7"]
+
+[ext_resource type="Script" uid="uid://bev78yd43ny1u" path="res://scenes/scenes_scripts/shadowlands/tutorials/fight_tutorial.gd" id="1_bkcgn"]
+[ext_resource type="Texture2D" uid="uid://bik5ptvixn3kd" path="res://assets/level_design/tileset/shadowlands/shadowlands_tiles.png" id="2_cgh6x"]
+[ext_resource type="Texture2D" uid="uid://5xyqmlm1aswu" path="res://assets/level_design/tileset/shadowlands/darker_shadowlands_tiles.png" id="3_dwa67"]
+[ext_resource type="Script" uid="uid://2buaxk75bx56" path="res://scripts/movable_tilemaps/hv_20_fs_1.gd" id="4_0fnqd"]
+[ext_resource type="Script" uid="uid://ch1vqtu86m36a" path="res://scripts/movable_tilemaps/hv_20_fs_2.gd" id="5_k8pxi"]
+[ext_resource type="Script" uid="uid://btocrpoyqmk6g" path="res://scripts/movable_tilemaps/hv_120_fs_05.gd" id="6_4f743"]
+[ext_resource type="PackedScene" uid="uid://bhm6qoxy1y1kh" path="res://scenes/scenes_characters/player/char/player.tscn" id="7_f3sj5"]
+[ext_resource type="Script" uid="uid://bbfey4xv58wo6" path="res://scripts/camera/camera.gd" id="8_ynsjc"]
+[ext_resource type="Texture2D" uid="uid://braduli0pqp0h" path="res://assets/level_design/backgrounds/shadowlands/background_gradient_1.png" id="9_cq2j0"]
+[ext_resource type="Texture2D" uid="uid://cy8sg3nu2imv2" path="res://assets/level_design/backgrounds/shadowlands/background.png" id="10_is12e"]
+[ext_resource type="Texture2D" uid="uid://c8ifi8pqyf547" path="res://assets/level_design/backgrounds/shadowlands/rocks.png" id="11_q2pyu"]
+[ext_resource type="Texture2D" uid="uid://tp6xpbtbpr7p" path="res://assets/level_design/backgrounds/shadowlands/bigger_trees.png" id="12_n5g5d"]
+[ext_resource type="Texture2D" uid="uid://b5muldex0itww" path="res://assets/level_design/backgrounds/shadowlands/trees.png" id="13_n27gy"]
+[ext_resource type="Texture2D" uid="uid://cutfajbsy01hv" path="res://assets/level_design/backgrounds/shadowlands/darker_terrain.png" id="14_567lf"]
+[ext_resource type="Texture2D" uid="uid://cb5ac4lk8yn1s" path="res://assets/level_design/backgrounds/shadowlands/terrain.png" id="15_i4xp8"]
+[ext_resource type="Script" uid="uid://bc4h5pvh6a40" path="res://scripts/wiggles/node2d_wiggle.gd" id="16_dtqun"]
+[ext_resource type="Texture2D" uid="uid://8ur0og5jb5ua" path="res://assets/level_design/backgrounds/shadowlands/terrain_gradient.png" id="17_0na81"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7dpv7"]
+texture = ExtResource("2_cgh6x")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_right_corner = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+0:0/0/terrains_peering_bit/bottom_left_corner = 0
+0:0/0/terrains_peering_bit/left_side = 0
+0:0/0/terrains_peering_bit/top_left_corner = 0
+0:0/0/terrains_peering_bit/top_side = 0
+0:0/0/terrains_peering_bit/top_right_corner = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/bottom_right_corner = 0
+1:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0/terrains_peering_bit/bottom_left_corner = 0
+1:0/0/terrains_peering_bit/left_side = 0
+1:0/0/terrains_peering_bit/top_left_corner = 0
+1:0/0/terrains_peering_bit/top_side = 0
+1:0/0/terrains_peering_bit/top_right_corner = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:0/0/terrains_peering_bit/right_side = 0
+2:0/0/terrains_peering_bit/bottom_right_corner = 0
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/bottom_left_corner = 0
+2:0/0/terrains_peering_bit/left_side = 0
+2:0/0/terrains_peering_bit/top_left_corner = 0
+2:0/0/terrains_peering_bit/top_side = 0
+2:0/0/terrains_peering_bit/top_right_corner = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:0/0/terrains_peering_bit/right_side = 0
+3:0/0/terrains_peering_bit/bottom_right_corner = 0
+3:0/0/terrains_peering_bit/bottom_side = 0
+3:0/0/terrains_peering_bit/bottom_left_corner = 0
+3:0/0/terrains_peering_bit/left_side = 0
+3:0/0/terrains_peering_bit/top_left_corner = 0
+3:0/0/terrains_peering_bit/top_side = 0
+3:0/0/terrains_peering_bit/top_right_corner = 0
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:3/0 = 0
+3:4/0 = 0
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:3/0 = 0
+4:4/0 = 0
+4:5/0 = 0
+4:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:5/0 = 0
+3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:5/0 = 0
+2:7/0 = 0
+2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:6/0 = 0
+1:3/0 = 0
+0:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+6:4/next_alternative_id = 2
+6:4/0 = 0
+5:4/0 = 0
+2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fjwd6"]
+texture = ExtResource("3_dwa67")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+2:6/0 = 0
+2:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_tkbjy"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 2
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_7dpv7")
+sources/2 = SubResource("TileSetAtlasSource_fjwd6")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovsky"]
+size = Vector2(18.5, 226.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wu2qr"]
+size = Vector2(18.5, 314.5)
+
+[sub_resource type="Gradient" id="Gradient_x1gau"]
+offsets = PackedFloat32Array(0, 0.537037, 1)
+colors = PackedColorArray(0.51480377, 1, 1, 0, 0.53412783, 0.4834036, 1, 1, 0.53412783, 0.4834036, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_q5vns"]
+offsets = PackedFloat32Array(0, 0.52469134, 1)
+colors = PackedColorArray(1, 0.24524015, 0.1878449, 0, 0.9532835, 0.35419908, 0.54004896, 1, 0, 0, 0, 0)
+
+[node name="fight_tutorial" type="Node2D" unique_id=111066854]
+script = ExtResource("1_bkcgn")
+
+[node name="shadowlands_tilemap" type="TileMapLayer" parent="." unique_id=1554816202]
+z_index = 1
+scale = Vector2(0.56, 0.56)
+tile_map_data = PackedByteArray("AAD+/wgAAAACAAAAAAD//wgAAAABAAAAAAAAAAgAAAABAAAAAAABAAgAAAACAAAAAAACAAgAAAACAAAAAAADAAgAAAACAAAAAAAEAAgAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_tkbjy")
+
+[node name="moving_tilemaps" type="Node" parent="." unique_id=534703917]
+
+[node name="hv_20_fs_1" type="TileMapLayer" parent="moving_tilemaps" unique_id=839567508]
+position = Vector2(1, 0)
+scale = Vector2(0.56, 0.56)
+tile_set = SubResource("TileSet_tkbjy")
+script = ExtResource("4_0fnqd")
+
+[node name="hv_20_fs_2" type="TileMapLayer" parent="moving_tilemaps" unique_id=1505551520]
+scale = Vector2(0.56, 0.56)
+tile_set = SubResource("TileSet_tkbjy")
+script = ExtResource("5_k8pxi")
+
+[node name="hv_120_fs_05" type="TileMapLayer" parent="moving_tilemaps" unique_id=1922325133]
+z_index = -1
+scale = Vector2(0.56, 0.56)
+tile_set = SubResource("TileSet_tkbjy")
+script = ExtResource("6_4f743")
+
+[node name="player" parent="." unique_id=149460341 instance=ExtResource("7_f3sj5")]
+z_index = 2
+position = Vector2(0.99993896, 200)
+
+[node name="main_camera" type="Camera2D" parent="." unique_id=1312142928]
+position = Vector2(104, 219)
+zoom = Vector2(2, 2)
+process_callback = 0
+position_smoothing_enabled = true
+script = ExtResource("8_ynsjc")
+
+[node name="level_start" type="Area2D" parent="." unique_id=1870868963]
+position = Vector2(414, 135)
+
+[node name="collision" type="CollisionShape2D" parent="level_start" unique_id=2105262523]
+position = Vector2(-310, 39.875)
+shape = SubResource("RectangleShape2D_ovsky")
+
+[node name="level_end" type="Area2D" parent="." unique_id=1280805463]
+position = Vector2(2160, -308)
+
+[node name="collision" type="CollisionShape2D" parent="level_end" unique_id=900725664]
+position = Vector2(4775, -995)
+shape = SubResource("RectangleShape2D_wu2qr")
+
+[node name="particles_level" type="CPUParticles2D" parent="." unique_id=1549509003]
+position = Vector2(3354, -383)
+amount = 2048
+lifetime = 2.0
+emission_shape = 3
+emission_rect_extents = Vector2(4000, 1000)
+gravity = Vector2(0, -20)
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+angle_max = 180.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_x1gau")
+
+[node name="particles_death" type="CPUParticles2D" parent="." unique_id=1967700422]
+position = Vector2(-1144, 51)
+amount = 128
+lifetime = 2.0
+emission_shape = 3
+emission_rect_extents = Vector2(500, 500)
+gravity = Vector2(0, -20)
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+angle_max = 180.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_q5vns")
+
+[node name="parallax" type="Node" parent="." unique_id=1034285269]
+
+[node name="background_gradient_1" type="Parallax2D" parent="parallax" unique_id=406666155]
+z_index = -998
+scroll_scale = Vector2(0.9, 1)
+scroll_offset = Vector2(0, 99)
+repeat_size = Vector2(1024, 0)
+repeat_times = 10
+
+[node name="sprite" type="Sprite2D" parent="parallax/background_gradient_1" unique_id=1587305971]
+position = Vector2(-324.88892, -1339.75)
+scale = Vector2(3.3888888, 5.8018513)
+texture = ExtResource("9_cq2j0")
+
+[node name="background" type="Parallax2D" parent="parallax" unique_id=842325830]
+z_index = -999
+repeat_size = Vector2(1024, 270)
+repeat_times = 10
+
+[node name="sprite" type="Sprite2D" parent="parallax/background" unique_id=1522221917]
+position = Vector2(43, 161)
+texture = ExtResource("10_is12e")
+
+[node name="rocks" type="Parallax2D" parent="parallax" unique_id=241498927]
+z_index = -998
+scroll_scale = Vector2(0.9, 1)
+scroll_offset = Vector2(0, 99)
+repeat_size = Vector2(1024, 0)
+repeat_times = 10
+
+[node name="sprite" type="Sprite2D" parent="parallax/rocks" unique_id=2048041165]
+position = Vector2(43, 161)
+texture = ExtResource("11_q2pyu")
+
+[node name="bigger_trees" type="Parallax2D" parent="parallax" unique_id=981386031]
+z_index = -997
+scroll_scale = Vector2(0.8, 1)
+repeat_size = Vector2(1024, 0)
+repeat_times = 10
+
+[node name="sprite" type="Sprite2D" parent="parallax/bigger_trees" unique_id=402066553]
+position = Vector2(43, 161)
+texture = ExtResource("12_n5g5d")
+
+[node name="trees" type="Parallax2D" parent="parallax" unique_id=1996750628]
+z_index = -996
+scroll_scale = Vector2(0.75, 1)
+repeat_size = Vector2(1024, 0)
+repeat_times = 10
+
+[node name="sprite" type="Sprite2D" parent="parallax/trees" unique_id=425559378]
+position = Vector2(43, 161)
+texture = ExtResource("13_n27gy")
+
+[node name="even_darker_terrain" type="Parallax2D" parent="parallax" unique_id=81943980]
+modulate = Color(0.62131935, 0.7021107, 0.59000057, 1)
+z_index = -995
+scroll_scale = Vector2(0.6, 1)
+scroll_offset = Vector2(-364, -37)
+repeat_size = Vector2(1024, 0)
+autoscroll = Vector2(40, 0)
+repeat_times = 10
+
+[node name="sprite" type="Sprite2D" parent="parallax/even_darker_terrain" unique_id=1887866642]
+position = Vector2(52, 401)
+texture = ExtResource("14_567lf")
+
+[node name="darker_terrain" type="Parallax2D" parent="parallax" unique_id=2143446449]
+z_index = -994
+scroll_scale = Vector2(0.6, 1)
+scroll_offset = Vector2(-874, -26)
+repeat_size = Vector2(1024, 0)
+autoscroll = Vector2(10, 0)
+repeat_times = 10
+
+[node name="sprite" type="Sprite2D" parent="parallax/darker_terrain" unique_id=349659570]
+position = Vector2(52, 401)
+texture = ExtResource("14_567lf")
+
+[node name="terrain" type="Parallax2D" parent="parallax" unique_id=2078129073]
+z_index = -993
+scroll_scale = Vector2(0.95, 1)
+repeat_size = Vector2(1024, 0)
+repeat_times = 10
+
+[node name="sprite" type="Sprite2D" parent="parallax/terrain" unique_id=462186375]
+position = Vector2(52, 401)
+texture = ExtResource("15_i4xp8")
+
+[node name="terrain_gradient" type="Parallax2D" parent="parallax" unique_id=1365199801]
+z_index = -1
+scroll_scale = Vector2(0.95, 1)
+repeat_size = Vector2(1024, 0)
+autoscroll = Vector2(5, 0)
+repeat_times = 10
+
+[node name="node" type="Node2D" parent="parallax/terrain_gradient" unique_id=499424347]
+script = ExtResource("16_dtqun")
+
+[node name="sprite" type="Sprite2D" parent="parallax/terrain_gradient/node" unique_id=47403382]
+position = Vector2(52, 1616)
+texture = ExtResource("17_0na81")
+
+[node name="enemy_spawns" type="Node" parent="." unique_id=1855458594]
+
+[node name="particles" type="Node" parent="." unique_id=479138793]
+
+[connection signal="body_entered" from="level_start" to="." method="_on_level_start_body_entered"]
+[connection signal="body_entered" from="level_end" to="." method="_on_level_end_body_entered"]

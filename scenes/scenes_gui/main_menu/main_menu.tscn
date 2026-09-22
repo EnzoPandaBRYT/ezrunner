@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b5muldex0itww" path="res://assets/level_design/backgrounds/shadowlands/trees.png" id="5_ryc0h"]
 [ext_resource type="Texture2D" uid="uid://cutfajbsy01hv" path="res://assets/level_design/backgrounds/shadowlands/darker_terrain.png" id="6_4u354"]
 [ext_resource type="Texture2D" uid="uid://cb5ac4lk8yn1s" path="res://assets/level_design/backgrounds/shadowlands/terrain.png" id="7_a1pxg"]
+[ext_resource type="Texture2D" uid="uid://8ur0og5jb5ua" path="res://assets/level_design/backgrounds/shadowlands/terrain_gradient.png" id="9_ewf0k"]
 [ext_resource type="Script" uid="uid://dccvugv8s4eio" path="res://scenes/scenes_gui/main_menu/button_scripts/play_button.gd" id="11_4u354"]
 [ext_resource type="PackedScene" uid="uid://bhm6qoxy1y1kh" path="res://scenes/scenes_characters/player/char/player.tscn" id="11_smjm1"]
 [ext_resource type="Texture2D" uid="uid://bik5ptvixn3kd" path="res://assets/level_design/tileset/shadowlands/shadowlands_tiles.png" id="12_ryc0h"]
@@ -23,9 +24,12 @@
 [ext_resource type="Texture2D" uid="uid://b1cd6ghhkumd7" path="res://assets/gui/icons/config/video/monitor/monitor.png" id="19_6fwas"]
 [ext_resource type="Texture2D" uid="uid://dy3bkucsoxvox" path="res://assets/gui/icons/config/slider/slider_bg_empty.png" id="20_s4yaq"]
 [ext_resource type="Texture2D" uid="uid://2epgt060cyv7" path="res://assets/gui/icons/config/slider/slider_bg.png" id="21_f0fo6"]
+[ext_resource type="Texture2D" uid="uid://myk5wq70kceb" path="res://assets/gui/icons/config/gear/gear.png" id="21_i7xp7"]
 [ext_resource type="Texture2D" uid="uid://bah4xfwgv7v44" path="res://assets/gui/buttons/check_box/box_checked.png" id="24_nqft5"]
 [ext_resource type="Texture2D" uid="uid://be0ko6wkm2qnx" path="res://assets/gui/icons/config/slider/slider_grabber_disabled.png" id="24_ukbdo"]
 [ext_resource type="Texture2D" uid="uid://bwjr1ie2d62h4" path="res://assets/gui/buttons/check_box/box_unchecked.png" id="25_ukbdo"]
+[ext_resource type="Texture2D" uid="uid://fgkbk5640v74" path="res://assets/images/pfp/PFP v2 - No BG.png" id="28_snmff"]
+[ext_resource type="Texture2D" uid="uid://df3si8uimyedi" path="res://assets/gui/buttons/check_box/box_checked_transparent.png" id="29_6nplb"]
 
 [sub_resource type="Gradient" id="Gradient_vqg40"]
 offsets = PackedFloat32Array(0, 0.52469134, 1)
@@ -399,6 +403,21 @@ script = ExtResource("5_552k3")
 position = Vector2(52, 401)
 texture = ExtResource("7_a1pxg")
 
+[node name="terrain_gradient" type="Parallax2D" parent="parallax" unique_id=1256350893]
+z_index = -1
+scroll_scale = Vector2(0.95, 1)
+scroll_offset = Vector2(0, 45)
+repeat_size = Vector2(1024, 0)
+autoscroll = Vector2(5, 0)
+repeat_times = 10
+
+[node name="node" type="Node2D" parent="parallax/terrain_gradient" unique_id=844831564]
+script = ExtResource("5_552k3")
+
+[node name="sprite" type="Sprite2D" parent="parallax/terrain_gradient/node" unique_id=539501433]
+position = Vector2(52, 1616)
+texture = ExtResource("9_ewf0k")
+
 [node name="particles_level" type="CPUParticles2D" parent="." unique_id=277087663]
 position = Vector2(1920, 540)
 amount = 2048
@@ -414,6 +433,7 @@ scale_amount_max = 5.0
 color_ramp = SubResource("Gradient_vqg40")
 
 [node name="menu_camera" type="Camera2D" parent="." unique_id=1918658534]
+position = Vector2(0, 2200)
 anchor_mode = 0
 
 [node name="game_title" type="Label" parent="." unique_id=1620047016]
@@ -487,18 +507,6 @@ z_index = 10
 script = ExtResource("14_044yh")
 float_speed = 1.0
 
-[node name="back_button" type="Button" parent="options_buttons" unique_id=2123533382]
-offset_left = 1970.0
-offset_top = 1200.0
-offset_right = 2376.0
-offset_bottom = 1327.0
-theme = ExtResource("4_kdtjr")
-theme_type_variation = &"FlatButton"
-theme_override_font_sizes/font_size = 128
-text = "Voltar"
-flat = true
-alignment = 0
-
 [node name="tabs" type="Panel" parent="options_buttons" unique_id=631451354]
 offset_left = 1920.0
 offset_right = 1960.0
@@ -531,6 +539,8 @@ tab_0/title = "Vídeo"
 tab_0/icon = ExtResource("19_6fwas")
 tab_1/title = "Áudio"
 tab_1/icon = ExtResource("18_yq2am")
+tab_2/title = "Extras"
+tab_2/icon = ExtResource("21_i7xp7")
 
 [node name="video" type="BoxContainer" parent="options_buttons/tabs/tab_panel" unique_id=30419728]
 layout_mode = 2
@@ -663,12 +673,12 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_constants/separation = -8
 
-[node name="music_volume" type="HBoxContainer" parent="options_buttons/tabs/tab_panel/audio/vbox" unique_id=697325343]
+[node name="ost_volume" type="HBoxContainer" parent="options_buttons/tabs/tab_panel/audio/vbox" unique_id=697325343]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="label" type="Label" parent="options_buttons/tabs/tab_panel/audio/vbox/music_volume" unique_id=1030788661]
+[node name="label" type="Label" parent="options_buttons/tabs/tab_panel/audio/vbox/ost_volume" unique_id=1030788661]
 z_index = 10
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -677,7 +687,7 @@ theme_override_font_sizes/font_size = 64
 text = "Música: "
 horizontal_alignment = 2
 
-[node name="slider" type="HSlider" parent="options_buttons/tabs/tab_panel/audio/vbox/music_volume" unique_id=748720180]
+[node name="slider" type="HSlider" parent="options_buttons/tabs/tab_panel/audio/vbox/ost_volume" unique_id=748720180]
 z_index = 999
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -690,7 +700,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxTexture_s4yaq")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_f0fo6")
 value = 100.0
 
-[node name="music_volume_percentage" type="Label" parent="options_buttons/tabs/tab_panel/audio/vbox" unique_id=1644381104]
+[node name="ost_volume_percentage" type="Label" parent="options_buttons/tabs/tab_panel/audio/vbox" unique_id=1644381104]
 z_index = 10
 layout_mode = 2
 size_flags_horizontal = 10
@@ -739,13 +749,196 @@ text = "100%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="misc" type="BoxContainer" parent="options_buttons/tabs/tab_panel" unique_id=957255556]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+metadata/_tab_name = "Extras"
+
+[node name="vbox" type="VBoxContainer" parent="options_buttons/tabs/tab_panel/misc" unique_id=549846831]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 6
+
+[node name="tutorial" type="HBoxContainer" parent="options_buttons/tabs/tab_panel/misc/vbox" unique_id=1128596202]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="label" type="Label" parent="options_buttons/tabs/tab_panel/misc/vbox/tutorial" unique_id=2013292410]
+z_index = 10
+layout_mode = 2
+tooltip_text = "Você precisa concluir o tutorial antes de desligar essa opção!"
+mouse_filter = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "Tutorial:"
+horizontal_alignment = 2
+
+[node name="check" type="CheckBox" parent="options_buttons/tabs/tab_panel/misc/vbox/tutorial" unique_id=1467193517]
+layout_mode = 2
+tooltip_text = "Você precisa concluir o tutorial antes de desligar essa opção!"
+theme_override_styles/hover = SubResource("StyleBoxFlat_nqft5")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ukbdo")
+theme_override_icons/checked = ExtResource("24_nqft5")
+theme_override_icons/unchecked = ExtResource("25_ukbdo")
+theme_override_icons/checked_disabled = ExtResource("29_6nplb")
+disabled = true
+button_pressed = true
+
+[node name="intro" type="HBoxContainer" parent="options_buttons/tabs/tab_panel/misc/vbox" unique_id=311325423]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="label" type="Label" parent="options_buttons/tabs/tab_panel/misc/vbox/intro" unique_id=149839728]
+z_index = 10
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "Intro:"
+horizontal_alignment = 2
+
+[node name="check" type="CheckBox" parent="options_buttons/tabs/tab_panel/misc/vbox/intro" unique_id=2055027123]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_nqft5")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ukbdo")
+theme_override_icons/checked = ExtResource("24_nqft5")
+theme_override_icons/unchecked = ExtResource("25_ukbdo")
+
+[node name="open_reset_button" type="Button" parent="options_buttons/tabs/tab_panel/misc/vbox" unique_id=303912528]
+modulate = Color(0.69245994, 1.8410012e-06, 7.70092e-07, 1)
+layout_mode = 2
+theme = ExtResource("4_kdtjr")
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 64
+text = "Reiniciar Progresso"
+flat = true
+
+[node name="advanced_panel" type="PanelContainer" parent="options_buttons/tabs/tab_panel/misc/vbox" unique_id=850595259]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ewf0k")
+
+[node name="vbox" type="VBoxContainer" parent="options_buttons/tabs/tab_panel/misc/vbox/advanced_panel" unique_id=1282376796]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="label" type="Label" parent="options_buttons/tabs/tab_panel/misc/vbox/advanced_panel/vbox" unique_id=1893589847]
+z_index = 10
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "Você tem certeza?"
+horizontal_alignment = 1
+
+[node name="you_sure" type="HBoxContainer" parent="options_buttons/tabs/tab_panel/misc/vbox/advanced_panel/vbox" unique_id=751322619]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+
+[node name="yes" type="Button" parent="options_buttons/tabs/tab_panel/misc/vbox/advanced_panel/vbox/you_sure" unique_id=198913595]
+modulate = Color(0.996558, 0.0038475483, 0.0021106296, 1)
+layout_mode = 2
+theme = ExtResource("4_kdtjr")
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 64
+text = "Sim"
+flat = true
+
+[node name="no" type="Button" parent="options_buttons/tabs/tab_panel/misc/vbox/advanced_panel/vbox/you_sure" unique_id=629878357]
+layout_mode = 2
+theme = ExtResource("4_kdtjr")
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 64
+text = "Não"
+flat = true
+
+[node name="label_warn" type="Label" parent="options_buttons/tabs/tab_panel/misc/vbox/advanced_panel/vbox" unique_id=923332181]
+z_index = 10
+custom_minimum_size = Vector2(497, 54)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.412, 0.406, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 16
+text = "O reinício irá apagar TUDO!
+Você NÃO poderá voltar atrás depois.
+(Escolher SIM irá fechar o jogo - Configurações ficam salvas)"
+horizontal_alignment = 1
+
+[node name="confirm_reset_timer" type="Label" parent="options_buttons/tabs" unique_id=690847560]
+visible = false
+z_index = 10
+layout_mode = 0
+offset_left = 804.0
+offset_top = 484.0
+offset_right = 874.0
+offset_bottom = 544.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "3"
+horizontal_alignment = 1
+
+[node name="confirm_reset" type="Timer" parent="options_buttons/tabs" unique_id=222671388]
+process_callback = 0
+wait_time = 3.0
+one_shot = true
+
+[node name="back_button" type="Button" parent="options_buttons" unique_id=2123533382]
+offset_left = 1970.0
+offset_top = 1172.0
+offset_right = 2376.0
+offset_bottom = 1299.0
+theme = ExtResource("4_kdtjr")
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 128
+text = "Voltar"
+flat = true
+alignment = 0
+
+[node name="intro" type="Node2D" parent="." unique_id=412413273]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 63)
+
+[node name="pfp" type="Sprite2D" parent="intro" unique_id=2115789730]
+position = Vector2(951, 2597)
+scale = Vector2(0.16701755, 0.16701755)
+texture = ExtResource("28_snmff")
+
+[node name="label" type="Label" parent="intro" unique_id=1749760245]
+z_index = 10
+offset_left = 746.0
+offset_top = 2812.0
+offset_right = 1174.0
+offset_bottom = 2872.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "PandaBrasileiro"
+horizontal_alignment = 2
+
 [connection signal="pressed" from="main_menu_buttons/play_button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="main_menu_buttons/options_button" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="main_menu_buttons/exit_button" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="options_buttons/back_button" to="." method="_on_back_button_pressed"]
 [connection signal="toggled" from="options_buttons/tabs/tab_panel/video/vbox/fullscreen/check" to="." method="_on_fullscreen_check_toggled"]
 [connection signal="toggled" from="options_buttons/tabs/tab_panel/video/vbox/vsync/check" to="." method="_on_vsync_toggled"]
 [connection signal="pressed" from="options_buttons/tabs/tab_panel/video/vbox/advanced_button" to="." method="_on_advanced_video_settings_button_pressed"]
 [connection signal="value_changed" from="options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox/fps/slider" to="." method="_on_fps_value_changed"]
-[connection signal="value_changed" from="options_buttons/tabs/tab_panel/audio/vbox/music_volume/slider" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="options_buttons/tabs/tab_panel/audio/vbox/ost_volume/slider" to="." method="_on_ost_volume_value_changed"]
 [connection signal="value_changed" from="options_buttons/tabs/tab_panel/audio/vbox/sfx_volume/slider" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="toggled" from="options_buttons/tabs/tab_panel/misc/vbox/tutorial/check" to="." method="_on_tutorial_check_toggled"]
+[connection signal="toggled" from="options_buttons/tabs/tab_panel/misc/vbox/intro/check" to="." method="_on_intro_check_toggled"]
+[connection signal="pressed" from="options_buttons/tabs/tab_panel/misc/vbox/open_reset_button" to="." method="_on_open_reset_menu_pressed"]
+[connection signal="pressed" from="options_buttons/tabs/tab_panel/misc/vbox/advanced_panel/vbox/you_sure/yes" to="." method="_on_confirm_reset_pressed"]
+[connection signal="pressed" from="options_buttons/tabs/tab_panel/misc/vbox/advanced_panel/vbox/you_sure/no" to="." method="_on_deny_reset_pressed"]
+[connection signal="timeout" from="options_buttons/tabs/confirm_reset" to="." method="_on_confirm_reset_timeout"]
+[connection signal="pressed" from="options_buttons/back_button" to="." method="_on_back_button_pressed"]

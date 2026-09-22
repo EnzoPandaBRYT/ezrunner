@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bua5qy5ydmp60"]
+
+[ext_resource type="Script" uid="uid://bqj2hsr53f6sn" path="res://scenes/scenes_characters/attacks/thunderbolt/thunderbolt.gd" id="1_sttfr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7f37h"]
+size = Vector2(20, 680.85095)
+
+[node name="thunderbolt" type="Node2D" unique_id=1081428454]
+modulate = Color(1, 1, 1, 0.5)
+script = ExtResource("1_sttfr")
+
+[node name="line" type="Line2D" parent="." unique_id=2049713415]
+position = Vector2(40, -860)
+points = PackedVector2Array(0, 0, 0, 1280)
+width = 50.0
+
+[node name="thunder_hitbox" type="Area2D" parent="." unique_id=235863709]
+position = Vector2(40, -860)
+collision_layer = 128
+collision_mask = 16
+monitoring = false
+monitorable = false
+
+[node name="collision" type="CollisionShape2D" parent="thunder_hitbox" unique_id=910496853]
+position = Vector2(0, 640)
+scale = Vector2(1.8800004, 1.8800004)
+shape = SubResource("RectangleShape2D_7f37h")
+disabled = true
+debug_color = Color(0.9590456, 0, 0.12561816, 0.41960785)

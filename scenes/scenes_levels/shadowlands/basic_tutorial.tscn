@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://b5muldex0itww" path="res://assets/level_design/backgrounds/shadowlands/trees.png" id="8_uuys5"]
 [ext_resource type="Texture2D" uid="uid://cutfajbsy01hv" path="res://assets/level_design/backgrounds/shadowlands/darker_terrain.png" id="9_4sv2v"]
 [ext_resource type="Texture2D" uid="uid://cb5ac4lk8yn1s" path="res://assets/level_design/backgrounds/shadowlands/terrain.png" id="9_o7vgi"]
+[ext_resource type="Script" uid="uid://bc4h5pvh6a40" path="res://scripts/wiggles/node2d_wiggle.gd" id="14_2m0er"]
+[ext_resource type="Texture2D" uid="uid://8ur0og5jb5ua" path="res://assets/level_design/backgrounds/shadowlands/terrain_gradient.png" id="15_a26h1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7dpv7"]
 texture = ExtResource("1_815fu")
@@ -299,5 +301,19 @@ repeat_times = 10
 [node name="sprite" type="Sprite2D" parent="parallax/terrain" unique_id=462186375]
 position = Vector2(52, 401)
 texture = ExtResource("9_o7vgi")
+
+[node name="terrain_gradient" type="Parallax2D" parent="parallax" unique_id=1366666691]
+z_index = -1
+scroll_scale = Vector2(0.95, 1)
+repeat_size = Vector2(1024, 0)
+autoscroll = Vector2(5, 0)
+repeat_times = 10
+
+[node name="node" type="Node2D" parent="parallax/terrain_gradient" unique_id=2117834348]
+script = ExtResource("14_2m0er")
+
+[node name="sprite" type="Sprite2D" parent="parallax/terrain_gradient/node" unique_id=1594145595]
+position = Vector2(52, 1616)
+texture = ExtResource("15_a26h1")
 
 [connection signal="body_entered" from="level_end" to="." method="_on_level_end_body_entered"]

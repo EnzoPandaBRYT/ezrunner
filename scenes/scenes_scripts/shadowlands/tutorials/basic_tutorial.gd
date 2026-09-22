@@ -71,6 +71,7 @@ func _process(delta: float) -> void:
 
 func _on_level_end_body_entered(body: Node2D) -> void:
 	if body.name == "player":
+		PlayerStats.save_levels_settings("tutorials_completed", 1)
 		PlayerVars.can_control = false
 		CameraHandler.follow_player = false
 		ScreenAnimations.black_fade(1.0, 2)
@@ -99,3 +100,8 @@ func grow_window():
 	tween.tween_property(self, "modulate:a", 1.0, 1)
 	tween.tween_method(func(size):DisplayServer.window_set_size(Vector2i(size)),Vector2(start_size),Vector2(target_size), 4)
 	tween.tween_method(func(pos):DisplayServer.window_set_position(Vector2i(pos)),Vector2(start_pos),Vector2(mid_screen), 4)
+	await tween.finished
+	if GameConfig.fullscreen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

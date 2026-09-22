@@ -8,22 +8,28 @@ const thrid_world_start_pt_2 = preload("res://ost_sfx/ost/3d_world/start_pt_2.og
 const thrid_world_end = preload("res://ost_sfx/ost/3d_world/end.mp3")
 
 # Main Menu
+const intro_theme = preload("res://ost_sfx/ost/game_intro.ogg")
 const main_menu_theme = preload("res://ost_sfx/ost/main_menu/lost_potential.ogg")
 const main_menu_options_theme = preload("res://ost_sfx/ost/main_menu/lost_potential_options.ogg")
 const main_menu_theme_end = preload("res://ost_sfx/ost/main_menu/lost_potential_end.ogg")
 
 # Shadowlands
 const _first_tutorial = preload("res://ost_sfx/ost/first_tutorial/tutorial.ogg")
+const __1_allium = preload("res://ost_sfx/ost/levels/1_allium/obscurity.ogg")
 
 ## SFX
 const jump_sound = preload("res://ost_sfx/sfx/player/swoosh.mp3")
 
-## Player
+# Player
 const punch_hit = preload("res://ost_sfx/sfx/player/punch_hit.wav")
 
-## Enemies
+# Enemies
 const enemy_spawn = preload("res://ost_sfx/sfx/enemies/enemy_spawn.wav")
 const enemy_death = preload("res://ost_sfx/sfx/enemies/enemy_death.wav")
+
+# Attacks
+const thunder_charge = preload("res://ost_sfx/sfx/enemies/attacks/thunderbolt/charging_up.ogg")
+const thunder_release = preload("res://ost_sfx/sfx/enemies/attacks/thunderbolt/release.ogg")
 
 var fade_tween: Tween
 
@@ -71,6 +77,8 @@ func _play_music_fade(music: AudioStream, actualTime: float, volume := -4.0, fad
 
 # Music
 
+
+
 func main_menu(actualTime: float, fade_time = 1.0):
 	_play_music_fade(main_menu_theme, actualTime, -4.0, fade_time)
 
@@ -82,11 +90,15 @@ func _play_music(music: AudioStream, volume = 0.0, actualTime = 0.0):
 		return
 	stream = music
 	volume_db = volume
+	pitch_scale = 1.0
 	bus = "OST"
 	if ost_player.playing:
 		ost_player.stop()
 	play()
 	seek(actualTime)
+
+func intro():
+	_play_music(intro_theme, 0)
 
 func main_menu_end():
 	_play_music(main_menu_theme_end, 0.0)
@@ -101,6 +113,9 @@ func threed_world_end():
 
 func first_tutorial():
 	_play_music(_first_tutorial, 0.0)
+
+func _1_allium():
+	_play_music(__1_allium, 0.0)
 
 
 #------------------------------
@@ -127,22 +142,28 @@ func punch_sfx(volume):
 
 # Enemy SFX
 func enemy_spawn_sfx():
-	play_FX(enemy_spawn, -9, randf_range(0.9,1.1))
+	play_FX(enemy_spawn, -5, randf_range(0.5,0.75))
 
 func enemy_death_sfx():
 	play_FX(enemy_death, 0, randf_range(0.9,1.1))
 
+func thunder_charge_sfx():
+	play_FX(thunder_charge, -5, randf_range(0.9,1.1))
+
+func thunder_release_sfx():
+	play_FX(thunder_release, -5, randf_range(0.9,1.1))
+
 func trans_music(trans_time = 0.5):
-	var tween = create_tween()
+	var tween = create_tween().set_parallel(true)
 	tween.tween_property(self, "volume_db", 0, trans_time) # fade out
 	
 	
 func music_reduce(new_volume := -18.0, fade_time := 0.5, pitch = 1.0):
-	var tween = create_tween()
+	var tween = create_tween().set_parallel(true)
 	tween.tween_property(self, "volume_db", new_volume, fade_time) # fade out
 	tween.tween_property(self, "pitch_scale", pitch, fade_time)
 
-func music_normal(old_volume := -5.0, fade_time := 0.5, pitch = 1.0):
-	var tween = create_tween()
+func music_normal(old_volume := 0.0, fade_time := 0.5, pitch = 1.0):
+	var tween = create_tween().set_parallel(true)
 	tween.tween_property(self, "volume_db", old_volume, fade_time) # fade out
 	tween.tween_property(self, "pitch_scale", pitch, fade_time)

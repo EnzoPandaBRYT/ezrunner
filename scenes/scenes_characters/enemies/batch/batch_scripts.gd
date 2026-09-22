@@ -13,6 +13,7 @@ signal enemy_dead
 
 func _ready() -> void:
 	await self.ready
+	AudioPlayer.enemy_spawn_sfx()
 	batch_hitbox.monitoring = false
 	batch_hitbox.monitorable = false
 	$collisions/hurtbox.monitoring = false
