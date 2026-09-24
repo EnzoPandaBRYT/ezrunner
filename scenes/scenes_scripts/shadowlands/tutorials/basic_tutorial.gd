@@ -10,7 +10,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	AudioPlayer.first_tutorial()
 	ScreenAnimations.room_enter(0.0, 1)
-	PlayerGui.tutorial_cutscene()
+	PlayerGui.level_start()
 	if GameConfig.tutorial_enabled:
 		player.position = Vector2(60,-5930)
 		player._state = player._StateMachine.JUMP

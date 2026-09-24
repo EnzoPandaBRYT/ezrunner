@@ -301,6 +301,9 @@ texture_margin_bottom = 2.0
 expand_margin_top = 2.0
 expand_margin_bottom = 2.0
 
+[sub_resource type="Gradient" id="Gradient_6nplb"]
+colors = PackedColorArray(0.8037871, 0.80837137, 0.8699251, 1, 0.53412783, 0.4834036, 1, 0)
+
 [node name="main_menu" type="Node2D" unique_id=1295998279]
 z_index = 10
 script = ExtResource("1_odk2l")
@@ -589,6 +592,27 @@ text = "V-Sync:"
 horizontal_alignment = 2
 
 [node name="check" type="CheckBox" parent="options_buttons/tabs/tab_panel/video/vbox/vsync" unique_id=1137577197]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_nqft5")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ukbdo")
+theme_override_icons/checked = ExtResource("24_nqft5")
+theme_override_icons/unchecked = ExtResource("25_ukbdo")
+
+[node name="own_cursor" type="HBoxContainer" parent="options_buttons/tabs/tab_panel/video/vbox" unique_id=872082909]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="label" type="Label" parent="options_buttons/tabs/tab_panel/video/vbox/own_cursor" unique_id=726202910]
+z_index = 10
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "Usar cursor próprio:"
+horizontal_alignment = 2
+
+[node name="check" type="CheckBox" parent="options_buttons/tabs/tab_panel/video/vbox/own_cursor" unique_id=64349381]
 layout_mode = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_nqft5")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ukbdo")
@@ -926,11 +950,24 @@ theme_override_font_sizes/font_size = 64
 text = "PandaBrasileiro"
 horizontal_alignment = 2
 
+[node name="mouse_particles" type="CPUParticles2D" parent="." unique_id=1696064115]
+z_index = 4096
+amount = 64
+lifetime = 0.5
+gravity = Vector2(0, 5)
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+angle_max = 180.0
+scale_amount_min = 13.0
+scale_amount_max = 15.0
+color_ramp = SubResource("Gradient_6nplb")
+
 [connection signal="pressed" from="main_menu_buttons/play_button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="main_menu_buttons/options_button" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="main_menu_buttons/exit_button" to="." method="_on_exit_button_pressed"]
 [connection signal="toggled" from="options_buttons/tabs/tab_panel/video/vbox/fullscreen/check" to="." method="_on_fullscreen_check_toggled"]
 [connection signal="toggled" from="options_buttons/tabs/tab_panel/video/vbox/vsync/check" to="." method="_on_vsync_toggled"]
+[connection signal="toggled" from="options_buttons/tabs/tab_panel/video/vbox/own_cursor/check" to="." method="_on_use_own_cursor_toggled"]
 [connection signal="pressed" from="options_buttons/tabs/tab_panel/video/vbox/advanced_button" to="." method="_on_advanced_video_settings_button_pressed"]
 [connection signal="value_changed" from="options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox/fps/slider" to="." method="_on_fps_value_changed"]
 [connection signal="value_changed" from="options_buttons/tabs/tab_panel/audio/vbox/ost_volume/slider" to="." method="_on_ost_volume_value_changed"]

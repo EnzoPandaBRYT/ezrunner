@@ -1,6 +1,8 @@
 extends AudioStreamPlayer
 
 var ost_player = AudioStreamPlayer.new()
+@onready var ost_bus := AudioServer.get_bus_index("OST")
+var lowpass: AudioEffectLowPassFilter
 
 ## Music
 const thrid_world_start_pt_1 = preload("res://ost_sfx/ost/3d_world/start_pt_1.ogg")
@@ -33,6 +35,13 @@ const thunder_release = preload("res://ost_sfx/sfx/enemies/attacks/thunderbolt/r
 
 var fade_tween: Tween
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
+	var effect = AudioServer.get_bus_effect(ost_bus, 0)
+
+	if effect is AudioEffectLowPassFilter:
+		lowpass = effect
 
 func _play_music_fade(music: AudioStream, actualTime: float, volume := -4.0, fade_time := 1.0):
 	# Cancela uma transição anterior, caso exista
@@ -167,3 +176,21 @@ func music_normal(old_volume := 0.0, fade_time := 0.5, pitch = 1.0):
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property(self, "volume_db", old_volume, fade_time) # fade out
 	tween.tween_property(self, "pitch_scale", pitch, fade_time)
+
+func pause_music_effect():
+	var tween = create_tween()
+	tween.tween_property(lowpass, "cutoff_hz", 800.0, 0.25)
+
+func resume_music_effect():
+	var tween = create_tween()
+	tween.tween_property(lowpass, "cutoff_hz", 20000.0, 0.10)
+
+func quit_game_music_effect():
+	var tween = create_tween()
+	tween.tween_property(lowpass, "cutoff_hz", 400.0, 1)
+
+func reset():
+	var tween = create_tween().set_parallel(true)
+	tween.tween_property(lowpass, "cutoff_hz", 20000.0, 0.10)
+	tween.tween_property(self, "volume_db", 0.0, 0.0) # fade out
+	tween.tween_property(self, "pitch_scale", 1.0, 0.0)

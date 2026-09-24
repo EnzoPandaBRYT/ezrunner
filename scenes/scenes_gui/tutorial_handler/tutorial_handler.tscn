@@ -6,6 +6,7 @@
 script = ExtResource("1_sbj2h")
 
 [node name="canvas" type="CanvasLayer" parent="." unique_id=1425573876]
+process_mode = 1
 layer = 999
 visible = false
 

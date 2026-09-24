@@ -26,9 +26,10 @@ var warn_tween: Tween
 
 func _ready() -> void:
 	AudioPlayer.stop()
+	AudioPlayer.reset()
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	ScreenAnimations.room_enter(0.0, 0.5)
-	PlayerGui.tutorial_cutscene()
+	ScreenAnimations.reset()
 	PlayerVars.can_control = false
 	if GameConfig.play_intro:
 		var intro_tween = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)
@@ -46,16 +47,22 @@ func _ready() -> void:
 	else:
 		reset_progress_button.disabled = true
 		reset_progress_button.tooltip_text = "Você poderá reiniciar seu progresso\nquando finalizar um nível."
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	AudioPlayer.music_normal(0.0, 0.5, 1.0)
 	AudioPlayer.main_menu(0.0)
+	ost_volume_slider.value = GameConfig.config.get_value("audio", "ostVolume")*100
+	sfx_volume_slider.value = GameConfig.config.get_value("audio", "sfxVolume")*100
+	$options_buttons/tabs/tab_panel/audio/vbox/ost_volume_percentage.text = str(int(GameConfig.config.get_value("audio", "ostVolume")*100)) + "%"
+	$options_buttons/tabs/tab_panel/audio/vbox/sfx_volume_percentage.text = str(int(GameConfig.config.get_value("audio", "sfxVolume")*100)) + "%"
 	is_playing_music = true
 	$options_buttons/tabs.scale = Vector2(0.0,0.0)
+	PlayerGui.level_start()
 	game_initialize()
 	await get_tree().create_timer(2).timeout
 	PlayerVars.can_control = true
 
 func _process(delta: float) -> void:
+	$mouse_particles.position = get_global_mouse_position()
 	if Input.is_action_just_pressed("reload"):
 		get_tree().reload_current_scene()
 	if is_playing_music:
@@ -166,6 +173,14 @@ func _on_vsync_toggled(toggled_on: bool) -> void:
 		$options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox/fps/slider.editable = true
 		Engine.max_fps = int($options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox/fps/slider.value)
 
+func _on_use_own_cursor_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		$mouse_particles.emitting = false
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		$mouse_particles.emitting = true
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	
 func _on_advanced_video_settings_button_pressed() -> void:
 	$options_buttons/tabs/tab_panel/video/vbox/advanced_panel.visible = !$options_buttons/tabs/tab_panel/video/vbox/advanced_panel.visible
 	if $options_buttons/tabs/tab_panel/video/vbox/advanced_panel.visible:
@@ -173,33 +188,6 @@ func _on_advanced_video_settings_button_pressed() -> void:
 	else:
 		$options_buttons/tabs/tab_panel/video/vbox/advanced_button.text = "▶ Configurações Avançadas"
 
-func grow_window():
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	var tween = create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
-	
-	var start_size = Vector2i(0,0)
-	var target_size = DisplayServer.window_get_size()
-	var start_pos = Vector2i(DisplayServer.window_get_size().x/2,DisplayServer.window_get_size().y/2)
-	var mid_screen = Vector2i(0,0)
-	
-	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT, true)
-	tween.tween_property(self, "modulate:a", 1.0, 1)
-	tween.tween_method(func(size):DisplayServer.window_set_size(Vector2i(size)),Vector2(start_size),Vector2(target_size), 1)
-	tween.tween_method(func(pos):DisplayServer.window_set_position(Vector2i(pos)),Vector2(start_pos),Vector2(mid_screen), 1)
-
-func shrink_window():
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	var tween = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
-	
-	var start_size = DisplayServer.window_get_size()
-	var target_size = Vector2i(0,0)
-	var start_pos = DisplayServer.window_get_position()
-	var mid_screen = Vector2i(DisplayServer.window_get_size().x/2,DisplayServer.window_get_size().y/2)
-	
-	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT, true)
-	tween.tween_property(self, "modulate:a", 0.0, 4)
-	tween.tween_method(func(size):DisplayServer.window_set_size(Vector2i(size)),Vector2(start_size),Vector2(target_size), 4)
-	tween.tween_method(func(pos):DisplayServer.window_set_position(Vector2i(pos)),Vector2(start_pos),Vector2(mid_screen), 4)
 
 func _on_tutorial_check_toggled(toggled_on: bool) -> void:
 	if toggled_on:
@@ -214,6 +202,43 @@ func _on_intro_check_toggled(toggled_on: bool) -> void:
 	else:
 		GameConfig.save_misc_settings("play_intro", false)
 
+func reset_settings():
+	if FileAccess.file_exists("user://player_stats.ini"):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path("user://player_stats.ini"))
+		
+	ScreenAnimations.black_fade(1.0, 3)
+	AudioPlayer.music_reduce(-18, 4, 0.5)
+	AudioPlayer.main_menu_end()
+	shrink_window()
+	await get_tree().create_timer(5).timeout
+	get_tree().quit()
+
+func _on_open_reset_menu_pressed() -> void:
+	warn_tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_parallel(true)
+	reset_progress_warn_label.visible_characters = 0
+	reset_progress_warn_label.add_theme_color_override("font_color", Color(0.412, 0.406, 0.0))
+	warn_tween.tween_property(reset_progress_warn_label, "visible_characters", reset_progress_warn_label.text.length(), 2)
+	$options_buttons/tabs/confirm_reset.start()
+	reset_progress_panel.visible = true
+	reset_progress_button.disabled = true
+	$options_buttons/tabs/tab_panel/misc/vbox/advanced_panel/vbox/you_sure/yes.disabled = true
+	$options_buttons/tabs/confirm_reset_timer.visible = true
+	warn_tween.tween_property(reset_progress_warn_label, "theme_override_colors/font_color", Color(0.831, 0.819, 0.0), 3)
+
+func _on_confirm_reset_timeout() -> void:
+	$options_buttons/tabs/tab_panel/misc/vbox/advanced_panel/vbox/you_sure/yes.disabled = false
+	$options_buttons/tabs/confirm_reset_timer.visible = false
+
+func _on_confirm_reset_pressed() -> void:
+	reset_settings()
+
+func _on_deny_reset_pressed() -> void:
+	reset_progress_panel.visible = false
+	reset_progress_button.disabled = false
+	$options_buttons/tabs/confirm_reset_timer.visible = false
+	warn_tween.kill()
+
+## GAME
 func game_initialize():
 	
 	# Tela cheia
@@ -262,40 +287,31 @@ func start_game():
 				get_tree().change_scene_to_file("res://scenes/scenes_levels/shadowlands/1_allium.tscn")
 			
 
-func reset_settings():
-	if FileAccess.file_exists("user://player_stats.ini"):
-		DirAccess.remove_absolute(ProjectSettings.globalize_path("user://player_stats.ini"))
-		
-	ScreenAnimations.black_fade(1.0, 3)
-	AudioPlayer.music_reduce(-18, 4, 0.5)
-	AudioPlayer.main_menu_end()
-	shrink_window()
-	await get_tree().create_timer(5).timeout
-	get_tree().quit()
-
-func _on_open_reset_menu_pressed() -> void:
-	warn_tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_parallel(true)
-	reset_progress_warn_label.visible_characters = 0
-	reset_progress_warn_label.add_theme_color_override("font_color", Color(0.412, 0.406, 0.0))
-	warn_tween.tween_property(reset_progress_warn_label, "visible_characters", reset_progress_warn_label.text.length(), 2)
-	$options_buttons/tabs/confirm_reset.start()
-	reset_progress_panel.visible = true
-	reset_progress_button.disabled = true
-	$options_buttons/tabs/tab_panel/misc/vbox/advanced_panel/vbox/you_sure/yes.disabled = true
-	$options_buttons/tabs/confirm_reset_timer.visible = true
-	warn_tween.tween_property(reset_progress_warn_label, "theme_override_colors/font_color", Color(0.831, 0.819, 0.0), 3)
+## WINDOW
+func grow_window():
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	var tween = create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 	
-func _on_confirm_reset_pressed() -> void:
-	reset_settings()
+	var start_size = Vector2i(0,0)
+	var target_size = DisplayServer.window_get_size()
+	var start_pos = Vector2i(DisplayServer.window_get_size().x/2,DisplayServer.window_get_size().y/2)
+	var mid_screen = Vector2i(0,0)
+	
+	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT, true)
+	tween.tween_property(self, "modulate:a", 1.0, 1)
+	tween.tween_method(func(size):DisplayServer.window_set_size(Vector2i(size)),Vector2(start_size),Vector2(target_size), 1)
+	tween.tween_method(func(pos):DisplayServer.window_set_position(Vector2i(pos)),Vector2(start_pos),Vector2(mid_screen), 1)
 
+func shrink_window():
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	var tween = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
+	
+	var start_size = DisplayServer.window_get_size()
+	var target_size = Vector2i(0,0)
+	var start_pos = DisplayServer.window_get_position()
+	var mid_screen = Vector2i(DisplayServer.window_get_size().x/2,DisplayServer.window_get_size().y/2)
 
-func _on_deny_reset_pressed() -> void:
-	reset_progress_panel.visible = false
-	reset_progress_button.disabled = false
-	$options_buttons/tabs/confirm_reset_timer.visible = false
-	warn_tween.kill()
-
-
-func _on_confirm_reset_timeout() -> void:
-	$options_buttons/tabs/tab_panel/misc/vbox/advanced_panel/vbox/you_sure/yes.disabled = false
-	$options_buttons/tabs/confirm_reset_timer.visible = false
+	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT, true)
+	tween.tween_property(self, "modulate:a", 0.0, 4)
+	tween.tween_method(func(size):DisplayServer.window_set_size(Vector2i(size)),Vector2(start_size),Vector2(target_size), 4)
+	tween.tween_method(func(pos):DisplayServer.window_set_position(Vector2i(pos)),Vector2(start_pos),Vector2(mid_screen), 4)

@@ -15,9 +15,10 @@ func _ready() -> void:
 	AudioPlayer.music_normal(0.0, 1)
 	AudioPlayer.first_tutorial()
 	ScreenAnimations.room_enter(0.0, 1.0)
+	ScreenAnimations.cutscene_bars_on(0.5)
+	PlayerGui.level_start()
 	PlayerVars.can_control = false
 	CameraHandler.follow_player = false
-	PlayerGui.cutscene_off()
 	if GameConfig.tutorial_enabled:
 		player.position = Vector2(-634,200)
 		TutorialHandler.tutorial_step = 2
@@ -29,7 +30,6 @@ func _ready() -> void:
 		
 
 func _process(delta: float) -> void:
-	print(PlayerVars.can_control)
 	match TutorialHandler.tutorial_step:
 		2:
 			if PlayerStats.batchs_killed >= 1:
@@ -48,6 +48,8 @@ func _process(delta: float) -> void:
 	
 	
 func _on_level_start_body_entered(body: Node2D) -> void:
+	ScreenAnimations.cutscene_bars_off(0.5)
+	PlayerGui.cutscene_off()
 	PlayerVars.can_control = true
 	CameraHandler.follow_player = true
 	$level_start.queue_free()
@@ -148,8 +150,9 @@ func _on_level_end_body_entered(body: Node2D) -> void:
 		await get_tree().create_timer(5).timeout
 		TutorialHandler.change_text("Talvez um dia esse lugar seja livre, como era antes.")
 		await get_tree().create_timer(5).timeout
-		AudioPlayer.music_reduce(-18, 3)
+		AudioPlayer.music_reduce(-99, 4)
 		TutorialHandler.tutorial_msg_end()
 		await get_tree().create_timer(4).timeout
+		AudioPlayer.ost_player.stop()
 		await get_tree().process_frame
-		get_tree().change_scene_to_file("res://scenes/scenes_gui/main_menu/main_menu.tscn")
+		get_tree().change_scene_to_file("res://scenes/scenes_levels/shadowlands/1_allium.tscn")

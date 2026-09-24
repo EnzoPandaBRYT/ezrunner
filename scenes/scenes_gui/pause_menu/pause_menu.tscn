@@ -1,0 +1,603 @@
+[gd_scene format=3 uid="uid://chlay708177po"]
+
+[ext_resource type="Script" uid="uid://ctnqdd6vfhhb1" path="res://scenes/scenes_gui/pause_menu/pause_menu.gd" id="1_4mtdl"]
+[ext_resource type="Script" uid="uid://ds6vitu5aaobf" path="res://scripts/wiggles/node2d_slow_wiggle.gd" id="3_ly067"]
+[ext_resource type="Texture2D" uid="uid://b1cd6ghhkumd7" path="res://assets/gui/icons/config/video/monitor/monitor.png" id="4_0ygpy"]
+[ext_resource type="Texture2D" uid="uid://cgjxodrngqyjq" path="res://assets/gui/icons/config/audio/megaphone/megaphone_icon.png" id="5_goggi"]
+[ext_resource type="Texture2D" uid="uid://bah4xfwgv7v44" path="res://assets/gui/buttons/check_box/box_checked.png" id="7_rdabk"]
+[ext_resource type="Texture2D" uid="uid://bwjr1ie2d62h4" path="res://assets/gui/buttons/check_box/box_unchecked.png" id="8_fb3p8"]
+[ext_resource type="Texture2D" uid="uid://dtwpr6iefatpm" path="res://assets/gui/icons/config/slider/slider_grabber.png" id="9_hu20m"]
+[ext_resource type="Texture2D" uid="uid://dcmdy4iwx3kl1" path="res://assets/gui/icons/config/slider/slider_grabber_highlight.png" id="10_gfgg0"]
+[ext_resource type="Texture2D" uid="uid://be0ko6wkm2qnx" path="res://assets/gui/icons/config/slider/slider_grabber_disabled.png" id="11_k222u"]
+[ext_resource type="Texture2D" uid="uid://dy3bkucsoxvox" path="res://assets/gui/icons/config/slider/slider_bg_empty.png" id="12_g51m4"]
+[ext_resource type="Texture2D" uid="uid://2epgt060cyv7" path="res://assets/gui/icons/config/slider/slider_bg.png" id="13_6v41j"]
+[ext_resource type="Shader" uid="uid://dl0h4gk5jolyg" path="res://scenes/scenes_gui/pause_menu/blur.gdshader" id="13_vuw4v"]
+[ext_resource type="Theme" uid="uid://6iabekurvrft" path="res://assets/themes/button_default_theme.tres" id="15_8ok7o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tsqhw"]
+shader = ExtResource("13_vuw4v")
+shader_parameter/lod = 0.838000039805
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4mtdl"]
+bg_color = Color(0, 0, 0, 0.47000003)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tm5u3"]
+bg_color = Color(0, 0, 0, 0.76500005)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04yur"]
+bg_color = Color(0.25565878, 0.25565878, 0.25565878, 0.4745098)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c4ojl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktc88"]
+bg_color = Color(0, 0, 0, 0.47000003)
+border_width_left = 64
+border_width_top = 64
+border_width_right = 64
+border_width_bottom = 64
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egiai"]
+bg_color = Color(0, 0, 0, 0.439)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wpj0p"]
+bg_color = Color(0, 0, 0, 0.66800004)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tuifw"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0vo0"]
+bg_color = Color(0, 0, 0, 0.26500002)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tn516"]
+bg_color = Color(0, 0, 0, 0.26500002)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a60j6"]
+bg_color = Color(0, 0, 0, 0.47000003)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fdyvy"]
+bg_color = Color(0, 0, 0, 0.76500005)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vc4eo"]
+bg_color = Color(0.25565878, 0.25565878, 0.25565878, 0.4745098)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iwwv8"]
+bg_color = Color(0, 0, 0, 0.47000003)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qromm"]
+texture = ExtResource("12_g51m4")
+texture_margin_left = 4.0
+texture_margin_top = 2.0
+texture_margin_right = 6.0
+texture_margin_bottom = 4.0
+expand_margin_left = 2.0
+expand_margin_top = 4.0
+expand_margin_right = 2.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wyjuw"]
+texture = ExtResource("13_6v41j")
+texture_margin_left = 4.0
+texture_margin_top = 2.0
+texture_margin_right = 4.0
+texture_margin_bottom = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_25rhj"]
+texture = ExtResource("13_6v41j")
+texture_margin_left = 4.0
+texture_margin_top = 2.0
+texture_margin_right = 4.0
+texture_margin_bottom = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="Gradient" id="Gradient_tm5u3"]
+colors = PackedColorArray(0.8037871, 0.80837137, 0.8699251, 1, 0.53412783, 0.4834036, 1, 0)
+
+[node name="pause_menu" type="Node2D" unique_id=2011966232]
+process_mode = 3
+z_index = 4096
+script = ExtResource("1_4mtdl")
+
+[node name="canvas" type="CanvasLayer" parent="." unique_id=940928018]
+layer = 999
+
+[node name="ColorRect" type="ColorRect" parent="canvas" unique_id=1550356562]
+material = SubResource("ShaderMaterial_tsqhw")
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="node" type="Node2D" parent="canvas" unique_id=1494884486]
+
+[node name="back_to_game" type="Button" parent="canvas/node" unique_id=1337276480]
+custom_minimum_size = Vector2(483, 85)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 719.0
+offset_top = 335.0
+offset_right = 1202.0
+offset_bottom = 420.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_4mtdl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tm5u3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_04yur")
+text = "Voltar ao Jogo"
+icon_alignment = 1
+text_direction = 1
+
+[node name="settings" type="Button" parent="canvas/node" unique_id=1915862398]
+custom_minimum_size = Vector2(483, 85)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 718.5
+offset_top = 435.0
+offset_right = 1201.5
+offset_bottom = 520.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_4mtdl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tm5u3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_04yur")
+text = "Opções"
+icon_alignment = 1
+text_direction = 1
+
+[node name="quit" type="Button" parent="canvas/node" unique_id=427317920]
+custom_minimum_size = Vector2(483, 85)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 718.5
+offset_top = 535.0
+offset_right = 1201.5
+offset_bottom = 620.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_4mtdl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tm5u3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_04yur")
+text = "Sair"
+icon_alignment = 1
+text_direction = 1
+
+[node name="options_buttons" type="Node2D" parent="canvas" unique_id=1535809292]
+visible = false
+z_index = 4096
+script = ExtResource("3_ly067")
+float_speed = 1.0
+
+[node name="tabs" type="Panel" parent="canvas/options_buttons" unique_id=2146466222]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c4ojl")
+
+[node name="tab_panel" type="TabContainer" parent="canvas/options_buttons/tabs" unique_id=338614320]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.4000001
+anchor_top = 1.1
+anchor_right = 46.425003
+anchor_bottom = 21.075
+offset_right = -0.00012207031
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/side_margin = 8
+theme_override_constants/tab_separation = 24
+theme_override_constants/icon_separation = 12
+theme_override_font_sizes/font_size = 64
+theme_override_styles/panel = SubResource("StyleBoxFlat_ktc88")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_egiai")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_wpj0p")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_tuifw")
+tab_alignment = 1
+current_tab = 0
+tabs_position = 1
+tab_0/title = "Vídeo"
+tab_0/icon = ExtResource("4_0ygpy")
+tab_1/title = "Áudio"
+tab_1/icon = ExtResource("5_goggi")
+
+[node name="video" type="BoxContainer" parent="canvas/options_buttons/tabs/tab_panel" unique_id=300982515]
+layout_mode = 2
+metadata/_tab_index = 0
+metadata/_tab_name = "Vídeo"
+
+[node name="vbox" type="VBoxContainer" parent="canvas/options_buttons/tabs/tab_panel/video" unique_id=1682246563]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 6
+
+[node name="fullscreen" type="HBoxContainer" parent="canvas/options_buttons/tabs/tab_panel/video/vbox" unique_id=1882498581]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="label" type="Label" parent="canvas/options_buttons/tabs/tab_panel/video/vbox/fullscreen" unique_id=1806863262]
+z_index = 10
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "Tela Cheia:"
+horizontal_alignment = 2
+
+[node name="check" type="CheckBox" parent="canvas/options_buttons/tabs/tab_panel/video/vbox/fullscreen" unique_id=387426626]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_y0vo0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_tn516")
+theme_override_icons/checked = ExtResource("7_rdabk")
+theme_override_icons/unchecked = ExtResource("8_fb3p8")
+
+[node name="vsync" type="HBoxContainer" parent="canvas/options_buttons/tabs/tab_panel/video/vbox" unique_id=1676639242]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="label" type="Label" parent="canvas/options_buttons/tabs/tab_panel/video/vbox/vsync" unique_id=266582577]
+z_index = 10
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "V-Sync:"
+horizontal_alignment = 2
+
+[node name="check" type="CheckBox" parent="canvas/options_buttons/tabs/tab_panel/video/vbox/vsync" unique_id=619599076]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_y0vo0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_tn516")
+theme_override_icons/checked = ExtResource("7_rdabk")
+theme_override_icons/unchecked = ExtResource("8_fb3p8")
+
+[node name="own_cursor" type="HBoxContainer" parent="canvas/options_buttons/tabs/tab_panel/video/vbox" unique_id=165988404]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="label" type="Label" parent="canvas/options_buttons/tabs/tab_panel/video/vbox/own_cursor" unique_id=1488358144]
+z_index = 10
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "Usar cursor próprio:"
+horizontal_alignment = 2
+
+[node name="check" type="CheckBox" parent="canvas/options_buttons/tabs/tab_panel/video/vbox/own_cursor" unique_id=134045972]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_y0vo0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_tn516")
+theme_override_icons/checked = ExtResource("7_rdabk")
+theme_override_icons/unchecked = ExtResource("8_fb3p8")
+
+[node name="advanced_button" type="Button" parent="canvas/options_buttons/tabs/tab_panel/video/vbox" unique_id=230376884]
+custom_minimum_size = Vector2(483, 60)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_a60j6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fdyvy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vc4eo")
+text = "▶ Configurações Avançadas"
+icon_alignment = 1
+text_direction = 1
+
+[node name="advanced_panel" type="PanelContainer" parent="canvas/options_buttons/tabs/tab_panel/video/vbox" unique_id=202611259]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_iwwv8")
+
+[node name="vbox" type="VBoxContainer" parent="canvas/options_buttons/tabs/tab_panel/video/vbox/advanced_panel" unique_id=1793007975]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="fps" type="HBoxContainer" parent="canvas/options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox" unique_id=85682200]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="label" type="Label" parent="canvas/options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox/fps" unique_id=1022586923]
+z_index = 10
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "FPS:"
+horizontal_alignment = 2
+
+[node name="slider" type="HSlider" parent="canvas/options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox/fps" unique_id=922010514]
+z_index = 999
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_icons/grabber = ExtResource("9_hu20m")
+theme_override_icons/grabber_highlight = ExtResource("10_gfgg0")
+theme_override_icons/grabber_disabled = ExtResource("11_k222u")
+theme_override_styles/slider = SubResource("StyleBoxTexture_qromm")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_wyjuw")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_25rhj")
+min_value = 1.0
+max_value = 240.0
+value = 60.0
+
+[node name="fps_label" type="Label" parent="canvas/options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox/fps" unique_id=196896691]
+z_index = 10
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "60"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="audio" type="BoxContainer" parent="canvas/options_buttons/tabs/tab_panel" unique_id=1293594514]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+metadata/_tab_name = "Áudio"
+
+[node name="vbox" type="VBoxContainer" parent="canvas/options_buttons/tabs/tab_panel/audio" unique_id=1459201111]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = -8
+
+[node name="ost_volume" type="HBoxContainer" parent="canvas/options_buttons/tabs/tab_panel/audio/vbox" unique_id=3815827]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="label" type="Label" parent="canvas/options_buttons/tabs/tab_panel/audio/vbox/ost_volume" unique_id=236563285]
+z_index = 10
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "Música: "
+horizontal_alignment = 2
+
+[node name="slider" type="HSlider" parent="canvas/options_buttons/tabs/tab_panel/audio/vbox/ost_volume" unique_id=2067175564]
+z_index = 999
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_icons/grabber = ExtResource("9_hu20m")
+theme_override_icons/grabber_highlight = ExtResource("10_gfgg0")
+theme_override_styles/slider = SubResource("StyleBoxTexture_qromm")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_wyjuw")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_25rhj")
+value = 100.0
+
+[node name="ost_volume_percentage" type="Label" parent="canvas/options_buttons/tabs/tab_panel/audio/vbox" unique_id=1472349641]
+z_index = 10
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sfx_volume" type="HBoxContainer" parent="canvas/options_buttons/tabs/tab_panel/audio/vbox" unique_id=330979350]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="label" type="Label" parent="canvas/options_buttons/tabs/tab_panel/audio/vbox/sfx_volume" unique_id=2073718658]
+z_index = 10
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 64
+text = "Efeitos: "
+horizontal_alignment = 2
+
+[node name="slider" type="HSlider" parent="canvas/options_buttons/tabs/tab_panel/audio/vbox/sfx_volume" unique_id=143615664]
+z_index = 999
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_icons/grabber = ExtResource("9_hu20m")
+theme_override_icons/grabber_highlight = ExtResource("10_gfgg0")
+theme_override_styles/slider = SubResource("StyleBoxTexture_qromm")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_wyjuw")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_25rhj")
+value = 100.0
+
+[node name="sfx_volume_percentage" type="Label" parent="canvas/options_buttons/tabs/tab_panel/audio/vbox" unique_id=68582265]
+z_index = 10
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="confirm_reset_timer" type="Label" parent="canvas/options_buttons/tabs" unique_id=6293564]
+visible = false
+z_index = 10
+layout_mode = 0
+offset_left = 804.0
+offset_top = 484.0
+offset_right = 874.0
+offset_bottom = 544.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "3"
+horizontal_alignment = 1
+
+[node name="confirm_reset" type="Timer" parent="canvas/options_buttons/tabs" unique_id=2120712917]
+process_callback = 0
+wait_time = 3.0
+one_shot = true
+
+[node name="back_button" type="Button" parent="canvas/options_buttons" unique_id=1785529752]
+offset_left = 100.0
+offset_top = 1100.0
+offset_right = 506.0
+offset_bottom = 1227.0
+theme = ExtResource("15_8ok7o")
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 128
+text = "Voltar"
+flat = true
+alignment = 0
+
+[node name="mouse_particles" type="CPUParticles2D" parent="canvas" unique_id=950653352]
+z_index = 4096
+amount = 64
+lifetime = 0.5
+gravity = Vector2(0, 5)
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+angle_max = 180.0
+scale_amount_min = 13.0
+scale_amount_max = 15.0
+color_ramp = SubResource("Gradient_tm5u3")
+
+[connection signal="pressed" from="canvas/node/back_to_game" to="." method="_on_back_to_game_pressed"]
+[connection signal="pressed" from="canvas/node/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="canvas/node/quit" to="." method="_on_quit_pressed"]
+[connection signal="toggled" from="canvas/options_buttons/tabs/tab_panel/video/vbox/fullscreen/check" to="." method="_on_fullscreen_check_toggled"]
+[connection signal="toggled" from="canvas/options_buttons/tabs/tab_panel/video/vbox/vsync/check" to="." method="_on_vsync_toggled"]
+[connection signal="toggled" from="canvas/options_buttons/tabs/tab_panel/video/vbox/own_cursor/check" to="." method="_on_use_own_cursor_toggled"]
+[connection signal="pressed" from="canvas/options_buttons/tabs/tab_panel/video/vbox/advanced_button" to="." method="_on_advanced_video_settings_button_pressed"]
+[connection signal="value_changed" from="canvas/options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox/fps/slider" to="." method="_on_fps_value_changed"]
+[connection signal="value_changed" from="canvas/options_buttons/tabs/tab_panel/audio/vbox/ost_volume/slider" to="." method="_on_ost_volume_value_changed"]
+[connection signal="value_changed" from="canvas/options_buttons/tabs/tab_panel/audio/vbox/sfx_volume/slider" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="pressed" from="canvas/options_buttons/back_button" to="." method="_on_back_button_pressed"]

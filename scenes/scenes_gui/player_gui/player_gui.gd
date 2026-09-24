@@ -9,7 +9,7 @@ func _ready() -> void:
 	#cutscene_off()
 	pass
 
-func tutorial_cutscene():
+func level_start():
 	gui.modulate.a = 0.0
 
 func cutscene_on():

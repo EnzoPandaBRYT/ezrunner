@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://2r2mu1do1knx" path="res://scenes/scenes_gui/screen_animations/screen_animations.gd" id="1_osh4p"]
 
 [node name="screen_animations" type="Node2D" unique_id=857623887]
+process_mode = 1
 z_index = 100
 script = ExtResource("1_osh4p")
 

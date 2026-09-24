@@ -1,0 +1,13 @@
+=== MODIFICAÇÕES ATÉ 24/09/2026 - 13:07 ===
+
+### Recursos modificados:
+	## GUI:
+		# MENU INICIAL:
+			- Animações de janela adicionadas;
+			- Mais opções foram adicionadas:
+			> Mostrar/ocultar o mouse (alternar entre o cursor do jogo ou próprio).
+	> Menu de pausa adicionado (APERTE "ESC" para PAUSAR/RETOMAR!)
+
+### BUGS CONHECIDOS:
+	> Há um bug que o menu de pausa não atualiza corretamente, exibindo a porcentagem errada de volume e efeitos sonoros.
+	> Também há um bug caso o jogador pause enquanto estiver ocorrendo uma animação/tutorial. Pretendo corrigir no futuro.

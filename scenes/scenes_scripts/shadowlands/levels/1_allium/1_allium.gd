@@ -15,10 +15,11 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	AudioPlayer.music_normal(0.0, 1)
 	AudioPlayer._1_allium()
+	ScreenAnimations.cutscene_bars_on(0.5)
 	ScreenAnimations.room_enter(0.0, 1.0)
+	PlayerGui.level_start()
 	PlayerVars.can_control = false
 	CameraHandler.follow_player = false
-	PlayerGui.cutscene_off()
 	if GameConfig.tutorial_enabled:
 		player.position = Vector2(-679,273)
 		TutorialHandler.tutorial_step = 2
@@ -31,6 +32,8 @@ func _ready() -> void:
 	
 	
 func _on_level_start_body_entered(body: Node2D) -> void:
+	ScreenAnimations.cutscene_bars_off(0.5)
+	PlayerGui.cutscene_off()
 	PlayerVars.can_control = true
 	CameraHandler.follow_player = true
 	$level_start.queue_free()
@@ -49,13 +52,19 @@ func _spawn_batch(pos: Vector2):
 	enemy.enemy_dead.connect(_enemy_died)
 
 func _enemy_died():
-	spawn_thunder(player.position)
+	var enemies_to_spawn: int
 	enemies_alive -= 1
 	if total_enemies_to_spawn > 0:
+		if total_enemies_to_spawn >= 2: # Se o total de inimigos que faltam spawnar for maior que 1
+			enemies_to_spawn = randi_range(1,2)
+		else:
+			enemies_to_spawn = 1
 		await get_tree().create_timer(randf_range(0.5,1.0)).timeout
 		match actual_arena:
 			1:
-				_spawn_batch($enemy_spawns/arena_1.get_node("bat_spawn_" + str(randi_range(1,3))).position)
+				while enemies_to_spawn > 0: # Faz nascer mais de um inimigo, se for o caso.
+					_spawn_batch($enemy_spawns/arena_1.get_node("bat_spawn_" + str(randi_range(1,3))).position)
+					enemies_to_spawn -= 1
 			2:
 				_spawn_batch($enemy_spawns/arena_2.get_node("bat_spawn_" + str(randi_range(1,4))).position)
 	else:
@@ -79,7 +88,7 @@ func _on_arena_1_start_body_entered(body: Node2D) -> void:
 		actual_arena = 1
 		total_enemies_to_spawn = 3
 		$enemy_spawns/arena_1/arena_1_start.queue_free()
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(0.5).timeout
 		_spawn_batch($enemy_spawns/arena_1.get_node("bat_spawn_" + str(randi_range(1,3))).position)
 
 func _on_arena_2_start_body_entered(body: Node2D) -> void:
