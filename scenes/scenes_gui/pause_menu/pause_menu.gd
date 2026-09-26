@@ -91,8 +91,10 @@ func _on_quit_pressed() -> void:
 	get_tree().paused = false
 	fade_out(1.0)
 	ScreenAnimations.black_fade(1.0, 1.0)
+	TutorialHandler.tutorial_msg_end()
 	AudioPlayer.quit_game_music_effect()
 	AudioPlayer.music_reduce(-18, 1.0)
+	PlayerStats.tutorials_completed = PlayerStats.config.get_value("levels", "tutorials_completed")
 	await get_tree().create_timer(1.0).timeout
 	await get_tree().process_frame
 	get_tree().change_scene_to_file("res://scenes/scenes_gui/main_menu/main_menu.tscn")

@@ -1,11 +1,11 @@
 class_name Enemy extends CharacterBody2D
 
-enum _StateMachine { IDLE, RUNNING, JUMP, CHASE, DEAD }
+enum _StateMachine { IDLE, RUNNING, JUMP, CHASE, SHOOT, DEAD }
 
 var _state: _StateMachine # O número aqui retorna um valor do StateMachine, começando em 0
 var _enter_state := true
 
-@export var max_health = 3
+var max_health = 3
 var health = max_health
 
 @export var mov_speed := 50
@@ -20,6 +20,7 @@ func _physics_process(delta: float) -> void:
 		_StateMachine.RUNNING: _running()
 		_StateMachine.JUMP: _jump()
 		_StateMachine.CHASE: _chase()
+		_StateMachine.SHOOT: _shoot()
 		_StateMachine.DEAD: _dead()
 	
 	if use_gravity:
@@ -42,6 +43,7 @@ func _idle() -> void: pass
 func _running() -> void: pass
 func _jump() -> void: pass
 func _chase() -> void: pass
+func _shoot(): pass
 func _dead() -> void: pass
 
 func _stop_movement():

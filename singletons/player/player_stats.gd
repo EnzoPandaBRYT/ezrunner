@@ -4,6 +4,7 @@ var tutorials_completed = 0
 var levels_completed = 0
 
 var batchs_killed = 0
+var torretims_killed = 0
 
 var config = ConfigFile.new()
 const SETTINGS_FILE_PATH = "user://player_stats.ini"

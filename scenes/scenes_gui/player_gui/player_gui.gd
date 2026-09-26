@@ -3,12 +3,6 @@ extends Node2D
 @onready var gui = $canvas/canvas
 @onready var health_bar = $canvas/canvas/health_bar
 
-func _ready() -> void:
-	#cutscene_on()
-	#await get_tree().create_timer(1).timeout
-	#cutscene_off()
-	pass
-
 func level_start():
 	gui.modulate.a = 0.0
 
@@ -24,4 +18,11 @@ func cutscene_off():
 
 func update_health(new_value: float):
 	var health = create_tween().set_parallel(true).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
-	health.tween_property(health_bar,"value", health_bar.value+new_value, 0.2)
+	if PlayerVars.player_health >= 0 and PlayerVars.player_health < 100:
+		PlayerVars.player_health += new_value
+		health.tween_property(health_bar,"value", PlayerVars.player_health, 0.2)
+	if PlayerVars.player_health < 0.0:
+		PlayerVars.player_health = 0.0
+	if PlayerVars.player_health > PlayerVars.player_max_health:
+		PlayerVars.player_health = PlayerVars.player_max_health
+	print(PlayerVars.player_health)

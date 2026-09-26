@@ -2,6 +2,7 @@ extends Node2D
 
 var standing_batch_scene = preload("res://scenes/scenes_characters/enemies/batch/standing_batch.tscn") # Batch parado
 var batch_scene = preload("res://scenes/scenes_characters/enemies/batch/batch.tscn") # Batch normal
+var torretim_scene = preload("res://scenes/scenes_characters/enemies/torretim/torretim.tscn") # Batch normal
 var thunderbolt_scene = preload("res://scenes/scenes_characters/attacks/thunderbolt/thunderbolt.tscn")
 
 @onready var player = $player
@@ -15,12 +16,12 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	AudioPlayer.music_normal(0.0, 1)
 	AudioPlayer._1_allium()
-	ScreenAnimations.cutscene_bars_on(0.5)
 	ScreenAnimations.room_enter(0.0, 1.0)
 	PlayerGui.level_start()
 	PlayerVars.can_control = false
 	CameraHandler.follow_player = false
 	if GameConfig.tutorial_enabled:
+		ScreenAnimations.cutscene_bars_on(0.5)
 		player.position = Vector2(-679,273)
 		TutorialHandler.tutorial_step = 2
 		player._state = player._StateMachine.LVL_END
@@ -28,6 +29,8 @@ func _ready() -> void:
 		TutorialHandler.tutorial_step = -1
 		PlayerVars.can_control = true
 		CameraHandler.follow_player = true
+		PlayerGui.cutscene_off()
+		$level_start.queue_free()
 		
 	
 	
@@ -49,9 +52,17 @@ func _spawn_batch(pos: Vector2):
 	enemies_alive += 1
 	enemy.global_position = pos
 	add_child(enemy)
-	enemy.enemy_dead.connect(_enemy_died)
+	enemy.enemy_dead.connect(_batch_died)
 
-func _enemy_died():
+func _spawn_torretim(pos: Vector2):
+	var enemy = torretim_scene.instantiate()
+	total_enemies_to_spawn -= 1
+	enemies_alive += 1
+	enemy.global_position = pos
+	add_child(enemy)
+	enemy.enemy_dead.connect(_torretim_died)
+
+func _batch_died():
 	var enemies_to_spawn: int
 	enemies_alive -= 1
 	if total_enemies_to_spawn > 0:
@@ -78,6 +89,9 @@ func _enemy_died():
 				await t_camera.finished
 				CameraHandler.follow_player = true
 
+func _torretim_died():
+	pass
+
 func spawn_thunder(pos: Vector2) -> void:
 	var thunder = thunderbolt_scene.instantiate()
 	add_child(thunder)
@@ -90,20 +104,21 @@ func _on_arena_1_start_body_entered(body: Node2D) -> void:
 		$enemy_spawns/arena_1/arena_1_start.queue_free()
 		await get_tree().create_timer(0.5).timeout
 		_spawn_batch($enemy_spawns/arena_1.get_node("bat_spawn_" + str(randi_range(1,3))).position)
+		_spawn_torretim($enemy_spawns/arena_1/tor_spawn_1.position)
 
 func _on_arena_2_start_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		actual_arena = 2
-		total_enemies_to_spawn = 8
+		total_enemies_to_spawn = 4
 		$enemy_spawns/arena_2/arena_2_start.queue_free()
-		## EFEITOS DE CAMERA:
-		var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true)
-		tween.tween_property($enemy_spawns/arena_2/wall, "position", Vector2(position.x,position.y-700),3)
-		CameraHandler.follow_player = false
-		tween.tween_property(camera, "global_position", Vector2(4586,-1123),1)
-		tween.tween_property(camera, "zoom", Vector2(1.5,1.5),1)
+		_spawn_torretim($enemy_spawns/arena_2/tor_spawn_1.position)
 		await get_tree().create_timer(1).timeout
-		_spawn_batch($enemy_spawns/arena_2.get_node("bat_spawn_" + str(randi_range(1,4))).position)
+		_spawn_torretim($enemy_spawns/arena_2/tor_spawn_2.position)
+		await get_tree().create_timer(1).timeout
+		_spawn_torretim($enemy_spawns/arena_2/tor_spawn_3.position)
+		await get_tree().create_timer(1).timeout
+		_spawn_torretim($enemy_spawns/arena_2/tor_spawn_4.position)
+		
 
 
 func _on_level_end_body_entered(body: Node2D) -> void:

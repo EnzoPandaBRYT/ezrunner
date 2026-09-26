@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cb5ac4lk8yn1s" path="res://assets/level_design/backgrounds/shadowlands/terrain.png" id="15_36m3j"]
 [ext_resource type="PackedScene" uid="uid://bpwobr7us87qb" path="res://scenes/scenes_characters/yellowmita/char/yellowmita.tscn" id="17_ive6y"]
 [ext_resource type="Texture2D" uid="uid://8ur0og5jb5ua" path="res://assets/level_design/backgrounds/shadowlands/terrain_gradient.png" id="17_x15h6"]
+[ext_resource type="Script" uid="uid://it6hwb0s5lnx" path="res://scenes/scenes_characters/player/char/player_state_machine.gd" id="18_3yeg0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7dpv7"]
 texture = ExtResource("2_3yeg0")
@@ -443,9 +444,7 @@ color_ramp = SubResource("Gradient_ive6y")
 
 [node name="yellowmita" parent="." unique_id=2027968830 instance=ExtResource("17_ive6y")]
 position = Vector2(202, -447)
-dialogue_text = "Tudo foi destruido... O que será que aconteceu aqui?
-Pode ter sido a poluição...
-Aliás, esse mar de lixo fede muito."
+script = ExtResource("18_3yeg0")
 
 [connection signal="body_entered" from="level_start" to="." method="_on_level_start_body_entered"]
 [connection signal="body_entered" from="level_end" to="." method="_on_level_end_body_entered"]

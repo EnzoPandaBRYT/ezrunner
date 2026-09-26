@@ -137,6 +137,7 @@ func _on_arena_2_start_body_entered(body: Node2D) -> void:
 
 func _on_level_end_body_entered(body: Node2D) -> void:
 	if body.name == "player":
+		PlayerStats.save_levels_settings("tutorials_completed", 2)
 		PlayerVars.can_control = false
 		CameraHandler.follow_player = false
 		ScreenAnimations.black_fade(1.0, 2)

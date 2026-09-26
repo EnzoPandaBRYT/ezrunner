@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://bjqfxx6f1gr75"]
+
+[ext_resource type="Script" uid="uid://42l1ogpmopnd" path="res://scenes/scenes_gui/dialog_handler/dialog_handler.gd" id="1_bsgvk"]
+[ext_resource type="Texture2D" uid="uid://b4hmsnup8gmov" path="res://assets/chars_sprites/yellowmita/Yellowmita - Portrait.png" id="2_jht2f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bsgvk"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.2592937, 0.2592937, 0.2592937, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jht2f"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.6255972, 0.6255971, 0.6255972, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa1vb"]
+atlas = ExtResource("2_jht2f")
+region = Rect2(16, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cei0d"]
+atlas = ExtResource("2_jht2f")
+region = Rect2(80, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lohi2"]
+atlas = ExtResource("2_jht2f")
+region = Rect2(144, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v11gy"]
+atlas = ExtResource("2_jht2f")
+region = Rect2(208, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7f37h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oa1vb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cei0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lohi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v11gy")
+}],
+"loop": 1,
+"name": &"yellowmita",
+"speed": 5.0
+}]
+
+[node name="dialog_handler" type="Node2D" unique_id=2105474710]
+process_mode = 1
+z_index = -2
+script = ExtResource("1_bsgvk")
+
+[node name="canvas" type="CanvasLayer" parent="." unique_id=1425573876]
+process_mode = 1
+layer = 999
+
+[node name="node" type="Control" parent="canvas" unique_id=18635458]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 270.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="panel" type="PanelContainer" parent="canvas/node" unique_id=1107288612]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -466.0
+offset_top = -156.0
+offset_right = 761.75
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bsgvk")
+
+[node name="label" type="Label" parent="canvas/node/panel" unique_id=199225380]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="portrait" type="PanelContainer" parent="canvas/node" unique_id=1033186209]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -786.0
+offset_top = -156.0
+offset_right = -466.0
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jht2f")
+
+[node name="portrait" type="AnimatedSprite2D" parent="canvas/node/portrait" unique_id=1966917279]
+position = Vector2(160.00002, 160.00002)
+scale = Vector2(9.375001, 9.375001)
+sprite_frames = SubResource("SpriteFrames_7f37h")
+animation = &"yellowmita"
+autoplay = "yellowmita"
+frame_progress = 0.7638995

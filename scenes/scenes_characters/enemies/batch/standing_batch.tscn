@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bbmyoo8cynhso" path="res://scenes/scenes_characters/enemies/batch/batch_scripts.gd" id="1_qdnu7"]
 [ext_resource type="Texture2D" uid="uid://der4xl436xbei" path="res://assets/enem_sprites/batch/batch.png" id="2_deuy8"]
 [ext_resource type="Texture2D" uid="uid://bunr3caq7tdx8" path="res://assets/enem_sprites/batch/batch_dead.png" id="3_titwi"]
+[ext_resource type="AudioStream" uid="uid://d4h0mspgdk41h" path="res://ost_sfx/sfx/enemies/enemy_spawn.wav" id="4_deuy8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4hrkg"]
 atlas = ExtResource("2_deuy8")
@@ -220,6 +221,12 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_x74pv")
 max_value = 3.0
 value = 3.0
 show_percentage = false
+
+[node name="spawn_sfx" type="AudioStreamPlayer2D" parent="." unique_id=599204382]
+stream = ExtResource("4_deuy8")
+volume_db = 5.0
+max_distance = 1500.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="collisions/follow_player" to="." method="_on_follow_player_body_entered"]
 [connection signal="body_exited" from="collisions/follow_player" to="." method="_on_follow_player_body_exited"]

@@ -443,9 +443,6 @@ color_ramp = SubResource("Gradient_ive6y")
 
 [node name="yellowmita" parent="." unique_id=2027968830 instance=ExtResource("17_ive6y")]
 position = Vector2(202, -447)
-dialogue_text = "Tudo foi destruido... O que será que aconteceu aqui?
-Pode ter sido a poluição...
-Aliás, esse mar de lixo fede muito."
 
 [connection signal="body_entered" from="level_start" to="." method="_on_level_start_body_entered"]
 [connection signal="body_entered" from="level_end" to="." method="_on_level_end_body_entered"]

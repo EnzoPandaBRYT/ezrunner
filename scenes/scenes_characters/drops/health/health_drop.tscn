@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dh7jwyl1sk4aq"]
+
+[ext_resource type="Script" uid="uid://btk3ucdrepw87" path="res://scenes/scenes_characters/drops/health/health_drop.gd" id="1_m4s62"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88qja"]
+size = Vector2(19, 20)
+
+[sub_resource type="Gradient" id="Gradient_0n857"]
+colors = PackedColorArray(1, 0, 0, 1, 0.13636154, 1.2032687e-07, 6.016344e-09, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7f37h"]
+radius = 187.04277
+
+[node name="health_drop" type="Area2D" unique_id=2055668415]
+z_index = -3
+collision_layer = 256
+collision_mask = 3
+script = ExtResource("1_m4s62")
+
+[node name="collision" type="CollisionShape2D" parent="." unique_id=824203819]
+shape = SubResource("RectangleShape2D_88qja")
+
+[node name="particles" type="CPUParticles2D" parent="." unique_id=2048651845]
+z_index = 4096
+amount = 256
+preprocess = 0.02
+emission_shape = 1
+emission_sphere_radius = 10.0
+gravity = Vector2(0, 40)
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+angle_max = 180.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_0n857")
+
+[node name="detection" type="Area2D" parent="." unique_id=178086823]
+
+[node name="collision" type="CollisionShape2D" parent="detection" unique_id=2035635999]
+shape = SubResource("CircleShape2D_7f37h")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]

@@ -1,94 +1,23 @@
-[gd_scene format=3 uid="uid://da64b5o3xyoe4"]
+[gd_scene format=3 uid="uid://dtln6nxqcymq6"]
 
-[ext_resource type="Script" uid="uid://bbmyoo8cynhso" path="res://scenes/scenes_characters/enemies/batch/batch_scripts.gd" id="1_db3hs"]
-[ext_resource type="Texture2D" uid="uid://der4xl436xbei" path="res://assets/enem_sprites/batch/batch.png" id="2_1g56k"]
-[ext_resource type="Texture2D" uid="uid://bunr3caq7tdx8" path="res://assets/enem_sprites/batch/batch_dead.png" id="3_4hrkg"]
-[ext_resource type="AudioStream" uid="uid://d4h0mspgdk41h" path="res://ost_sfx/sfx/enemies/enemy_spawn.wav" id="4_skqbi"]
+[ext_resource type="Script" uid="uid://by5ij1vt13x0a" path="res://scenes/scenes_characters/enemies/torretim/torretim_scripts.gd" id="1_0etkp"]
+[ext_resource type="Texture2D" uid="uid://k2fixxa0xixb" path="res://assets/enem_sprites/torretim/torretim_body.png" id="2_pgp7t"]
+[ext_resource type="AudioStream" uid="uid://d4h0mspgdk41h" path="res://ost_sfx/sfx/enemies/enemy_spawn.wav" id="3_pgp7t"]
+[ext_resource type="AudioStream" uid="uid://sbm5f4lm6dmm" path="res://ost_sfx/sfx/enemies/attacks/projectile/shoot_1.wav" id="4_x61th"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4hrkg"]
-atlas = ExtResource("2_1g56k")
+[sub_resource type="AtlasTexture" id="AtlasTexture_x61th"]
+atlas = ExtResource("2_pgp7t")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_skqbi"]
-atlas = ExtResource("2_1g56k")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ml7q8"]
-atlas = ExtResource("2_1g56k")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_md5lv"]
-atlas = ExtResource("2_1g56k")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mjt74"]
-atlas = ExtResource("3_4hrkg")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1kmvo"]
-atlas = ExtResource("3_4hrkg")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ubsgh"]
-atlas = ExtResource("3_4hrkg")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5e2hj"]
-atlas = ExtResource("3_4hrkg")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vricr"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_x61th"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4hrkg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_skqbi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ml7q8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_md5lv")
-}],
-"loop": 1,
-"name": &"chasing",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mjt74")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1kmvo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ubsgh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5e2hj")
-}],
-"loop": 1,
-"name": &"dead",
-"speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4hrkg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_skqbi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ml7q8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_md5lv")
+"texture": SubResource("AtlasTexture_x61th")
 }],
 "loop": 1,
 "name": &"idle",
-"speed": 4.0
+"speed": 5.0
 }]
 
 [sub_resource type="Curve" id="Curve_fjwd6"]
@@ -100,17 +29,20 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.16049382, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_axm1n"]
-radius = 20.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aujsj"]
+size = Vector2(13.297848, 78.95598)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vricr"]
-radius = 1076.851
+radius = 499.22955
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_x74pv"]
-radius = 12.533219
+[sub_resource type="CircleShape2D" id="CircleShape2D_x61th"]
+radius = 60.957428
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_p0ttc"]
-radius = 39.062428
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5uo6l"]
+size = Vector2(44.880238, 83.11156)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgp7t"]
+size = Vector2(27.453424, 88.09824)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hrkg"]
 bg_color = Color(0, 0, 0, 1)
@@ -135,21 +67,18 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 corner_detail = 16
 
-[node name="batch" type="CharacterBody2D" unique_id=386173302]
+[node name="torretim" type="CharacterBody2D" unique_id=386173302]
 scale = Vector2(0.64000106, 0.64000106)
 collision_layer = 8
 collision_mask = 2
-script = ExtResource("1_db3hs")
-use_gravity = false
+script = ExtResource("1_0etkp")
 metadata/_custom_type_script = "uid://du1rujp720vy"
 
 [node name="anim" type="AnimatedSprite2D" parent="." unique_id=1400473386]
 modulate = Color(18.892157, 18.892157, 18.892157, 1)
-scale = Vector2(1.8800004, 1.8800004)
-sprite_frames = SubResource("SpriteFrames_vricr")
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_x61th")
 animation = &"idle"
-autoplay = "idle"
-frame_progress = 0.920409
 
 [node name="spawn_particles" type="CPUParticles2D" parent="anim" unique_id=2030203778]
 scale = Vector2(0.5319148, 0.5319148)
@@ -170,8 +99,9 @@ scale_amount_max = 8.0
 color_ramp = SubResource("Gradient_p0ttc")
 
 [node name="collision" type="CollisionShape2D" parent="." unique_id=313765987]
+position = Vector2(0, 5.468741)
 scale = Vector2(1.8800004, 1.8800004)
-shape = SubResource("CircleShape2D_axm1n")
+shape = SubResource("RectangleShape2D_aujsj")
 
 [node name="collisions" type="Node2D" parent="." unique_id=2134024646]
 
@@ -181,13 +111,20 @@ collision_layer = 8
 [node name="collision" type="CollisionShape2D" parent="collisions/follow_player" unique_id=887984517]
 shape = SubResource("CircleShape2D_vricr")
 
-[node name="batch_hitbox" type="Area2D" parent="collisions" unique_id=1195411366]
+[node name="follow_player_inside" type="Area2D" parent="collisions" unique_id=114473098]
+collision_layer = 8
+
+[node name="collision" type="CollisionShape2D" parent="collisions/follow_player_inside" unique_id=608607698]
+shape = SubResource("CircleShape2D_x61th")
+
+[node name="torretim_hitbox" type="Area2D" parent="collisions" unique_id=1195411366]
 collision_layer = 128
 collision_mask = 16
 
-[node name="collision" type="CollisionShape2D" parent="collisions/batch_hitbox" unique_id=1501920439]
+[node name="collision" type="CollisionShape2D" parent="collisions/torretim_hitbox" unique_id=1501920439]
+position = Vector2(0, 7.812493)
 scale = Vector2(1.8800004, 1.8800004)
-shape = SubResource("CircleShape2D_x74pv")
+shape = SubResource("RectangleShape2D_5uo6l")
 debug_color = Color(0.9590456, 0, 0.12561816, 0.41960785)
 
 [node name="hurtbox" type="Area2D" parent="collisions" unique_id=2008131765]
@@ -195,8 +132,9 @@ collision_layer = 64
 collision_mask = 32
 
 [node name="collision" type="CollisionShape2D" parent="collisions/hurtbox" unique_id=1341092721]
+position = Vector2(0, 1.5624971)
 scale = Vector2(1.8800004, 1.8800004)
-shape = SubResource("CircleShape2D_p0ttc")
+shape = SubResource("RectangleShape2D_pgp7t")
 debug_color = Color(0.79183584, 0.42817688, 0, 0.41960785)
 
 [node name="death_particles" type="CPUParticles2D" parent="." unique_id=1316471067]
@@ -216,20 +154,27 @@ color_ramp = SubResource("Gradient_p0ttc")
 
 [node name="health_bar" type="ProgressBar" parent="." unique_id=1501753652]
 offset_left = -45.312428
-offset_top = -40.62493
+offset_top = -78.12487
 offset_right = 46.46307
-offset_bottom = -32.812443
+offset_bottom = -70.312386
 theme_override_styles/background = SubResource("StyleBoxFlat_4hrkg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_skqbi")
-max_value = 3.0
-value = 3.0
+max_value = 2.0
+value = 2.0
 show_percentage = false
 
-[node name="spawn_sfx" type="AudioStreamPlayer2D" parent="." unique_id=1382829305]
-stream = ExtResource("4_skqbi")
+[node name="spawn_sfx" type="AudioStreamPlayer2D" parent="." unique_id=277946357]
+stream = ExtResource("3_pgp7t")
+max_distance = 1500.0
+bus = &"SFX"
+
+[node name="shoot_sfx" type="AudioStreamPlayer2D" parent="." unique_id=1962376871]
+stream = ExtResource("4_x61th")
 max_distance = 1500.0
 bus = &"SFX"
 
 [connection signal="body_entered" from="collisions/follow_player" to="." method="_on_follow_player_body_entered"]
 [connection signal="body_exited" from="collisions/follow_player" to="." method="_on_follow_player_body_exited"]
+[connection signal="body_entered" from="collisions/follow_player_inside" to="." method="_on_follow_player_inside_body_entered"]
+[connection signal="body_exited" from="collisions/follow_player_inside" to="." method="_on_follow_player_inside_body_exited"]
 [connection signal="area_entered" from="collisions/hurtbox" to="." method="_on_hurtbox_area_entered"]

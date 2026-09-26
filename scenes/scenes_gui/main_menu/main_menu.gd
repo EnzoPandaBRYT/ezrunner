@@ -30,6 +30,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	ScreenAnimations.room_enter(0.0, 0.5)
 	ScreenAnimations.reset()
+	TutorialHandler.tutorial_msg_end()
 	PlayerVars.can_control = false
 	if GameConfig.play_intro:
 		var intro_tween = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT)

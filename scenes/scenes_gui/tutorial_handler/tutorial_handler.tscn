@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bgoongxp3mffj" path="res://scenes/scenes_gui/tutorial_handler/tutorial_handler.gd" id="1_sbj2h"]
 
 [node name="tutorial_handler" type="Node2D" unique_id=2105474710]
+process_mode = 1
 script = ExtResource("1_sbj2h")
 
 [node name="canvas" type="CanvasLayer" parent="." unique_id=1425573876]

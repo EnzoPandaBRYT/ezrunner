@@ -70,5 +70,7 @@ func _lvl_end():
 func _on_player_hurtbox_area_entered(area: Area2D) -> void:
 	if area.name == "batch_hitbox":
 		PlayerGui.update_health(-5)
+	if area.name == "torretim_hitbox":
+		PlayerGui.update_health(-2)
 	if area.name == "thunder_hitbox":
 		PlayerGui.update_health(-20)

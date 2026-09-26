@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://c6mixt6yhuamv"]
+
+[ext_resource type="Texture2D" uid="uid://c3na8x46j0lww" path="res://assets/enem_sprites/torretim/torretim_projectile.png" id="1_iicxp"]
+[ext_resource type="Script" uid="uid://bykgynx3us7gl" path="res://scenes/scenes_characters/attacks/projectiles/torretim/torretim_projectile.gd" id="1_vpufb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hgew"]
+size = Vector2(4, 4)
+
+[sub_resource type="Curve" id="Curve_vpufb"]
+_limits = [0.0, 15.0, 0.0, 15.0]
+_data = [Vector2(0, 15), 0.0, 0.0, 0, 0, Vector2(0.48913038, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_vpufb"]
+colors = PackedColorArray(1, 0.36778843, 0.3002166, 1, 0.52026945, 1.4980697e-06, 3.3691526e-07, 0)
+
+[node name="projectile" type="Area2D" unique_id=1438907715]
+z_index = -2
+scale = Vector2(2.0000012, 2.0000012)
+collision_layer = 256
+collision_mask = 33
+script = ExtResource("1_vpufb")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=1203910743]
+texture = ExtResource("1_iicxp")
+region_enabled = true
+region_rect = Rect2(6, 25, 5, 4)
+
+[node name="collision" type="CollisionShape2D" parent="." unique_id=462199918]
+shape = SubResource("RectangleShape2D_8hgew")
+
+[node name="particles" type="CPUParticles2D" parent="." unique_id=12982766]
+z_index = 4096
+amount = 64
+gravity = Vector2(0, 0)
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+angle_max = 180.0
+scale_amount_curve = SubResource("Curve_vpufb")
+color_ramp = SubResource("Gradient_vpufb")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

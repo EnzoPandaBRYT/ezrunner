@@ -1,0 +1,19 @@
+=== MODIFICAÇÕES ATÉ 24/09/2026 - 13:07 ===
+
+### Recursos modificados:
+	## INIMIGOS:
+		> TORRETIM ADICIONADO!
+		- Ataques a distância, com dano menor que o de Batch (4 de dano);
+		- Seus projéteis duram até 3 segundos no ar antes de se dissiparem;
+		- Ele não se move.
+		- Possui vida menor que Batch (2 de vida)
+	
+	## JOGABILIDADE:
+		> Drops de vida adicionados!
+		- Agora, ao morrer, os inimigos dropam vida, que restauram alguns pontos de vida do jogador (entre 3 e 5) por orbe.
+		> Diálogos foram adicionados! Teste falar com o Yellowmita em Shadowlands.
+
+### BUGS CONHECIDOS:
+	> Há um bug que o menu de pausa não atualiza corretamente, exibindo a porcentagem errada de volume e efeitos sonoros.
+	> Também há um bug caso o jogador pause enquanto estiver ocorrendo uma animação/tutorial. Pretendo corrigir no futuro.
+	> Bug nos diálogos que causa CRASH, será corrigido até a próxima atualização.
