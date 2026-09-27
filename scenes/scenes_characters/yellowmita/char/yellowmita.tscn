@@ -291,9 +291,10 @@ shape = SubResource("RectangleShape2D_knh47")
 position = Vector2(42.47309, 42.47309)
 scale = Vector2(1.327284, 1.327284)
 sprite_frames = SubResource("SpriteFrames_sr8dx")
-animation = &"idle"
+animation = &"running"
 autoplay = "idle"
-frame_progress = 0.6977883
+frame = 1
+frame_progress = 0.5711956
 
 [node name="player" type="AnimationPlayer" parent="." unique_id=1076565135]
 root_node = NodePath("")

@@ -93,14 +93,23 @@ func _spawn_batch(pos: Vector2):
 	enemy.enemy_dead.connect(_enemy_died)
 
 func _enemy_died():
+	var enemies_to_spawn: int
 	enemies_alive -= 1
 	if total_enemies_to_spawn > 0:
+		if total_enemies_to_spawn >= 2: # Se o total de inimigos que faltam spawnar for maior que 1
+			enemies_to_spawn = randi_range(1,2)
+		else:
+			enemies_to_spawn = 1
 		await get_tree().create_timer(randf_range(0.5,1.0)).timeout
 		match actual_arena:
 			1:
-				_spawn_batch($enemy_spawns/arena_1.get_node("bat_spawn_" + str(randi_range(1,3))).position)
+				while enemies_to_spawn > 0: # Faz nascer mais de um inimigo, se for o caso.
+					_spawn_batch($enemy_spawns/arena_1.get_node("bat_spawn_" + str(randi_range(1,3))).position)
+					enemies_to_spawn -= 1
 			2:
-				_spawn_batch($enemy_spawns/arena_2.get_node("bat_spawn_" + str(randi_range(1,4))).position)
+				while enemies_to_spawn > 0: # Faz nascer mais de um inimigo, se for o caso.
+					_spawn_batch($enemy_spawns/arena_2.get_node("bat_spawn_" + str(randi_range(1,4))).position)
+					enemies_to_spawn -= 1
 	else:
 		match actual_arena:
 			2:

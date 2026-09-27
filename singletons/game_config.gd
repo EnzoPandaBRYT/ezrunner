@@ -11,7 +11,7 @@ var ostVolumeValue = 100
 var sfxVolumeValue = 100
 
 ## [MISC]
-var tutorial_enabled = false
+var tutorial_enabled = true
 var play_intro = true
 
 var config = ConfigFile.new()

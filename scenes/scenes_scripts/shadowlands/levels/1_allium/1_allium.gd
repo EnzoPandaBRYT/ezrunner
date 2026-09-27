@@ -120,6 +120,13 @@ func _on_arena_2_start_body_entered(body: Node2D) -> void:
 		_spawn_torretim($enemy_spawns/arena_2/tor_spawn_4.position)
 		
 
+func _on_arena_2_end_body_entered(body: Node2D) -> void:
+	$enemy_spawns/arena_2/yellowmita_drop.queue_free()
+	$enemy_spawns/arena_2/arena_2_end.queue_free()
+
+func _on_mini_arena_1_start_body_entered(body: Node2D) -> void:
+	_spawn_torretim($enemy_spawns/mini_arena_1/tor_spawn_1.position)
+	$enemy_spawns/mini_arena_1/mini_arena_1_start.queue_free()
 
 func _on_level_end_body_entered(body: Node2D) -> void:
 	if body.name == "player":

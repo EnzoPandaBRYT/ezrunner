@@ -13,10 +13,8 @@ func _ready() -> void:
 	canvas.modulate.a = 0.0
 
 func start_dialog(text: String):
-	print("START DIALOG | active = ", dialog_active)
 
 	if dialog_active:
-		print("BLOQUEADO")
 		return
 	
 	index = 1
@@ -30,20 +28,26 @@ func start_dialog(text: String):
 	
 	if !dialog_active:
 		new_dialog_window(lines[0])
+		PlayerVars.can_control = false
 		dialog_active = true
 	else:
 		return
 	
 	while index < lines.size():
 		if index < lines.size():
-			await get_tree().create_timer(2.0).timeout
+			await get_tree().create_timer(4.0).timeout
 			change_text(lines[index])
 			index += 1
 			print("\n INDEX: ", index, "\n " ,lines.size())
-		elif index == lines.size():
-			dialog_end()
 	
 	dialog_active = false
+	
+	if index == lines.size():
+		await get_tree().create_timer(4.0).timeout
+		PlayerVars.can_control = true
+		dialog_end()
+	
+
 	
 func new_dialog_window(dialog_text: String):
 	label.text = ""
