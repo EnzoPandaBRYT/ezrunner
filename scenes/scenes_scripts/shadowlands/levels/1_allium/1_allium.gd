@@ -121,12 +121,25 @@ func _on_arena_2_start_body_entered(body: Node2D) -> void:
 		
 
 func _on_arena_2_end_body_entered(body: Node2D) -> void:
-	$enemy_spawns/arena_2/yellowmita_drop.queue_free()
-	$enemy_spawns/arena_2/arena_2_end.queue_free()
+	if body.name == "player":
+		$enemy_spawns/arena_2/yellowmita_drop.queue_free()
+		$enemy_spawns/arena_2/arena_2_end.queue_free()
 
 func _on_mini_arena_1_start_body_entered(body: Node2D) -> void:
-	_spawn_torretim($enemy_spawns/mini_arena_1/tor_spawn_1.position)
-	$enemy_spawns/mini_arena_1/mini_arena_1_start.queue_free()
+	if body.name == "player":
+		_spawn_torretim($enemy_spawns/mini_arena_1/tor_spawn_1.position)
+		await get_tree().create_timer(1).timeout
+		_spawn_torretim($enemy_spawns/mini_arena_1/tor_spawn_2.position)
+		$enemy_spawns/mini_arena_1/mini_arena_1_start.queue_free()
+
+func _on_lever_activated_door_1() -> void:
+	await get_tree().create_timer(4).timeout
+	_spawn_torretim($enemy_spawns/mini_arena_2/tor_spawn_1.position)
+	await get_tree().create_timer(1).timeout
+	_spawn_batch($enemy_spawns/mini_arena_2/bat_spawn_1.position)
+	await get_tree().create_timer(4).timeout
+	_spawn_torretim($enemy_spawns/mini_arena_2/tor_spawn_2.position)
+	_spawn_batch($enemy_spawns/mini_arena_2/bat_spawn_2.position)
 
 func _on_level_end_body_entered(body: Node2D) -> void:
 	if body.name == "player":
@@ -149,3 +162,4 @@ func _on_level_end_body_entered(body: Node2D) -> void:
 		await get_tree().create_timer(4).timeout
 		await get_tree().process_frame
 		get_tree().change_scene_to_file("res://scenes/scenes_gui/main_menu/main_menu.tscn")
+	

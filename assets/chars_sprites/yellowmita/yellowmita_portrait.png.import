@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4hmsnup8gmov"
-path="res://.godot/imported/Yellowmita - Portrait.png-ef02111cbdf9033d85c5d37f1ab3fb44.ctex"
+uid="uid://cqd4gjk0r2iui"
+path="res://.godot/imported/yellowmita_portrait.png-beb07d4b07e496cf23384137f79c23ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/chars_sprites/yellowmita/Yellowmita - Portrait.png"
-dest_files=["res://.godot/imported/Yellowmita - Portrait.png-ef02111cbdf9033d85c5d37f1ab3fb44.ctex"]
+source_file="res://assets/chars_sprites/yellowmita/yellowmita_portrait.png"
+dest_files=["res://.godot/imported/yellowmita_portrait.png-beb07d4b07e496cf23384137f79c23ba.ctex"]
 
 [params]
 

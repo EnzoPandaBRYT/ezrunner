@@ -237,7 +237,7 @@ position = Vector2(4775, -995)
 shape = SubResource("RectangleShape2D_wu2qr")
 
 [node name="particles_level" type="CPUParticles2D" parent="." unique_id=1549509003]
-position = Vector2(3354, -383)
+position = Vector2(3354, -909)
 amount = 2048
 lifetime = 2.0
 emission_shape = 3

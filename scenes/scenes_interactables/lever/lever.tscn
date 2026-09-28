@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://ckrcccrjyj62p"]
+
+[ext_resource type="Texture2D" uid="uid://cknwqndsvdl45" path="res://assets/level_design/interactables/lever/lever.png" id="1_2meqs"]
+[ext_resource type="Script" uid="uid://culuam2ds7le4" path="res://scenes/scenes_interactables/lever/lever.gd" id="1_wxs3o"]
+[ext_resource type="Texture2D" uid="uid://bilelb5dj7htx" path="res://assets/gui/buttons/keys/e_key.png" id="2_52gxi"]
+[ext_resource type="AudioStream" uid="uid://mfk13a4dwv6n" path="res://ost_sfx/sfx/interactables/lever_pull.ogg" id="4_7ggvb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52gxi"]
+atlas = ExtResource("1_2meqs")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxs3o"]
+atlas = ExtResource("1_2meqs")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7f37h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52gxi")
+}],
+"loop": 1,
+"name": &"lever_off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxs3o")
+}],
+"loop": 1,
+"name": &"lever_on",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_2meqs"]
+offsets = PackedFloat32Array(0, 0.16049382, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxs3o"]
+size = Vector2(204.30785, 75.68751)
+
+[node name="lever" type="Node2D" unique_id=1251685810]
+script = ExtResource("1_wxs3o")
+
+[node name="anim" type="AnimatedSprite2D" parent="." unique_id=290816107]
+sprite_frames = SubResource("SpriteFrames_7f37h")
+animation = &"lever_off"
+
+[node name="particles" type="CPUParticles2D" parent="." unique_id=1721126703]
+rotation = -1.5707964
+emitting = false
+amount = 64
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 90.0
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+angular_velocity_min = -200.0
+angular_velocity_max = 200.0
+scale_amount_max = 8.0
+color_ramp = SubResource("Gradient_2meqs")
+
+[node name="e_key" type="Sprite2D" parent="." unique_id=1698553427]
+visible = false
+position = Vector2(0, -13)
+scale = Vector2(0.359375, 0.359375)
+texture = ExtResource("2_52gxi")
+
+[node name="player_detection" type="Area2D" parent="." unique_id=2099053898]
+
+[node name="collision" type="CollisionShape2D" parent="player_detection" unique_id=321611477]
+position = Vector2(0, -4.15625)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_wxs3o")
+debug_color = Color(0.26758063, 0.43372652, 0.70419204, 0.41960785)
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="." unique_id=808832634]
+stream = ExtResource("4_7ggvb")
+
+[connection signal="body_entered" from="player_detection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="player_detection" to="." method="_on_player_detection_body_exited"]

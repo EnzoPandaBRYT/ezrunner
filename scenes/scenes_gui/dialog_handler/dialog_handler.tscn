@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bjqfxx6f1gr75"]
 
 [ext_resource type="Script" uid="uid://42l1ogpmopnd" path="res://scenes/scenes_gui/dialog_handler/dialog_handler.gd" id="1_bsgvk"]
-[ext_resource type="Texture2D" uid="uid://b4hmsnup8gmov" path="res://assets/chars_sprites/yellowmita/Yellowmita - Portrait.png" id="2_jht2f"]
+[ext_resource type="Texture2D" uid="uid://cqd4gjk0r2iui" path="res://assets/chars_sprites/yellowmita/yellowmita_portrait.png" id="2_jht2f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bsgvk"]
 bg_color = Color(0, 0, 0, 1)

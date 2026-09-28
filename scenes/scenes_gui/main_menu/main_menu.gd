@@ -30,6 +30,8 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	ScreenAnimations.room_enter(0.0, 0.5)
 	ScreenAnimations.reset()
+	PlayerGui.level_start()
+	$mouse_particles.emitting = false
 	TutorialHandler.tutorial_msg_end()
 	PlayerVars.can_control = false
 	if GameConfig.play_intro:
@@ -57,9 +59,10 @@ func _ready() -> void:
 	$options_buttons/tabs/tab_panel/audio/vbox/sfx_volume_percentage.text = str(int(GameConfig.config.get_value("audio", "sfxVolume")*100)) + "%"
 	is_playing_music = true
 	$options_buttons/tabs.scale = Vector2(0.0,0.0)
-	PlayerGui.level_start()
 	game_initialize()
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1).timeout
+	$mouse_particles.emitting = true
+	await get_tree().create_timer(1).timeout
 	PlayerVars.can_control = true
 
 func _process(delta: float) -> void:

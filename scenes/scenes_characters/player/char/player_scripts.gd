@@ -66,6 +66,15 @@ func _lvl_end():
 	else:
 		_change_state(_StateMachine.IDLE)
 
+func travel():
+	var invis = create_tween().set_ease(Tween.EASE_IN_OUT)
+	var normal = create_tween().set_ease(Tween.EASE_IN_OUT)
+	PlayerVars.can_control = false
+	invis.tween_property(self, "modulate:a", 0.0, 0.5)
+	await get_tree().create_timer(1.0).timeout
+	normal.tween_property(self, "modulate:a", 1.0, 0.5)
+	PlayerVars.can_control = true
+
 # Script pro jogador tomar dano
 func _on_player_hurtbox_area_entered(area: Area2D) -> void:
 	if area.name == "batch_hitbox":

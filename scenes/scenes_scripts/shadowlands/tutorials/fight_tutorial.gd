@@ -39,7 +39,9 @@ func _process(delta: float) -> void:
 				await get_tree().create_timer(2).timeout
 				TutorialHandler.change_text("Geralmente 3 socos são suficientes para\neliminá-los, mas você pode precisar\nde mais.")
 				await get_tree().create_timer(7).timeout
-				TutorialHandler.change_text("Bom, preciso ir. Boa sorte na sua jornada.")
+				TutorialHandler.change_text("Quando os inimigos morrem, parte\nde sua vitalidade irá pra você..")
+				await get_tree().create_timer(5).timeout
+				TutorialHandler.change_text("Enfim, preciso ir. Boa sorte na sua jornada.")
 				await get_tree().create_timer(3).timeout
 				TutorialHandler.change_text("Ah, e a propósito, me chamo Laupiy.")
 				await get_tree().create_timer(3).timeout
@@ -65,7 +67,7 @@ func _on_level_start_body_entered(body: Node2D) -> void:
 		await get_tree().create_timer(5).timeout
 		TutorialHandler.change_text("Então vamos começar.")
 		await get_tree().create_timer(2).timeout
-		TutorialHandler.change_text("Aperte F para socar esse inimigo.")
+		TutorialHandler.change_text("Aperte F para socar esse Batch.")
 		PlayerVars.can_control = true
 		PlayerVars.can_fight = true
 		total_enemies_to_spawn = 1

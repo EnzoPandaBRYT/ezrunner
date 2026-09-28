@@ -28,6 +28,8 @@ func start_dialog(text: String):
 	
 	if !dialog_active:
 		new_dialog_window(lines[0])
+		PlayerGui.cutscene_on()
+		ScreenAnimations.cutscene_bars_on()
 		PlayerVars.can_control = false
 		dialog_active = true
 	else:
@@ -44,6 +46,8 @@ func start_dialog(text: String):
 	
 	if index == lines.size():
 		await get_tree().create_timer(4.0).timeout
+		PlayerGui.cutscene_off()
+		ScreenAnimations.cutscene_bars_off()
 		PlayerVars.can_control = true
 		dialog_end()
 	

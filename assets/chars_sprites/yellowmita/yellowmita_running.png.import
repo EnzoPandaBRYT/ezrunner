@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duyyhgxiwxrcw"
-path="res://.godot/imported/Yellowmita - Idle.png-a27418f9ecbeb557f8cd455c2d8ca981.ctex"
+uid="uid://c75xt5l81e4k1"
+path="res://.godot/imported/yellowmita_running.png-2736ba757c1b5cdff8c4b5db809e500e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/chars_sprites/yellowmita/Yellowmita - Idle.png"
-dest_files=["res://.godot/imported/Yellowmita - Idle.png-a27418f9ecbeb557f8cd455c2d8ca981.ctex"]
+source_file="res://assets/chars_sprites/yellowmita/yellowmita_running.png"
+dest_files=["res://.godot/imported/yellowmita_running.png-2736ba757c1b5cdff8c4b5db809e500e.ctex"]
 
 [params]
 
