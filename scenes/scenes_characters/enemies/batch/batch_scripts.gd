@@ -31,7 +31,6 @@ func _ready() -> void:
 	$collisions/hurtbox.monitoring = true
 	$collisions/follow_player.monitoring = true
 	
-
 func _idle() -> void:
 	_enterState("idle")
 	position.y = position.y + sin(Time.get_ticks_msec() / 200.0) * 2
@@ -58,6 +57,7 @@ func _spawn_health(pos: Vector2):
 	get_tree().current_scene.add_child(health_drop)
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
+	$health_bar.visible = true
 	AudioPlayer.punch_sfx(-9)
 	var health_tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	health -= 1

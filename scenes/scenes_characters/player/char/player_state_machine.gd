@@ -16,6 +16,8 @@ var can_jump = true
 var jumps = 1
 var punch_buffer = 0
 
+var break_factor = 1.5
+
 var _Input: float: # Sistema de Input (Exclusivo do(s) jogador(es)
 	get: return Input.get_axis("move_left","move_right")
 	
@@ -62,7 +64,7 @@ func _punch() -> void: pass
 func _lvl_end() -> void: pass
 
 func _stop_movement():
-	velocity.x = velocity.x/1.2
+	velocity.x = velocity.x/break_factor
 
 func player_movement():
 	if PlayerVars.can_control and _state != _StateMachine.PUNCH:

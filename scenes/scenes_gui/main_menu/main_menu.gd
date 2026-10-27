@@ -57,18 +57,26 @@ func _ready() -> void:
 	sfx_volume_slider.value = GameConfig.config.get_value("audio", "sfxVolume")*100
 	$options_buttons/tabs/tab_panel/audio/vbox/ost_volume_percentage.text = str(int(GameConfig.config.get_value("audio", "ostVolume")*100)) + "%"
 	$options_buttons/tabs/tab_panel/audio/vbox/sfx_volume_percentage.text = str(int(GameConfig.config.get_value("audio", "sfxVolume")*100)) + "%"
+	$options_buttons/tabs/tab_panel/video/vbox/vsync/check.button_pressed = GameConfig.vsync
+	$options_buttons/tabs/tab_panel/video/vbox/own_cursor/check.button_pressed = GameConfig.own_cursor
 	is_playing_music = true
 	$options_buttons/tabs.scale = Vector2(0.0,0.0)
 	game_initialize()
+	if GameConfig.config.get_value("misc", "first_time"):
+		$changelog.show_all()
+		$changelog.show_version("0.7.0")
+		GameConfig.save_misc_settings("first_time", false)
+		GameConfig.first_time_opening_game = false
 	await get_tree().create_timer(1).timeout
-	$mouse_particles.emitting = true
+	if !GameConfig.own_cursor:
+		$mouse_particles.emitting = true
+	#if GameConfig.joypads_connected > 0:
+		#$main_menu_buttons/play_button.grab_focus()
 	await get_tree().create_timer(1).timeout
 	PlayerVars.can_control = true
 
 func _process(delta: float) -> void:
 	$mouse_particles.position = get_global_mouse_position()
-	if Input.is_action_just_pressed("reload"):
-		get_tree().reload_current_scene()
 	if is_playing_music:
 		music_time += delta
 		if music_time >= AudioPlayer.main_menu_theme.get_length():
@@ -147,12 +155,14 @@ func _on_ost_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("OST"), linear_to_db(value/100))
 	$options_buttons/tabs/tab_panel/audio/vbox/ost_volume_percentage.text = str(int(value)) + "%"
 	GameConfig.save_audio_settings("ostVolume", ost_volume_slider.value/100)
+	GameConfig.ostVolumeValue = ost_volume_slider.value/100
 
 
 func _on_sfx_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(value/100))
 	$options_buttons/tabs/tab_panel/audio/vbox/sfx_volume_percentage.text = str(int(value)) + "%"
 	GameConfig.save_audio_settings("sfxVolume", sfx_volume_slider.value/100)
+	GameConfig.sfxVolumeValue = sfx_volume_slider.value/100
 
 func _on_fps_value_changed(value: float) -> void:
 	fps_label.text = str(int(value))
@@ -163,27 +173,33 @@ func _on_fullscreen_check_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		GameConfig.save_video_settings("fullscreen", true)
+		GameConfig.fullscreen = true
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		GameConfig.save_video_settings("fullscreen", false)
+		GameConfig.fullscreen = false
 		
 func _on_vsync_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 		$options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox/fps/slider.editable = false
 		Engine.max_fps = 0
+		GameConfig.vsync = true
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 		$options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox/fps/slider.editable = true
 		Engine.max_fps = int($options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox/fps/slider.value)
+		GameConfig.vsync = false
 
 func _on_use_own_cursor_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		$mouse_particles.emitting = false
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		GameConfig.own_cursor = true
 	else:
 		$mouse_particles.emitting = true
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+		GameConfig.own_cursor = false
 	
 func _on_advanced_video_settings_button_pressed() -> void:
 	$options_buttons/tabs/tab_panel/video/vbox/advanced_panel.visible = !$options_buttons/tabs/tab_panel/video/vbox/advanced_panel.visible
@@ -207,6 +223,7 @@ func _on_intro_check_toggled(toggled_on: bool) -> void:
 		GameConfig.save_misc_settings("play_intro", false)
 
 func reset_settings():
+	GameConfig.save_misc_settings("tutorial_enabled", true)
 	if FileAccess.file_exists("user://player_stats.ini"):
 		DirAccess.remove_absolute(ProjectSettings.globalize_path("user://player_stats.ini"))
 		

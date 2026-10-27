@@ -7,18 +7,19 @@ var acceleration = 1.0
 var heal = 0
 
 func _ready() -> void:
+	
 	heal = randi_range(3,5)
 	match heal:
-		3: particles.global_scale = Vector2(0.1, 0.1)
-		4: particles.global_scale = Vector2(0.5, 0.5)
-		5: particles.global_scale = Vector2(1.0, 1.0)
+		3: particles.global_scale = Vector2(0.05, 0.05)
+		4: particles.global_scale = Vector2(0.75, 0.75)
+		5: particles.global_scale = Vector2(1.5, 1.5)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var player_position = Vector2(PlayerVars.position_x+30, PlayerVars.position_y+40)
+	var player_position = Vector2(PlayerVars.position_x+35, PlayerVars.position_y+40)
 	if follow_player:
 		global_position = lerp(global_position, player_position, 2 * delta * acceleration)
-		acceleration += 12 * delta
+		acceleration += 15 * delta
 
 
 func _on_body_entered(body: Node2D) -> void:

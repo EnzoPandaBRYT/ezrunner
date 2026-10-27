@@ -19,7 +19,6 @@ func _ready() -> void:
 		
 		## [TUTORIAL]
 		tutorials_completed = config.get_value("levels", "tutorials_completed")
-		print(tutorials_completed)
 
 func save_levels_settings(key: String, value):
 	config.set_value("levels", key, value)

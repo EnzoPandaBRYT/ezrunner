@@ -1,10 +1,12 @@
 extends Area2D
 
 var direction = Vector2.ZERO
-var speed := 400.0
+var speed := 500.0
 var damage := 1
 
 var life_time = 2.0
+
+var can_parry = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,7 +34,13 @@ func _on_body_entered(body: Node2D) -> void:
 		await tween.finished
 		queue_free()
 
-
-func _on_area_entered(area: Area2D) -> void:
+func _on_parry_hurtbox_area_entered(area: Area2D) -> void:
 	if area.name == "player_hitbox":
-		print("Parry")
+		direction *= -1
+		speed = 500
+
+
+func _on_area_exited(area: Area2D) -> void:
+	can_parry = true
+	await get_tree().create_timer(1.0).timeout
+	can_parry = false

@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://bp8ukcbpoounq" path="res://scenes/scenes_interactables/door/door.gd" id="1_lo8eq"]
 [ext_resource type="Texture2D" uid="uid://d0rfhk3gb8buo" path="res://assets/level_design/interactables/door/door.png" id="2_lo8eq"]
 [ext_resource type="Texture2D" uid="uid://bilelb5dj7htx" path="res://assets/gui/buttons/keys/e_key.png" id="3_6rce4"]
+[ext_resource type="Texture2D" uid="uid://cn8jbvqse1vxf" path="res://assets/gui/buttons/playstation/triangle.png" id="4_dwad3"]
 [ext_resource type="AudioStream" uid="uid://mfk13a4dwv6n" path="res://ost_sfx/sfx/interactables/lever_pull.ogg" id="4_v8c1w"]
+[ext_resource type="Script" uid="uid://y4xxsg3jwln7" path="res://scripts/wiggles/interact_key_wiggle.gd" id="5_cqyaq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dwad3"]
 atlas = ExtResource("2_lo8eq")
@@ -36,6 +38,33 @@ animations = [{
 offsets = PackedFloat32Array(0, 0.16049382, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw2i6"]
+atlas = ExtResource("3_6rce4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5e40"]
+atlas = ExtResource("4_dwad3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sxs5g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qw2i6")
+}],
+"loop": 1,
+"name": &"e_key",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5e40")
+}],
+"loop": 1,
+"name": &"triangle",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxs3o"]
 size = Vector2(204.30785, 129.00002)
 
@@ -63,11 +92,15 @@ angular_velocity_max = 200.0
 scale_amount_max = 8.0
 color_ramp = SubResource("Gradient_2meqs")
 
-[node name="e_key" type="Sprite2D" parent="." unique_id=1698553427]
+[node name="interact_key" type="AnimatedSprite2D" parent="." unique_id=1543136666]
 visible = false
 position = Vector2(0, -13)
 scale = Vector2(0.359375, 0.359375)
-texture = ExtResource("3_6rce4")
+sprite_frames = SubResource("SpriteFrames_sxs5g")
+animation = &"e_key"
+script = ExtResource("5_cqyaq")
+float_speed = 2.0
+height_variation = 5
 
 [node name="player_detection" type="Area2D" parent="." unique_id=2099053898]
 

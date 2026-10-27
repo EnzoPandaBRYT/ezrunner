@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://bmvxb7we12lqt" path="res://assets/chars_sprites/yellowmita/yellowmita_jumping.png" id="3_cu1od"]
 [ext_resource type="Texture2D" uid="uid://c75xt5l81e4k1" path="res://assets/chars_sprites/yellowmita/yellowmita_running.png" id="5_cu1od"]
 [ext_resource type="Texture2D" uid="uid://bilelb5dj7htx" path="res://assets/gui/buttons/keys/e_key.png" id="6_cu1od"]
+[ext_resource type="Texture2D" uid="uid://cn8jbvqse1vxf" path="res://assets/gui/buttons/playstation/triangle.png" id="6_ygdym"]
+[ext_resource type="Script" uid="uid://y4xxsg3jwln7" path="res://scripts/wiggles/interact_key_wiggle.gd" id="7_7liy6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_knh47"]
 size = Vector2(1.2554586, 5.6399536)
@@ -146,90 +148,7 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="Animation" id="Animation_jp6ek"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../anim:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../player_hitbox/collision:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../player_hitbox/collision/hit_particles:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_tc2kj"]
-resource_name = "punch"
-length = 0.1667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../anim:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.121, 0.1667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../player_hitbox/collision:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.12115684, 0.1667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../player_hitbox/collision/hit_particles:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.12115338),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sr8dx"]
-_data = {
-&"RESET": SubResource("Animation_jp6ek"),
-&"punch": SubResource("Animation_tc2kj")
-}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qby1x"]
 size = Vector2(10.862503, 1.5500014)
@@ -242,6 +161,33 @@ size = Vector2(2.0812497, 10.199999)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cu1od"]
 size = Vector2(204.30785, 125.375015)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw2i6"]
+atlas = ExtResource("6_cu1od")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5e40"]
+atlas = ExtResource("6_ygdym")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1iitb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qw2i6")
+}],
+"loop": 1,
+"name": &"e_key",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5e40")
+}],
+"loop": 1,
+"name": &"triangle",
+"speed": 5.0
+}]
 
 [node name="yellowmita" type="CharacterBody2D" unique_id=296925953]
 collision_layer = 0
@@ -257,11 +203,11 @@ shape = SubResource("RectangleShape2D_knh47")
 position = Vector2(42.47309, 42.47309)
 scale = Vector2(1.327284, 1.327284)
 sprite_frames = SubResource("SpriteFrames_bxb21")
-animation = &"running"
-frame_progress = 0.11000984
+animation = &"idle"
+frame = 3
+frame_progress = 0.86005545
 
 [node name="player" type="AnimationPlayer" parent="." unique_id=1076565135]
-root_node = NodePath("")
 libraries/ = SubResource("AnimationLibrary_sr8dx")
 
 [node name="player_hitbox" type="Area2D" parent="." unique_id=248822729]
@@ -311,12 +257,6 @@ scale = Vector2(1.0000001, 1.0000001)
 shape = SubResource("RectangleShape2D_jp6ek")
 debug_color = Color(0.775339, 0.42525277, 0.3268901, 0.41960785)
 
-[node name="e_key" type="Sprite2D" parent="." unique_id=1482919699]
-visible = false
-position = Vector2(43, 3)
-scale = Vector2(0.359375, 0.359375)
-texture = ExtResource("6_cu1od")
-
 [node name="player_detection" type="Area2D" parent="." unique_id=1557090592]
 
 [node name="collision" type="CollisionShape2D" parent="player_detection" unique_id=1310817746]
@@ -324,6 +264,16 @@ position = Vector2(41, 22)
 scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("RectangleShape2D_cu1od")
 debug_color = Color(0.26758063, 0.43372652, 0.70419204, 0.41960785)
+
+[node name="interact_key" type="AnimatedSprite2D" parent="." unique_id=1084184310]
+visible = false
+position = Vector2(45, -1)
+scale = Vector2(0.359375, 0.359375)
+sprite_frames = SubResource("SpriteFrames_1iitb")
+animation = &"e_key"
+script = ExtResource("7_7liy6")
+float_speed = 2.0
+height_variation = 5
 
 [connection signal="body_entered" from="player_detection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="player_detection" to="." method="_on_player_detection_body_exited"]

@@ -25,4 +25,3 @@ func update_health(new_value: float):
 		PlayerVars.player_health = 0.0
 	if PlayerVars.player_health > PlayerVars.player_max_health:
 		PlayerVars.player_health = PlayerVars.player_max_health
-	print(PlayerVars.player_health)

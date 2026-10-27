@@ -4,6 +4,10 @@ var can_control = true
 var can_jump = true
 var can_fight = true
 
+var interacting = false
+
+var cutscene_playing = false
+
 var last_dir = 0.0
 
 var position_x = 0.0

@@ -2,8 +2,19 @@
 
 [ext_resource type="Texture2D" uid="uid://cknwqndsvdl45" path="res://assets/level_design/interactables/lever/lever.png" id="1_2meqs"]
 [ext_resource type="Script" uid="uid://culuam2ds7le4" path="res://scenes/scenes_interactables/lever/lever.gd" id="1_wxs3o"]
+[ext_resource type="Texture2D" uid="uid://otssv17eikjq" path="res://assets/level_design/interactables/lever/lever_white.png" id="2_52bv2"]
 [ext_resource type="Texture2D" uid="uid://bilelb5dj7htx" path="res://assets/gui/buttons/keys/e_key.png" id="2_52gxi"]
 [ext_resource type="AudioStream" uid="uid://mfk13a4dwv6n" path="res://ost_sfx/sfx/interactables/lever_pull.ogg" id="4_7ggvb"]
+[ext_resource type="Texture2D" uid="uid://cn8jbvqse1vxf" path="res://assets/gui/buttons/playstation/triangle.png" id="5_ca21u"]
+[ext_resource type="Script" uid="uid://y4xxsg3jwln7" path="res://scripts/wiggles/interact_key_wiggle.gd" id="6_ca21u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca21u"]
+atlas = ExtResource("2_52bv2")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22qpl"]
+atlas = ExtResource("2_52bv2")
+region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_52gxi"]
 atlas = ExtResource("1_2meqs")
@@ -15,6 +26,22 @@ region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7f37h"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca21u")
+}],
+"loop": 1,
+"name": &"highlighted_off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22qpl")
+}],
+"loop": 1,
+"name": &"highlighted_on",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_52gxi")
@@ -35,6 +62,33 @@ animations = [{
 [sub_resource type="Gradient" id="Gradient_2meqs"]
 offsets = PackedFloat32Array(0, 0.16049382, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw2i6"]
+atlas = ExtResource("2_52gxi")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5e40"]
+atlas = ExtResource("5_ca21u")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8hgew"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qw2i6")
+}],
+"loop": 1,
+"name": &"e_key",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5e40")
+}],
+"loop": 1,
+"name": &"triangle",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxs3o"]
 size = Vector2(204.30785, 75.68751)
@@ -61,11 +115,15 @@ angular_velocity_max = 200.0
 scale_amount_max = 8.0
 color_ramp = SubResource("Gradient_2meqs")
 
-[node name="e_key" type="Sprite2D" parent="." unique_id=1698553427]
+[node name="interact_key" type="AnimatedSprite2D" parent="." unique_id=542650722]
 visible = false
 position = Vector2(0, -13)
 scale = Vector2(0.359375, 0.359375)
-texture = ExtResource("2_52gxi")
+sprite_frames = SubResource("SpriteFrames_8hgew")
+animation = &"e_key"
+script = ExtResource("6_ca21u")
+float_speed = 2.0
+height_variation = 5
 
 [node name="player_detection" type="Area2D" parent="." unique_id=2099053898]
 

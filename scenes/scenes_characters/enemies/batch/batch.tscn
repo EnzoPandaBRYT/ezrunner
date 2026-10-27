@@ -215,10 +215,11 @@ scale_amount_max = 8.0
 color_ramp = SubResource("Gradient_p0ttc")
 
 [node name="health_bar" type="ProgressBar" parent="." unique_id=1501753652]
-offset_left = -45.312428
-offset_top = -40.62493
-offset_right = 46.46307
-offset_bottom = -32.812443
+visible = false
+offset_left = -45.312424
+offset_top = -39.062435
+offset_right = 46.463074
+offset_bottom = -31.24995
 theme_override_styles/background = SubResource("StyleBoxFlat_4hrkg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_skqbi")
 max_value = 3.0

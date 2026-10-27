@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cghulaqepyef" path="res://scenes/scenes_gui/main_menu/main_menu.gd" id="1_odk2l"]
 [ext_resource type="Texture2D" uid="uid://i0jfnqhmxjyj" path="res://assets/gui/backgrounds/main_menu/bg.png" id="3_3jsnd"]
-[ext_resource type="Script" uid="uid://d1ucvvm0y8nbi" path="res://scripts/wiggles/label_wiggle_main_menu.gd" id="3_kdtjr"]
 [ext_resource type="Texture2D" uid="uid://c8ifi8pqyf547" path="res://assets/level_design/backgrounds/shadowlands/rocks.png" id="3_smjm1"]
 [ext_resource type="Texture2D" uid="uid://tp6xpbtbpr7p" path="res://assets/level_design/backgrounds/shadowlands/bigger_trees.png" id="4_ai448"]
 [ext_resource type="Theme" uid="uid://6iabekurvrft" path="res://assets/themes/button_default_theme.tres" id="4_kdtjr"]
@@ -30,6 +29,9 @@
 [ext_resource type="Texture2D" uid="uid://bwjr1ie2d62h4" path="res://assets/gui/buttons/check_box/box_unchecked.png" id="25_ukbdo"]
 [ext_resource type="Texture2D" uid="uid://fgkbk5640v74" path="res://assets/images/pfp/PFP v2 - No BG.png" id="28_snmff"]
 [ext_resource type="Texture2D" uid="uid://df3si8uimyedi" path="res://assets/gui/buttons/check_box/box_checked_transparent.png" id="29_6nplb"]
+[ext_resource type="Texture2D" uid="uid://drngcuqw3qb3o" path="res://assets/images/game_icon/icon_written_early.png" id="31_2eqf7"]
+[ext_resource type="PackedScene" uid="uid://urckkmqc8jak" path="res://scenes/scenes_gui/main_menu/changelog.tscn" id="31_87t8k"]
+[ext_resource type="Script" uid="uid://d1ucvvm0y8nbi" path="res://scripts/wiggles/wiggle_main_menu.gd" id="32_of5lk"]
 
 [sub_resource type="Gradient" id="Gradient_vqg40"]
 offsets = PackedFloat32Array(0, 0.52469134, 1)
@@ -439,22 +441,6 @@ color_ramp = SubResource("Gradient_vqg40")
 position = Vector2(0, 2200)
 anchor_mode = 0
 
-[node name="game_title" type="Label" parent="." unique_id=1620047016]
-z_index = 10
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 320.0
-offset_top = 110.0
-offset_right = 1606.0
-offset_bottom = 347.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 20
-theme_override_font_sizes/font_size = 256
-text = "R U N N E R"
-script = ExtResource("3_kdtjr")
-
 [node name="player" parent="." unique_id=149460341 instance=ExtResource("11_smjm1")]
 position = Vector2(0, -1383.9999)
 
@@ -465,12 +451,15 @@ tile_map_data = PackedByteArray("AAAAAB4AAAAAAAAAAAABAB4AAAABAAAAAAACAB4AAAABAAA
 tile_set = SubResource("TileSet_044yh")
 
 [node name="main_menu_buttons" type="Node2D" parent="." unique_id=1769848818]
+z_index = 4095
 
 [node name="play_button" type="Button" parent="main_menu_buttons" unique_id=791493940]
 offset_left = -460.0
 offset_top = 350.0
 offset_right = -54.0
 offset_bottom = 477.0
+focus_neighbor_top = NodePath("../exit_button")
+focus_neighbor_bottom = NodePath("../options_button")
 theme = ExtResource("4_kdtjr")
 theme_type_variation = &"FlatButton"
 theme_override_font_sizes/font_size = 128
@@ -484,6 +473,8 @@ offset_left = -469.0
 offset_top = 550.0
 offset_right = -63.0
 offset_bottom = 677.0
+focus_neighbor_top = NodePath("../play_button")
+focus_neighbor_bottom = NodePath("../exit_button")
 theme = ExtResource("4_kdtjr")
 theme_type_variation = &"FlatButton"
 theme_override_font_sizes/font_size = 128
@@ -497,6 +488,8 @@ offset_left = -460.0
 offset_top = 750.0
 offset_right = -54.0
 offset_bottom = 877.0
+focus_neighbor_top = NodePath("../options_button")
+focus_neighbor_bottom = NodePath("../play_button")
 theme = ExtResource("4_kdtjr")
 theme_type_variation = &"FlatButton"
 theme_override_font_sizes/font_size = 128
@@ -916,6 +909,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="back_button" type="Button" parent="options_buttons" unique_id=2123533382]
+z_index = 4096
 offset_left = 1970.0
 offset_top = 1172.0
 offset_right = 2376.0
@@ -950,6 +944,9 @@ theme_override_font_sizes/font_size = 64
 text = "PandaBrasileiro"
 horizontal_alignment = 2
 
+[node name="changelog" parent="." unique_id=188896124 instance=ExtResource("31_87t8k")]
+z_index = 4096
+
 [node name="mouse_particles" type="CPUParticles2D" parent="." unique_id=1696064115]
 z_index = 4096
 amount = 64
@@ -961,6 +958,13 @@ angle_max = 180.0
 scale_amount_min = 13.0
 scale_amount_max = 15.0
 color_ramp = SubResource("Gradient_6nplb")
+
+[node name="game_title" type="Sprite2D" parent="." unique_id=1007484650]
+position = Vector2(945, 194)
+texture = ExtResource("31_2eqf7")
+region_enabled = true
+region_rect = Rect2(0, 0, 1305, 313.20712)
+script = ExtResource("32_of5lk")
 
 [connection signal="pressed" from="main_menu_buttons/play_button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="main_menu_buttons/options_button" to="." method="_on_options_button_pressed"]

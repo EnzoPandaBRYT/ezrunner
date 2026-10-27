@@ -12,8 +12,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if door_opened and can_interact and Input.is_action_just_pressed("interact"):
-		$e_key.visible = false
+	if door_opened and can_interact and Input.is_action_just_pressed("interact") and PlayerVars.can_control:
+		$interact_key.visible = false
 		interact()
 
 func open():
@@ -26,13 +26,13 @@ func _on_player_detection_body_entered(body: Node2D) -> void:
 	if door_opened:
 		can_interact = true
 		$anim.play("door_open")
-		$e_key.visible = true
+		$interact_key.visible = true
 
 func _on_player_detection_body_exited(body: Node2D) -> void:
 	if door_opened:
 		can_interact = false
 		$anim.play("door_closed")
-		$e_key.visible = false
+		$interact_key.visible = false
 
 func interact():
 	PlayerVars.can_control = false

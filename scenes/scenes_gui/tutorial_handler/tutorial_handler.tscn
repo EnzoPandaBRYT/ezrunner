@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://kjci3hbj4m18"]
 
 [ext_resource type="Script" uid="uid://bgoongxp3mffj" path="res://scenes/scenes_gui/tutorial_handler/tutorial_handler.gd" id="1_sbj2h"]
+[ext_resource type="Texture2D" uid="uid://bqkyksxw1jjj" path="res://assets/gui/buttons/playstation/L3.png" id="2_0v7pg"]
+[ext_resource type="Texture2D" uid="uid://casvbq6hbkyjw" path="res://assets/gui/buttons/playstation/cross.png" id="3_gss5c"]
+[ext_resource type="Texture2D" uid="uid://cqjumct4d5e4t" path="res://assets/gui/buttons/playstation/square.png" id="4_ruexr"]
 
 [node name="tutorial_handler" type="Node2D" unique_id=2105474710]
 process_mode = 1
@@ -9,7 +12,6 @@ script = ExtResource("1_sbj2h")
 [node name="canvas" type="CanvasLayer" parent="." unique_id=1425573876]
 process_mode = 1
 layer = 999
-visible = false
 
 [node name="node" type="Control" parent="canvas" unique_id=18635458]
 layout_mode = 3
@@ -48,3 +50,27 @@ text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="L3" type="Sprite2D" parent="canvas/node/panel" unique_id=12420952]
+visible = false
+position = Vector2(1266.0001, 136)
+scale = Vector2(1.6406258, 1.6406258)
+texture = ExtResource("2_0v7pg")
+
+[node name="cross" type="Sprite2D" parent="canvas/node/panel" unique_id=1408339969]
+visible = false
+position = Vector2(695.0001, 138.00002)
+scale = Vector2(1.6406258, 1.6406258)
+texture = ExtResource("3_gss5c")
+
+[node name="cross_higher" type="Sprite2D" parent="canvas/node/panel" unique_id=325105117]
+visible = false
+position = Vector2(955, 138.00002)
+scale = Vector2(1.6406258, 1.6406258)
+texture = ExtResource("3_gss5c")
+
+[node name="square" type="Sprite2D" parent="canvas/node/panel" unique_id=834484217]
+visible = false
+position = Vector2(782, 138.00002)
+scale = Vector2(1.6406258, 1.6406258)
+texture = ExtResource("4_ruexr")

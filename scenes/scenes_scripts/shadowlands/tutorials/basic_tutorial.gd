@@ -12,6 +12,7 @@ func _ready() -> void:
 	ScreenAnimations.room_enter(0.0, 1)
 	PlayerGui.level_start()
 	if GameConfig.tutorial_enabled:
+		PlayerVars.cutscene_playing = true
 		player.position = Vector2(60,-5930)
 		player._state = player._StateMachine.JUMP
 		ScreenAnimations.cutscene_bars_on(0.5)
@@ -30,11 +31,16 @@ func _ready() -> void:
 		await get_tree().create_timer(5).timeout
 		TutorialHandler.change_text("Oh. Parece que você está preso.")
 		await get_tree().create_timer(3).timeout
-		TutorialHandler.change_text("Tente se mexer usando A e D ou ← e →.")
+		if GameConfig.joypads_connected == 0:
+			TutorialHandler.change_text("Tente se mexer usando A e D ou ← e →.")
+		else:
+			TutorialHandler.tutorial_msg_controller("L3")
+		camera.position_smoothing_speed = 5
 		await get_tree().create_timer(2).timeout
 		ScreenAnimations.cutscene_bars_off(0.5)
 		PlayerGui.cutscene_off()
 		PlayerVars.can_control = true
+		PlayerVars.cutscene_playing = false
 	else:
 		ScreenAnimations.cutscene_bars_off(0.5)
 		PlayerGui.cutscene_off()
@@ -47,23 +53,32 @@ func _process(delta: float) -> void:
 			0:
 				if Input.get_axis("move_left","move_right"):
 					TutorialHandler.tutorial_step = -1
+					TutorialHandler.hide_controls()
 					TutorialHandler.change_text("Ótimo. Você conseguiu.")
 					await get_tree().create_timer(3).timeout
 					TutorialHandler.change_text("Você precisa achar a saída enquanto há tempo.")
 					await get_tree().create_timer(4).timeout
 					TutorialHandler.change_text("O relevo de Shadowlands não perdoa,\nvocê precisará PULAR.")
 					await get_tree().create_timer(5.5).timeout
-					TutorialHandler.change_text("Pressione ESPAÇO ou ↑ para pular sobre obstáculos.")
+					if GameConfig.joypads_connected == 0:
+						TutorialHandler.change_text("Pressione ESPAÇO ou ↑ para pular sobre obstáculos.")
+					else:
+						TutorialHandler.tutorial_msg_controller("JUMP")
 					await get_tree().create_timer(1).timeout
 					PlayerVars.can_jump = true
 					TutorialHandler.tutorial_step = 1
 			1:
 				if Input.is_action_just_pressed("jump"):
 					TutorialHandler.tutorial_step = -1
+					TutorialHandler.hide_controls()
 					TutorialHandler.change_text("Maravilhoso.")
 					await get_tree().create_timer(2).timeout
-					TutorialHandler.change_text("Você pode SEGURAR ESPAÇO ou ↑ para pular mais alto.")
+					if GameConfig.joypads_connected == 0:
+						TutorialHandler.change_text("Você pode SEGURAR ESPAÇO ou ↑ para pular mais alto.")
+					else:
+						TutorialHandler.tutorial_msg_controller("JUMP_HIGHER")
 					await get_tree().create_timer(5).timeout
+					TutorialHandler.hide_controls()
 					TutorialHandler.change_text("Continue avançando, em breve darei mais detalhes sobre LUTAR.")
 					await get_tree().create_timer(5).timeout
 					TutorialHandler.tutorial_msg_end()

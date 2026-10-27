@@ -9,11 +9,6 @@ extends Node2D
 @onready var fps_label = $canvas/options_buttons/tabs/tab_panel/video/vbox/advanced_panel/vbox/fps/fps_label
 @onready var ost_volume_slider = $canvas/options_buttons/tabs/tab_panel/audio/vbox/ost_volume/slider
 @onready var sfx_volume_slider = $canvas/options_buttons/tabs/tab_panel/audio/vbox/sfx_volume/slider
-@onready var tutorial_check = $canvas/options_buttons/tabs/tab_panel/misc/vbox/tutorial/check
-@onready var intro_check = $canvas/options_buttons/tabs/tab_panel/misc/vbox/intro/check
-@onready var reset_progress_button = $canvas/options_buttons/tabs/tab_panel/misc/vbox/open_reset_button
-@onready var reset_progress_panel = $canvas/options_buttons/tabs/tab_panel/misc/vbox/advanced_panel
-@onready var reset_progress_warn_label = $canvas/options_buttons/tabs/tab_panel/misc/vbox/advanced_panel/vbox/label_warn
 
 var menu_tween: Tween
 
@@ -23,10 +18,23 @@ func _ready() -> void:
 	$canvas/options_buttons.modulate = Color(0.0, 0.0, 0.0, 0.0)
 
 func _process(delta: float) -> void:
+	if Input.get_connected_joypads().size() > 0:
+		GameConfig.joypads_connected = Input.get_connected_joypads().size()
+	else:
+		GameConfig.joypads_connected = 0
 	if Input.is_action_just_pressed("pause"):
-		if !ScreenAnimations.animation_playing:
+		if !PlayerVars.interacting and !ScreenAnimations.animation_playing and !TutorialHandler.animation_playing and !PlayerVars.cutscene_playing and !get_tree().current_scene.name.contains("main_menu"):
 			pause()
 	$canvas/mouse_particles.position = get_viewport().get_mouse_position()
+	if Input.is_action_just_pressed("power_button"):
+		var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUART).set_parallel(true)
+		tween.tween_property($canvas/options_buttons/back_button, "position", Vector2(100, 1100), 0.50)
+		tween.tween_property(options, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.25)
+		options.visible = true
+		tween.tween_property($canvas/node, "modulate", Color(1.0,1.0,1.0,1.0), 0.25)
+		await tween.finished
+		options.visible = false
+		$canvas/node/back_to_game.grab_focus()
 	
 func pause():
 	if !get_tree().paused:
@@ -36,11 +44,17 @@ func pause():
 		options_out()
 
 func fade_in():
+	$canvas/options_buttons/tabs/tab_panel/video/vbox/own_cursor/check.button_pressed = GameConfig.own_cursor
+	if GameConfig.own_cursor and GameConfig.joypads_connected == 0:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	$canvas.visible = true
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property($canvas/node, "modulate", Color(1.0,1.0,1.0,1.0), 0.25)
 	tween.tween_property($canvas/rect, "modulate", Color(1.0,1.0,1.0,1.0), 0.25)
-	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	if GameConfig.joypads_connected > 0:
+		$canvas/mouse_particles.emitting = false
+		$canvas/node/back_to_game.grab_focus()
+		
 	get_tree().paused = true
 	AudioPlayer.pause_music_effect()
 
@@ -49,22 +63,12 @@ func fade_out(time := 0.10):
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property($canvas/node, "modulate", Color(0.0, 0.0, 0.0, 0.0), time)
 	tween.tween_property($canvas/rect, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.25)
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	if !GameConfig.own_cursor:
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	get_tree().paused = false
 	AudioPlayer.resume_music_effect()
 	await get_tree().create_timer(time).timeout
 	$canvas.visible = false
-
-func options_in():
-	ost_volume_slider.value = GameConfig.config.get_value("audio", "ostVolume")*100
-	sfx_volume_slider.value = GameConfig.config.get_value("audio", "sfxVolume")*100
-	$canvas/options_buttons/tabs/tab_panel/audio/vbox/ost_volume_percentage.text = str(int(GameConfig.config.get_value("audio", "ostVolume")*100)) + "%"
-	$canvas/options_buttons/tabs/tab_panel/audio/vbox/sfx_volume_percentage.text = str(int(GameConfig.config.get_value("audio", "sfxVolume")*100)) + "%"
-	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUART).set_parallel(true)
-	tween.tween_property($canvas/node, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.25)
-	options.visible = true
-	tween.tween_property(options, "modulate", Color(1.0,1.0,1.0,1.0), 0.25)
-	tween.tween_property($canvas/options_buttons/back_button, "position", Vector2(100, 890), 0.50)
 
 func options_out():
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUART).set_parallel(true)
@@ -81,16 +85,27 @@ func _on_back_to_game_pressed() -> void:
 	await get_tree().create_timer(1.0).timeout
 
 func _on_settings_pressed() -> void:
+	$canvas/options_buttons/tabs/tab_panel/video/vbox/fullscreen/check.button_pressed = GameConfig.fullscreen
+	$canvas/options_buttons/tabs/tab_panel/video/vbox/vsync/check.button_pressed = GameConfig.vsync
+	ost_volume_slider.value = GameConfig.ostVolumeValue*100
+	sfx_volume_slider.value = GameConfig.sfxVolumeValue*100
+	$canvas/options_buttons/tabs/tab_panel/audio/vbox/ost_volume_percentage.text = str(int(GameConfig.ostVolumeValue*100)) + "%"
+	$canvas/options_buttons/tabs/tab_panel/audio/vbox/sfx_volume_percentage.text = str(int(GameConfig.sfxVolumeValue*100)) + "%"
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUART).set_parallel(true)
 	tween.tween_property($canvas/node, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.25)
 	options.visible = true
 	tween.tween_property(options, "modulate", Color(1.0,1.0,1.0,1.0), 0.25)
 	tween.tween_property($canvas/options_buttons/back_button, "position", Vector2(100, 890), 0.50)
+	await tween.finished
+	if GameConfig.joypads_connected > 0:
+		$canvas/options_buttons/tabs/tab_panel/video/vbox/fullscreen/check.grab_focus()
 	
 func _on_quit_pressed() -> void:
 	get_tree().paused = false
 	fade_out(1.0)
+	DialogSystem.reset()
 	ScreenAnimations.black_fade(1.0, 1.0)
+	PlayerVars.can_control = false
 	TutorialHandler.tutorial_msg_end()
 	AudioPlayer.quit_game_music_effect()
 	AudioPlayer.music_reduce(-18, 1.0)
@@ -132,9 +147,11 @@ func _on_use_own_cursor_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		$canvas/mouse_particles.emitting = false
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		GameConfig.own_cursor = true
 	else:
 		$canvas/mouse_particles.emitting = true
 		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+		GameConfig.own_cursor = false
 	
 func _on_advanced_video_settings_button_pressed() -> void:
 	$canvas/options_buttons/tabs/tab_panel/video/vbox/advanced_panel.visible = !$canvas/options_buttons/tabs/tab_panel/video/vbox/advanced_panel.visible

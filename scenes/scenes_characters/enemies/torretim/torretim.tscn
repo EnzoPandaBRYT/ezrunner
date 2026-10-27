@@ -33,16 +33,19 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 size = Vector2(13.297848, 78.95598)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vricr"]
-radius = 499.22955
+radius = 350.17026
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x61th"]
 radius = 60.957428
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5uo6l"]
-size = Vector2(44.880238, 83.11156)
+size = Vector2(44.880238, 88.09825)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pgp7t"]
 size = Vector2(27.453424, 88.09824)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x61th"]
+size = Vector2(7.908903, 88.09824)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hrkg"]
 bg_color = Color(0, 0, 0, 1)
@@ -122,20 +125,30 @@ collision_layer = 128
 collision_mask = 16
 
 [node name="collision" type="CollisionShape2D" parent="collisions/torretim_hitbox" unique_id=1501920439]
-position = Vector2(0, 7.812493)
+position = Vector2(0, -3.12499)
 scale = Vector2(1.8800004, 1.8800004)
 shape = SubResource("RectangleShape2D_5uo6l")
 debug_color = Color(0.9590456, 0, 0.12561816, 0.41960785)
 
-[node name="hurtbox" type="Area2D" parent="collisions" unique_id=2008131765]
+[node name="torretim_hurtbox" type="Area2D" parent="collisions" unique_id=2008131765]
 collision_layer = 64
 collision_mask = 32
 
-[node name="collision" type="CollisionShape2D" parent="collisions/hurtbox" unique_id=1341092721]
-position = Vector2(0, 1.5624971)
+[node name="collision" type="CollisionShape2D" parent="collisions/torretim_hurtbox" unique_id=1341092721]
+position = Vector2(0, -3.1249948)
 scale = Vector2(1.8800004, 1.8800004)
 shape = SubResource("RectangleShape2D_pgp7t")
 debug_color = Color(0.79183584, 0.42817688, 0, 0.41960785)
+
+[node name="projectile_hurtbox" type="Area2D" parent="collisions" unique_id=913306509]
+collision_layer = 64
+collision_mask = 256
+
+[node name="collision" type="CollisionShape2D" parent="collisions/projectile_hurtbox" unique_id=713949783]
+position = Vector2(0, -3.1249948)
+scale = Vector2(1.8800004, 1.8800004)
+shape = SubResource("RectangleShape2D_x61th")
+debug_color = Color(0, 0.628854, 0.48864985, 0.41960785)
 
 [node name="death_particles" type="CPUParticles2D" parent="." unique_id=1316471067]
 emitting = false
@@ -153,9 +166,10 @@ scale_amount_max = 8.0
 color_ramp = SubResource("Gradient_p0ttc")
 
 [node name="health_bar" type="ProgressBar" parent="." unique_id=1501753652]
-offset_left = -45.312428
+visible = false
+offset_left = -28.124954
 offset_top = -78.12487
-offset_right = 46.46307
+offset_right = 29.687454
 offset_bottom = -70.312386
 theme_override_styles/background = SubResource("StyleBoxFlat_4hrkg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_skqbi")
@@ -177,4 +191,6 @@ bus = &"SFX"
 [connection signal="body_exited" from="collisions/follow_player" to="." method="_on_follow_player_body_exited"]
 [connection signal="body_entered" from="collisions/follow_player_inside" to="." method="_on_follow_player_inside_body_entered"]
 [connection signal="body_exited" from="collisions/follow_player_inside" to="." method="_on_follow_player_inside_body_exited"]
-[connection signal="area_entered" from="collisions/hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="collisions/torretim_hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="collisions/projectile_hurtbox" to="." method="_on_projectile_hurtbox_area_entered"]
+[connection signal="area_exited" from="collisions/projectile_hurtbox" to="." method="_on_projectile_hurtbox_area_exited"]

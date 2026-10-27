@@ -14,11 +14,14 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_vpufb"]
 colors = PackedColorArray(1, 0.36778843, 0.3002166, 1, 0.52026945, 1.4980697e-06, 3.3691526e-07, 0)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xdw8"]
+size = Vector2(2.2470255, 5.558036)
+
 [node name="projectile" type="Area2D" unique_id=1438907715]
 z_index = -2
 scale = Vector2(2.0000012, 2.0000012)
 collision_layer = 256
-collision_mask = 33
+collision_mask = 97
 script = ExtResource("1_vpufb")
 
 [node name="sprite" type="Sprite2D" parent="." unique_id=1203910743]
@@ -39,5 +42,19 @@ angle_max = 180.0
 scale_amount_curve = SubResource("Curve_vpufb")
 color_ramp = SubResource("Gradient_vpufb")
 
+[node name="parry_hurtbox" type="Area2D" parent="." unique_id=2145881400]
+scale = Vector2(6.7199984, 6.7199984)
+collision_layer = 256
+collision_mask = 32
+
+[node name="collision" type="CollisionShape2D" parent="parry_hurtbox" unique_id=2004078731]
+position = Vector2(1.009742e-28, -2.3841858e-07)
+scale = Vector2(1.0000001, 1.0000001)
+shape = SubResource("RectangleShape2D_2xdw8")
+debug_color = Color(0.775339, 0.42525277, 0.3268901, 0.41960785)
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="parry_hurtbox" to="." method="_on_parry_hurtbox_area_entered"]
+[connection signal="body_entered" from="parry_hurtbox" to="." method="_on_parry_hurtbox_body_entered"]

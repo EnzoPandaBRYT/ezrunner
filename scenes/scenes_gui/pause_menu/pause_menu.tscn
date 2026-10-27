@@ -221,6 +221,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
+focus_neighbor_top = NodePath("../quit")
+focus_neighbor_bottom = NodePath("../settings")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 64
@@ -246,6 +248,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
+focus_neighbor_top = NodePath("../back_to_game")
+focus_neighbor_bottom = NodePath("../quit")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 64
@@ -271,6 +275,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
+focus_neighbor_top = NodePath("../settings")
+focus_neighbor_bottom = NodePath("../back_to_game")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 64
@@ -302,6 +308,8 @@ anchor_bottom = 21.075
 offset_right = -0.00012207031
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("../../back_button")
+focus_neighbor_bottom = NodePath("../../back_button")
 mouse_filter = 2
 theme_override_constants/side_margin = 8
 theme_override_constants/tab_separation = 24
@@ -346,6 +354,8 @@ horizontal_alignment = 2
 
 [node name="check" type="CheckBox" parent="canvas/options_buttons/tabs/tab_panel/video/vbox/fullscreen" unique_id=387426626]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../advanced_button")
+focus_neighbor_bottom = NodePath("../../vsync/check")
 theme_override_styles/hover = SubResource("StyleBoxFlat_y0vo0")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_tn516")
 theme_override_icons/checked = ExtResource("7_rdabk")
@@ -367,6 +377,8 @@ horizontal_alignment = 2
 
 [node name="check" type="CheckBox" parent="canvas/options_buttons/tabs/tab_panel/video/vbox/vsync" unique_id=619599076]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../fullscreen/check")
+focus_neighbor_bottom = NodePath("../../own_cursor/check")
 theme_override_styles/hover = SubResource("StyleBoxFlat_y0vo0")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_tn516")
 theme_override_icons/checked = ExtResource("7_rdabk")
@@ -388,6 +400,8 @@ horizontal_alignment = 2
 
 [node name="check" type="CheckBox" parent="canvas/options_buttons/tabs/tab_panel/video/vbox/own_cursor" unique_id=134045972]
 layout_mode = 2
+focus_neighbor_top = NodePath("../../vsync/check")
+focus_neighbor_bottom = NodePath("../../advanced_button")
 theme_override_styles/hover = SubResource("StyleBoxFlat_y0vo0")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_tn516")
 theme_override_icons/checked = ExtResource("7_rdabk")

@@ -35,6 +35,7 @@ func _process(delta: float) -> void:
 			if PlayerStats.batchs_killed >= 1:
 				TutorialHandler.tutorial_step = -1
 				await get_tree().create_timer(1).timeout
+				TutorialHandler.hide_controls()
 				TutorialHandler.change_text("Ótimo. Você eliminou ele.")
 				await get_tree().create_timer(2).timeout
 				TutorialHandler.change_text("Geralmente 3 socos são suficientes para\neliminá-los, mas você pode precisar\nde mais.")
@@ -67,7 +68,10 @@ func _on_level_start_body_entered(body: Node2D) -> void:
 		await get_tree().create_timer(5).timeout
 		TutorialHandler.change_text("Então vamos começar.")
 		await get_tree().create_timer(2).timeout
-		TutorialHandler.change_text("Aperte F para socar esse Batch.")
+		if GameConfig.joypads_connected == 0:
+			TutorialHandler.change_text("Pressione F para socar esse Batch.")
+		else:
+			TutorialHandler.tutorial_msg_controller("PUNCH")
 		PlayerVars.can_control = true
 		PlayerVars.can_fight = true
 		total_enemies_to_spawn = 1

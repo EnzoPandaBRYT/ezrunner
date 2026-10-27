@@ -1,9 +1,14 @@
 extends Node
 
+var joypads_connected = 0
+var first_time_opening_game = true
+
 ## [VIDEO]
 var fullscreen = false
 var resolution = Vector2i(DisplayServer.screen_get_size())
-var fps = 60
+var fps = DisplayServer.screen_get_refresh_rate()
+var vsync = false
+var own_cursor = false
 
 ## [AUDIO]
 var masterVolumeValue = 100
@@ -21,7 +26,21 @@ func _ready() -> void:
 	if !FileAccess.file_exists(SETTINGS_FILE_PATH):
 		config.set_value("video", "fullscreen", false)
 		config.set_value("video", "resolution", Vector2i(DisplayServer.screen_get_size()))
-		config.set_value("video", "fps", 60)
+		if DisplayServer.screen_get_refresh_rate(): # Tenta verificar os HZ, se não conseguir, define pra 60
+			if DisplayServer.screen_get_refresh_rate() <= 60:
+				config.set_value("video", "fps", 60)
+				fps = 60
+			if DisplayServer.screen_get_refresh_rate() >= 61 and DisplayServer.screen_get_refresh_rate() < 144:
+				config.set_value("video", "fps", 120)
+				fps = 120
+			if DisplayServer.screen_get_refresh_rate() >= 144 and DisplayServer.screen_get_refresh_rate() < 180:
+				config.set_value("video", "fps", 144)
+				fps = 144
+			if DisplayServer.screen_get_refresh_rate() >= 180 and DisplayServer.screen_get_refresh_rate() < 200:
+				config.set_value("video", "fps", 240)
+				fps = 240
+		else:
+			config.set_value("video", "fps", 60)
 		
 		config.set_value("audio", "masterVolume", 1.0) # É multiplicado por 100 depois! (options_menu)
 		config.set_value("audio", "ostVolume", 1.0)
@@ -29,6 +48,7 @@ func _ready() -> void:
 		
 		config.set_value("misc", "tutorial_enabled", true) # Tutorial
 		config.set_value("misc", "play_intro", true) # Tutorial
+		config.set_value("misc", "first_time", true)
 		
 		config.save(SETTINGS_FILE_PATH)
 	else:
@@ -66,6 +86,9 @@ func _ready() -> void:
 		
 		# Tocar a intro?
 		play_intro = config.get_value("misc", "play_intro")
+		
+		# Primeira vez jogando?
+		first_time_opening_game = config.get_value("misc", "first_time")
 
 func save_audio_settings(key: String, value):
 	config.set_value("audio", key, value)

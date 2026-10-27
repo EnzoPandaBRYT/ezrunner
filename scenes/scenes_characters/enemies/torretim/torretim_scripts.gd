@@ -3,6 +3,8 @@ extends Enemy
 var follow_player = false
 var player_inside = false
 
+var can_parry = false
+
 signal enemy_dead
 
 @onready var spawn_particles = $anim/spawn_particles
@@ -13,7 +15,7 @@ signal enemy_dead
 @onready var torretim_hitbox = $collisions/torretim_hitbox
 
 var shoot_cooldown := 2.0
-var shoot_timer := 0.0
+var shoot_timer := 1.0
 
 var projectile_scene = preload("res://scenes/scenes_characters/attacks/projectiles/torretim/torretim_projectile.tscn")
 var health_drop_scene = preload("res://scenes/scenes_characters/drops/health/health_drop.tscn")
@@ -26,7 +28,7 @@ func _ready() -> void:
 	$spawn_sfx.play()
 	torretim_hitbox.monitoring = false
 	torretim_hitbox.monitorable = false
-	$collisions/hurtbox.monitoring = false
+	$collisions/torretim_hurtbox.monitoring = false
 	$collisions/follow_player.monitoring = false
 	create_tween().tween_property(anim, "modulate", Color(1.0, 1.0, 1.0), 1)
 	health_bar.max_value = max_health
@@ -35,16 +37,16 @@ func _ready() -> void:
 	await spawn_particles.finished
 	torretim_hitbox.monitoring = true
 	torretim_hitbox.monitorable = true
-	$collisions/hurtbox.monitoring = true
+	$collisions/torretim_hurtbox.monitoring = true
 	$collisions/follow_player.monitoring = true
 	
 func _process(delta: float) -> void:
-	if shoot_timer > 0:
+	if shoot_timer > 0 and follow_player:
 		shoot_timer -= delta
 
 func _idle() -> void:
 	_enterState("idle")
-	if follow_player and health > 1:
+	if follow_player and health >= 1:
 		_change_state(_StateMachine.CHASE)
 
 func _chase() -> void:
@@ -76,6 +78,8 @@ func _shoot():
 		var tween = create_tween()
 		projectile.global_position = spawn_pos
 		tween.tween_property(projectile, "global_position", player_position+Vector2(30.0,0.0), 0.1)
+	await get_tree().create_timer(1).timeout
+	can_parry = false
 
 func _dead() -> void:
 	_enterState("dead")
@@ -86,7 +90,25 @@ func _spawn_health(pos: Vector2):
 	health_drop.global_position = pos
 	get_tree().current_scene.add_child(health_drop)
 
+func _dead_function():
+	var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
+	var health_tween = create_tween().set_ease(Tween.EASE_IN_OUT)
+	if collisions:
+		collisions.queue_free()
+	_spawn_health(global_position)
+	enemy_dead.emit()
+	AudioPlayer.enemy_death_sfx()
+	health_bar.visible = false
+	_change_state(_StateMachine.DEAD)
+	create_tween().tween_property(anim, "modulate", Color(2.0, 2.0, 2.0), 0.5)
+	tween.tween_property(anim, "modulate:a", 0.0, 1)
+	death_particles.emitting = true
+	PlayerStats.torretims_killed += 1
+	await death_particles.finished
+	get_tree().queue_delete(self)
+
 func _on_hurtbox_area_entered(area: Area2D) -> void:
+	$health_bar.visible = true
 	AudioPlayer.punch_sfx(-9)
 	var health_tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	health -= 1
@@ -96,26 +118,31 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	anim.modulate = Color(1.0, 1.0, 1.0, 1.0)
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	if health <= 0:
-		_spawn_health(global_position)
-		enemy_dead.emit()
-		AudioPlayer.enemy_death_sfx()
-		collisions.queue_free()
-		health_bar.visible = false
-		_change_state(_StateMachine.DEAD)
-		create_tween().tween_property(anim, "modulate", Color(2.0, 2.0, 2.0), 0.5)
-		tween.tween_property(anim, "modulate:a", 0.0, 1)
-		death_particles.emitting = true
-		PlayerStats.torretims_killed += 1
-		await death_particles.finished
-		get_tree().queue_delete(self)
+		_dead_function()
 
+func _on_projectile_hurtbox_area_entered(area: Area2D) -> void:
+	if can_parry:
+		var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
+		if health > 0:
+			var health_tween = create_tween().set_ease(Tween.EASE_IN_OUT)
+			can_parry = false
+			AudioPlayer.punch_sfx(-9)
+			health -= 2
+			health_tween.tween_property(health_bar,"value", health, 0.05)
+			anim.modulate = Color(18.892, 18.892, 18.892)
+			await get_tree().create_timer(0.1).timeout
+			anim.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		if health <= 0:
+			_dead_function()
+
+func _on_projectile_hurtbox_area_exited(area: Area2D) -> void:
+	can_parry = true
 
 func _on_follow_player_body_entered(body: Node2D) -> void:
 	follow_player = true
 
 func _on_follow_player_body_exited(body: Node2D) -> void:
 	follow_player = false
-
 
 func _on_follow_player_inside_body_entered(body: Node2D) -> void:
 	player_inside = true

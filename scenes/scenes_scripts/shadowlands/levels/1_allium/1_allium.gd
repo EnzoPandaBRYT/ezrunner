@@ -7,6 +7,7 @@ var thunderbolt_scene = preload("res://scenes/scenes_characters/attacks/thunderb
 
 @onready var player = $player
 @onready var camera = $main_camera
+@export var custom_spawn = false
 
 var total_enemies_to_spawn = 0 # Número de inimigos que irão spawnar na arena
 var enemies_alive = 0 # Número de inimigos vivos naquela arena
@@ -20,7 +21,7 @@ func _ready() -> void:
 	PlayerGui.level_start()
 	PlayerVars.can_control = false
 	CameraHandler.follow_player = false
-	if GameConfig.tutorial_enabled:
+	if !custom_spawn:
 		ScreenAnimations.cutscene_bars_on(0.5)
 		player.position = Vector2(-679,273)
 		TutorialHandler.tutorial_step = 2
@@ -78,19 +79,26 @@ func _batch_died():
 					enemies_to_spawn -= 1
 			2:
 				_spawn_batch($enemy_spawns/arena_2.get_node("bat_spawn_" + str(randi_range(1,4))).position)
-	else:
-		match actual_arena:
-			2:
-				var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO)
-				tween.tween_property($enemy_spawns/arena_2/wall, "position", Vector2(position.x,position.y+700),2)
-				var t_camera = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO).set_parallel(true)
-				t_camera.tween_property(camera, "global_position", Vector2(PlayerVars.position_x,PlayerVars.position_y),1)
-				t_camera.tween_property(camera, "zoom", Vector2(2,2),1)
-				await t_camera.finished
-				CameraHandler.follow_player = true
 
 func _torretim_died():
-	pass
+	var enemies_to_spawn: int
+	enemies_alive -= 1
+	if total_enemies_to_spawn > 0:
+		if total_enemies_to_spawn >= 2: # Se o total de inimigos que faltam spawnar for maior que 1
+			enemies_to_spawn = randi_range(1,2)
+		else:
+			enemies_to_spawn = 1
+		await get_tree().create_timer(randf_range(0.5,1.0)).timeout
+		match actual_arena:
+			3:
+				while enemies_to_spawn > 0:
+					_spawn_torretim($enemy_spawns/arena_3.get_node("spawn_" + str(randi_range(1,4))).position)
+					enemies_to_spawn -= 1
+	else:
+		match actual_arena:
+			3:
+				var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_EXPO)
+				tween.tween_property($enemy_spawns/arena_3/arena_door, "position:x", $enemy_spawns/arena_3/arena_door.position.x-180, 2)
 
 func spawn_thunder(pos: Vector2) -> void:
 	var thunder = thunderbolt_scene.instantiate()
@@ -104,6 +112,7 @@ func _on_arena_1_start_body_entered(body: Node2D) -> void:
 		$enemy_spawns/arena_1/arena_1_start.queue_free()
 		await get_tree().create_timer(0.5).timeout
 		_spawn_batch($enemy_spawns/arena_1.get_node("bat_spawn_" + str(randi_range(1,3))).position)
+		await get_tree().create_timer(0.5).timeout
 		_spawn_torretim($enemy_spawns/arena_1/tor_spawn_1.position)
 
 func _on_arena_2_start_body_entered(body: Node2D) -> void:
@@ -132,6 +141,25 @@ func _on_mini_arena_1_start_body_entered(body: Node2D) -> void:
 		_spawn_torretim($enemy_spawns/mini_arena_1/tor_spawn_2.position)
 		$enemy_spawns/mini_arena_1/mini_arena_1_start.queue_free()
 
+func _on_arena_3_start_body_entered(body: Node2D) -> void:
+	if body.name == "player":
+		var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUART)
+		actual_arena = 3
+		total_enemies_to_spawn = 8
+		$enemy_spawns/arena_3/arena_3_start.queue_free()
+		tween.tween_property($enemy_spawns/arena_3/arena_door, "position:x", $enemy_spawns/arena_3/arena_door.position.x+180, 1)
+		_spawn_batch($enemy_spawns/arena_3.get_node("spawn_" + str(randi_range(1,4))).position)
+		await get_tree().create_timer(1).timeout
+		_spawn_batch($enemy_spawns/arena_3.get_node("spawn_" + str(randi_range(1,4))).position)
+		await get_tree().create_timer(1).timeout
+		_spawn_batch($enemy_spawns/arena_3.get_node("spawn_" + str(randi_range(1,4))).position)
+		await get_tree().create_timer(1).timeout
+		_spawn_torretim($enemy_spawns/arena_3.get_node("spawn_" + str(randi_range(1,4))).position)
+		await get_tree().create_timer(4).timeout
+		_spawn_torretim($enemy_spawns/arena_3.get_node("spawn_" + str(randi_range(1,4))).position)
+		await get_tree().create_timer(1).timeout
+		_spawn_batch($enemy_spawns/arena_3.get_node("spawn_" + str(randi_range(1,4))).position)
+
 func _on_lever_activated_door_1() -> void:
 	await get_tree().create_timer(4).timeout
 	_spawn_torretim($enemy_spawns/mini_arena_2/tor_spawn_1.position)
@@ -141,25 +169,40 @@ func _on_lever_activated_door_1() -> void:
 	_spawn_torretim($enemy_spawns/mini_arena_2/tor_spawn_2.position)
 	_spawn_batch($enemy_spawns/mini_arena_2/bat_spawn_2.position)
 
+func _on_double_jump_start_body_entered(body: Node2D) -> void:
+	$map_parts/double_jump_part/double_jump_start.queue_free()
+	$map_parts/double_jump_part/yellowmita.velocity.x -= 300
+	await get_tree().create_timer(1).timeout
+	$map_parts/double_jump_part/yellowmita.velocity.x = 0
+
+func _on_lever_activated_handle_up() -> void:
+	await get_tree().create_timer(1).timeout
+	var tween = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUINT)
+	tween.tween_property($interactables/up_handles/up_handle_1, "modulate:a", 1.0, 1.0)
+	$interactables/up_handles/up_handle_1.position.y = -757
+	await get_tree().create_timer(1.5).timeout
+	TutorialHandler.tutorial_msg("Para usar o gancho, basta apertar\nPULAR enquanto estiver no ar.")
+	await get_tree().create_timer(10).timeout
+	TutorialHandler.change_text("Você precisará estar dentro da área dele.")
+	await get_tree().create_timer(7).timeout
+	TutorialHandler.tutorial_msg_end()
+
 func _on_level_end_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		PlayerStats.save_levels_settings("tutorials_completed", 2)
 		PlayerVars.can_control = false
 		CameraHandler.follow_player = false
 		ScreenAnimations.black_fade(1.0, 2)
-		player._state = player._StateMachine.LVL_END
 		PlayerGui.cutscene_on()
 		await get_tree().create_timer(3).timeout
 		AudioPlayer.music_reduce(-9, 3)
-		TutorialHandler.tutorial_msg("Você está indo bem.")
+		TutorialHandler.tutorial_msg("Impressionante como a tecnologia ainda funciona.")
 		await get_tree().create_timer(4).timeout
-		TutorialHandler.change_text("Entretanto Shadowlands ainda é um lugar\ncom muito sofrimento...")
+		TutorialHandler.change_text("Em algum lugar a energia deve estar ligada.")
 		await get_tree().create_timer(5).timeout
-		TutorialHandler.change_text("Talvez um dia esse lugar seja livre, como era antes.")
-		await get_tree().create_timer(5).timeout
-		AudioPlayer.music_reduce(-18, 3)
+		TutorialHandler.change_text("Vamos investigar.")
+		await get_tree().create_timer(4).timeout
 		TutorialHandler.tutorial_msg_end()
-		await get_tree().create_timer(4).timeout
+		await get_tree().create_timer(2).timeout
 		await get_tree().process_frame
 		get_tree().change_scene_to_file("res://scenes/scenes_gui/main_menu/main_menu.tscn")
-	
