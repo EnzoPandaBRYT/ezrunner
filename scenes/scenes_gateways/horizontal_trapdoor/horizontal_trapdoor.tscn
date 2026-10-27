@@ -1,0 +1,198 @@
+[gd_scene format=3 uid="uid://bh8ljsku01oan"]
+
+[ext_resource type="Script" uid="uid://c2jyke4881l0" path="res://scenes/scenes_gateways/horizontal_trapdoor/horizontal_trapdoor.gd" id="1_rsq73"]
+[ext_resource type="Texture2D" uid="uid://bik5ptvixn3kd" path="res://assets/level_design/tileset/shadowlands/shadowlands_tiles.png" id="2_5a0wj"]
+[ext_resource type="Texture2D" uid="uid://c01r8xiu64rob" path="res://assets/level_design/gateways/trapdoor/horizontal_trapdoor.png" id="2_gp2vt"]
+[ext_resource type="AudioStream" uid="uid://t6plp5gtpkv3" path="res://ost_sfx/sfx/gateways/metal_trapdoor/trapdoor_opening_1.ogg" id="3_5paih"]
+[ext_resource type="Texture2D" uid="uid://5xyqmlm1aswu" path="res://assets/level_design/tileset/shadowlands/darker_shadowlands_tiles.png" id="3_8kg0w"]
+[ext_resource type="AudioStream" uid="uid://cx4afxdkdiott" path="res://ost_sfx/sfx/gateways/metal_trapdoor/trapdoor_opening_2.ogg" id="4_5a0wj"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_im67y"]
+texture = ExtResource("2_5a0wj")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_right_corner = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+0:0/0/terrains_peering_bit/bottom_left_corner = 0
+0:0/0/terrains_peering_bit/left_side = 0
+0:0/0/terrains_peering_bit/top_left_corner = 0
+0:0/0/terrains_peering_bit/top_side = 0
+0:0/0/terrains_peering_bit/top_right_corner = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/bottom_right_corner = 0
+1:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0/terrains_peering_bit/bottom_left_corner = 0
+1:0/0/terrains_peering_bit/left_side = 0
+1:0/0/terrains_peering_bit/top_left_corner = 0
+1:0/0/terrains_peering_bit/top_side = 0
+1:0/0/terrains_peering_bit/top_right_corner = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:0/0/terrains_peering_bit/right_side = 0
+2:0/0/terrains_peering_bit/bottom_right_corner = 0
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/bottom_left_corner = 0
+2:0/0/terrains_peering_bit/left_side = 0
+2:0/0/terrains_peering_bit/top_left_corner = 0
+2:0/0/terrains_peering_bit/top_side = 0
+2:0/0/terrains_peering_bit/top_right_corner = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:0/0/terrains_peering_bit/right_side = 0
+3:0/0/terrains_peering_bit/bottom_right_corner = 0
+3:0/0/terrains_peering_bit/bottom_side = 0
+3:0/0/terrains_peering_bit/bottom_left_corner = 0
+3:0/0/terrains_peering_bit/left_side = 0
+3:0/0/terrains_peering_bit/top_left_corner = 0
+3:0/0/terrains_peering_bit/top_side = 0
+3:0/0/terrains_peering_bit/top_right_corner = 0
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:3/0 = 0
+3:4/0 = 0
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:3/0 = 0
+4:4/0 = 0
+4:5/0 = 0
+4:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:5/0 = 0
+3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:5/0 = 0
+2:7/0 = 0
+2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:6/0 = 0
+1:3/0 = 0
+0:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+6:4/next_alternative_id = 2
+6:4/0 = 0
+5:4/0 = 0
+2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mlw7o"]
+texture = ExtResource("3_8kg0w")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+2:6/0 = 0
+2:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hteab"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 2
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_im67y")
+sources/2 = SubResource("TileSetAtlasSource_mlw7o")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kg0w"]
+atlas = ExtResource("2_gp2vt")
+region = Rect2(0, 0, 128, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7f37h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kg0w")
+}],
+"loop": 1,
+"name": &"trapdoor",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_2meqs"]
+offsets = PackedFloat32Array(0, 0.16049382, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="trapdoor" type="Node2D" unique_id=1251685810]
+scale = Vector2(1.2, 1.2)
+script = ExtResource("1_rsq73")
+
+[node name="shadowlands_tilemap" type="TileMapLayer" parent="." unique_id=326096701]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+position = Vector2(0, -5.8333335)
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray(0, 0, 254, 255, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_hteab")
+
+[node name="anim" type="AnimatedSprite2D" parent="." unique_id=290816107]
+sprite_frames = SubResource("SpriteFrames_7f37h")
+animation = &"trapdoor"
+frame_progress = 0.40751088
+
+[node name="particles" type="CPUParticles2D" parent="." unique_id=1721126703]
+position = Vector2(-64, 0)
+emitting = false
+amount = 64
+lifetime = 2.0
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+angular_velocity_min = -200.0
+angular_velocity_max = 200.0
+scale_amount_max = 8.0
+color_ramp = SubResource("Gradient_2meqs")
+
+[node name="sfx_01" type="AudioStreamPlayer2D" parent="." unique_id=808832634]
+stream = ExtResource("3_5paih")
+
+[node name="sfx_02" type="AudioStreamPlayer2D" parent="." unique_id=1770208893]
+stream = ExtResource("4_5a0wj")

@@ -1,0 +1,59 @@
+extends Character
+
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+
+@export_multiline var dialogue_text: String
+@export var interaction_id: int
+
+var can_interact := false
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+		$anim.animation = "jump"
+	elif velocity.x != 0:
+		$anim.play("running")
+	else:
+		$anim.play("idle")
+		
+	if can_interact and Input.is_action_just_pressed("interact") and PlayerVars.can_control:
+		if velocity.x == 0:
+			DialogSystem.define_name("The Shadow")
+			DialogSystem.define_portrait("the_shadow")
+			DialogSystem.start_dialog(dialogue_text)
+		else:
+			match interaction_id:
+				1: DialogSystem.start_dialog("...")
+		can_interact = false
+		$interact_key.visible = false
+		
+		await DialogSystem.dialog_finished
+		
+		match interaction_id:
+			1:
+				velocity.x += 100
+		var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(self, "modulate:a", 0.0, 3)
+		await tween.finished
+		queue_free()
+	_movement()
+	move_and_slide()
+
+
+func _movement():
+	if velocity.x > 0:
+		$anim.flip_h = false
+	if velocity.x < 0:
+		$anim.flip_h = true
+
+func _on_player_detection_body_entered(body: Node2D) -> void:
+	$interact_key.visible = true
+	can_interact = true
+
+
+func _on_player_detection_body_exited(body: Node2D) -> void:
+	$interact_key.visible = false
+	can_interact = false

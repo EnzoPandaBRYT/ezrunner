@@ -1,0 +1,292 @@
+[gd_scene format=4 uid="uid://cmgpcaqyan0bn"]
+
+[ext_resource type="Script" uid="uid://oan4wv0r7i7" path="res://scenes/scenes_breakables/large_box/large_box.gd" id="1_8s7aw"]
+[ext_resource type="Texture2D" uid="uid://bu07sha1u7ypo" path="res://assets/level_design/breakables/large_box/box.png" id="2_iy8h7"]
+[ext_resource type="Texture2D" uid="uid://bik5ptvixn3kd" path="res://assets/level_design/tileset/shadowlands/shadowlands_tiles.png" id="5_eji03"]
+[ext_resource type="Texture2D" uid="uid://5xyqmlm1aswu" path="res://assets/level_design/tileset/shadowlands/darker_shadowlands_tiles.png" id="6_3sr64"]
+[ext_resource type="AudioStream" uid="uid://b2woinbap4kfp" path="res://ost_sfx/sfx/breakables/box_break_1.ogg" id="6_oenag"]
+[ext_resource type="AudioStream" uid="uid://c6pey2epfjihn" path="res://ost_sfx/sfx/breakables/box_break_2.ogg" id="7_kwwfn"]
+[ext_resource type="AudioStream" uid="uid://cq4a6y7ahy7vb" path="res://ost_sfx/sfx/breakables/box_break_3.ogg" id="8_esm5t"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oenag"]
+texture = ExtResource("5_eji03")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_right_corner = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+0:0/0/terrains_peering_bit/bottom_left_corner = 0
+0:0/0/terrains_peering_bit/left_side = 0
+0:0/0/terrains_peering_bit/top_left_corner = 0
+0:0/0/terrains_peering_bit/top_side = 0
+0:0/0/terrains_peering_bit/top_right_corner = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/bottom_right_corner = 0
+1:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0/terrains_peering_bit/bottom_left_corner = 0
+1:0/0/terrains_peering_bit/left_side = 0
+1:0/0/terrains_peering_bit/top_left_corner = 0
+1:0/0/terrains_peering_bit/top_side = 0
+1:0/0/terrains_peering_bit/top_right_corner = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:0/0/terrains_peering_bit/right_side = 0
+2:0/0/terrains_peering_bit/bottom_right_corner = 0
+2:0/0/terrains_peering_bit/bottom_side = 0
+2:0/0/terrains_peering_bit/bottom_left_corner = 0
+2:0/0/terrains_peering_bit/left_side = 0
+2:0/0/terrains_peering_bit/top_left_corner = 0
+2:0/0/terrains_peering_bit/top_side = 0
+2:0/0/terrains_peering_bit/top_right_corner = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:0/0/terrains_peering_bit/right_side = 0
+3:0/0/terrains_peering_bit/bottom_right_corner = 0
+3:0/0/terrains_peering_bit/bottom_side = 0
+3:0/0/terrains_peering_bit/bottom_left_corner = 0
+3:0/0/terrains_peering_bit/left_side = 0
+3:0/0/terrains_peering_bit/top_left_corner = 0
+3:0/0/terrains_peering_bit/top_side = 0
+3:0/0/terrains_peering_bit/top_right_corner = 0
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:3/0 = 0
+3:4/0 = 0
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+4:3/0 = 0
+4:4/0 = 0
+4:5/0 = 0
+4:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+3:5/0 = 0
+3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:5/0 = 0
+2:7/0 = 0
+2:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:6/0 = 0
+1:3/0 = 0
+0:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+6:4/next_alternative_id = 2
+6:4/0 = 0
+5:4/0 = 0
+2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kwwfn"]
+texture = ExtResource("6_3sr64")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+2:6/0 = 0
+2:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_esm5t"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 2
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_oenag")
+sources/2 = SubResource("TileSetAtlasSource_kwwfn")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8s7aw"]
+atlas = ExtResource("2_iy8h7")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iy8h7"]
+atlas = ExtResource("2_iy8h7")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eji03"]
+atlas = ExtResource("2_iy8h7")
+region = Rect2(128, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sr64"]
+atlas = ExtResource("2_iy8h7")
+region = Rect2(192, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x61th"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8s7aw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iy8h7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eji03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3sr64")
+}],
+"loop": 1,
+"name": &"box_state",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aujsj"]
+size = Vector2(13.297848, 78.95598)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgp7t"]
+size = Vector2(84.77378, 169.54756)
+
+[sub_resource type="Gradient" id="Gradient_oenag"]
+offsets = PackedFloat32Array(0.3271605, 1)
+colors = PackedColorArray(0.53799474, 0.3954204, 0.96048516, 1, 1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4hrkg"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 16
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_skqbi"]
+bg_color = Color(0.26110244, 0.713559, 9.62615e-07, 1)
+border_width_bottom = 2
+border_color = Color(0, 0.96309274, 0.30027395, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 16
+
+[node name="large_box" type="CharacterBody2D" unique_id=386173302]
+scale = Vector2(0.785, 0.785)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_8s7aw")
+use_gravity = false
+metadata/_custom_type_script = "uid://du1rujp720vy"
+
+[node name="shadowlands_tilemap" type="TileMapLayer" parent="." unique_id=1065409657]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+scale = Vector2(0.6120621, 0.6120621)
+tile_map_data = PackedByteArray("AAD+//z/AAAAAAAAAAD+//3/AAAAAAEAAAD+//7/AAAAAAEAAAD+////AAAAAAEAAAD+/wAAAAAAAAEAAAD+/wEAAAAAAAEAAAD+/wIAAAAAAAEAAAD+/wMAAAAAAAEAAAD///z/AAACAAAAAAAAAPz/AAACAAAAAAABAPz/AAADAAAAAAABAP3/AAADAAEAAAABAP7/AAADAAEAAAABAP//AAADAAEAAAABAAAAAAADAAEAAAABAAEAAAADAAEAAAABAAIAAAADAAEAAAABAAMAAAADAAEAAAD///3/AAABAAEAAAAAAP3/AAACAAEAAAD///7/AAABAAEAAAAAAP7/AAACAAEAAAD/////AAABAAEAAAAAAP//AAACAAEAAAD//wAAAAABAAEAAAAAAAAAAAACAAEAAAD//wEAAAABAAEAAAAAAAEAAAACAAEAAAD//wIAAAABAAEAAAAAAAIAAAACAAEAAAD//wMAAAABAAEAAAAAAAMAAAACAAEAAAA=")
+tile_set = SubResource("TileSet_esm5t")
+
+[node name="anim" type="AnimatedSprite2D" parent="." unique_id=1400473386]
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_x61th")
+animation = &"box_state"
+
+[node name="collision" type="CollisionShape2D" parent="." unique_id=313765987]
+position = Vector2(0, 5.468741)
+scale = Vector2(1.8800004, 1.8800004)
+shape = SubResource("RectangleShape2D_aujsj")
+
+[node name="collisions" type="Node2D" parent="." unique_id=2134024646]
+
+[node name="torretim_hurtbox" type="Area2D" parent="collisions" unique_id=2008131765]
+visible = false
+collision_layer = 64
+collision_mask = 32
+
+[node name="collision" type="CollisionShape2D" parent="collisions/torretim_hurtbox" unique_id=1341092721]
+position = Vector2(0, -5.9604545e-06)
+scale = Vector2(1.8800004, 1.8800004)
+shape = SubResource("RectangleShape2D_pgp7t")
+debug_color = Color(0.79183584, 0.42817688, 0, 0.41960785)
+
+[node name="particles" type="CPUParticles2D" parent="." unique_id=173517014]
+position = Vector2(-1.3157855, 139.47327)
+rotation = -1.5707964
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(20, 80)
+initial_velocity_min = 100.0
+initial_velocity_max = 400.0
+scale_amount_max = 8.0
+color_ramp = SubResource("Gradient_oenag")
+
+[node name="health_bar" type="ProgressBar" parent="." unique_id=1501753652]
+visible = false
+offset_left = -28.124954
+offset_top = -78.12487
+offset_right = 29.687454
+offset_bottom = -70.312386
+theme_override_styles/background = SubResource("StyleBoxFlat_4hrkg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_skqbi")
+max_value = 2.0
+value = 2.0
+show_percentage = false
+
+[node name="break_sfx_1" type="AudioStreamPlayer2D" parent="." unique_id=1962376871]
+stream = ExtResource("6_oenag")
+max_distance = 1500.0
+bus = &"SFX"
+
+[node name="break_sfx_2" type="AudioStreamPlayer2D" parent="." unique_id=1126665754]
+stream = ExtResource("7_kwwfn")
+max_distance = 1500.0
+bus = &"SFX"
+
+[node name="break_sfx_3" type="AudioStreamPlayer2D" parent="." unique_id=2134495832]
+stream = ExtResource("8_esm5t")
+max_distance = 1500.0
+bus = &"SFX"
+
+[connection signal="area_entered" from="collisions/torretim_hurtbox" to="." method="_on_hurtbox_area_entered"]

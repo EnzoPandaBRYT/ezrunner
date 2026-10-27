@@ -1,0 +1,47 @@
+=== MODIFICAÇÕES ATÉ 22/10/2026 - 20:06 ===
+
+### Recursos modificados:
+	## INIMIGOS:
+		> TODOS OS INIMIGOS:
+			- As barras de vida agora só aparecem quando o jogador inflige algum dano a eles.
+		> TORRETIM:
+			- Agora é possível rebater os projéteis de Torretim, o que o mata instantaneamente.
+	
+	## JOGABILIDADE:
+		> ATUALIZAÇÃO NOS DIÁLOGOS:
+			- A forma anterior era bem ruim e primordial: Cada linha aparecia a cada 4 segundos, não permitindo
+			que o jogador tomasse o tempo necessário para ler e compreender o que estava sendo dito, além de
+			não criar uma oportunidade de interação. Sendo assim, agora é possível PULAR LINHAS (Pressionando X ou PULAR),
+			ou apenas avançá-las conforme os personagens falam (Pressionando Z ou PULAR ou X/A no controle). Além disso, qualquer interação
+			que dependesse de tempo para ser executada (que era feita somando o tempo de cada linha de diálogo) foi
+			substituida por um sinal, que executa as ações pendentes logo que o diálogo acaba, dando o tempo que o
+			jogador quiser para ler e reler cada linha;
+			- O nome do personagem emissor agora aparece no canto superior esquerdo.
+	
+	## MAPA:
+		> O primeiro mapa está completo!:
+			- Agora o primeiro mapa (fora o tutorial) conta com novidades, como um alçapão e alavancas. Hordas de inimigos podem já estar
+			te esperando... O próximo mapa (nível 2) já começará a ser desenvolvido, e a pretensão é que cada mapa
+			mostre inimigos novos.
+	
+	## LEVEL DESIGN:
+		> INTERAGÍVEIS:
+			- Agora, tudo que é interagível (objetos) possui uma borda branca indicando quando é possível interagir.
+		> ALAVANCAS:
+			- As alavancas vão estar distribuidas nos mapas. Através delas é possível ativar mecanismos antigos que sobraram,
+			basta pressionar a tecla E (ou △/Y no controle).
+		> PORTAS:
+			- As portas te levam a locais diferentes do mapa ou para dentro de salas. Elas podem estar bloqueadas por um
+			MECANISMO, que geralmente é uma alavanca. Após serem desbloqueadas, estarão disponíveis para interação,
+			pressionando E (ou △/Y no controle).
+	
+	### GUI:
+		> INTERAGÍVEIS:
+			- Os interagíveis ganham uma borda branca quando podem ser usados/interagidos.
+		> CONFIGURAÇÕES:
+			- Agora o menu de pausa atualiza corretamente, exibindo a porcentagem correta de volume e efeitos sonoros.
+		> TUTORIAIS:
+			- Os tutoriais agora indicam corretamente os botões para controles (PlayStation);
+			- Pausar o jogo enquanto um tutorial está sendo exibido travava o tutorial, fazendo-o não exibir todas as 
+			etapas/botões corretamente. Para corrigir, agora não é mais possível pausar enquanto um tutorial está sendo 
+			exibido.
